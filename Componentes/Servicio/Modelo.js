@@ -71,7 +71,8 @@ class Servicio {
     }
 }
 
-var servicios = new Array();
+// Lista estática de servicios
+const servicios = new Array();
 servicios.push(new Servicio("name1", "descripcion", "5 horas", "url/1.jpg", 20.4, "VIP"));
 servicios.push(new Servicio("name2", "descripcion2", "8 horas", "url/2.jpg", 5, "Normal"));
 
