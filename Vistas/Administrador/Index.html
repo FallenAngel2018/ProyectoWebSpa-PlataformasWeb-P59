@@ -9,19 +9,55 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>Spa Web Admin</title>
 </head>
-<body>
+
+<body onload="getElements()">
     
-    <section class="container">
-        <div class="item header">
-            <h1>Spa Web App - Administrador</h1>
+    <div class="topItem">
+        <h1>Spa Web App - Administrador</h1>
+        <div class="float-right">
+            <!-- <div id="galery1" class="subItem"><span>Galería 1</span></div> -->
+            <div id="nombre_usuario">Hola </div>
         </div>
+    </div>
 
-
+    <section class="container-items">
+        <div class="item">
+            <!-- <div id="galery1" class="subItem"><span>Masajes</span></div>
+            <div id="galery2" class="subItem"><span>Depilación</span></div>
+            <div id="galery3" class="subItem"><span>Facial</span></div> -->
+            <ul id="lista_servicios">
+                <li>Masajes</li>
+                <li>Depilación</li>
+                <li>Facial</li>
+            </ul>
+        </div>
+        <div class="item">
+            <!-- <p id="backward" class="flecha"><span>&#10094;</span></p>
+            <img src="Galeria_01/01.jpg" class="foto" id="foto_galeria">
+            <p id="forward" class="flecha"><span>&#10095;</span></p> -->
+        </div>
         
-
-
     </section>
 
+    <div class="footerItem"></div>
+    
 
 </body>
 </html>
+
+
+<script>
+
+    function getElements() {
+        
+        arreglo = ["1", "2", "3","4"];
+
+        arreglo.forEach(element => {
+            document.getElementById("lista_servicios").innerHTML += 
+              "<li>" + element + "</li>";
+        });
+
+        
+    }
+
+</script>
