@@ -92,7 +92,18 @@ servicios.push(new Servicio(6, "Masaje VIP cuerpo completo", "Masaje de cuerpo c
 
 
 module.exports = Servicio; // Class
-module.exports = servicios; // Lista de la clase Servicio
+// module.exports = servicios; // Lista de la clase Servicio
+
+
+export const serv = new Array();
+
+// module.exports = {
+//     servicios,
+//     serv
+
+// }; 
+
+// Lista de la clase Servicio
 
 
 // export const settingsArray = [

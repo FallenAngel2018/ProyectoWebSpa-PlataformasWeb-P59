@@ -19,10 +19,33 @@ var myObject = require('./Componentes/Servicio/Modelo');
 // var s = new Servicio();
 
 
+// var serv = require('./Componentes/Servicio/Modelo');
+
+// import { serv } from './Componentes/Servicio/Modelo';
+
+import {
+    serv,
+} from "./Componentes/Servicio/Modelo"
+
+console.log("OBJETO serv vacío");
+
+serv.forEach(function(element) {
+    console.log(element);
+});
+
+console.log("FIN OBJETO serv vacío");
+
+
+myObject.forEach(function(element) {
+    console.log(element);
+});
+
+
 // 1) Imprimir lista/objeto "servicios" dentro de la clase Modelo.js
 myObject.forEach(function(element) {
     console.log(element);
 });
+
 
 console.log(); // Espacio en blanco
 
@@ -39,7 +62,7 @@ myObject.forEach(function(element) {
 console.log();
 
 // 3) Elimina el objeto que está al final del arreglo o lista
-
+myObject.pop();
 
 // Imprime lista actualizada
 myObject.forEach(function(x) {
