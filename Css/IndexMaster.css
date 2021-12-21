@@ -1,9 +1,8 @@
     .row {
-        width: 100%;
-        margin: 0 auto;
+        width: 50%;
+       
     }
     
-
     
     #descripcion {
         margin-top: 15px;
@@ -15,12 +14,17 @@
 
 
     #m{
-        margin-top: 100px;
+        margin-top: 300px;
     }
 
     .ImgSucursales {
-        /* float: left; */
-        position: relative;   
-        text-align: left;
+
         float: left;
+        position: relative;
+
+        margin-right: 55px;
+        margin-left: 55px;
+        margin-bottom: 55px;
     }
+
+   
