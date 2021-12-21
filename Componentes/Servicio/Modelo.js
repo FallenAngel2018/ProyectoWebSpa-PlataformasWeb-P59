@@ -1,5 +1,5 @@
 
-// export
+
 class Servicio {
     
     // constructor() { }
@@ -9,13 +9,15 @@ class Servicio {
         minutos u horas), una fotografía, un valor monetario y tipo de
         servicio (VIP o normal).
     */
-    constructor(nombre, descripcion, duracion, fotografia, precio, tipo_servicio) {
+    constructor(id, nombre, descripcion, duracion, fotografia, precio, tipo_servicio, estado) {
+        this.id = id
         this.nombre = nombre
         this.descripcion = descripcion
         this.duracion = duracion // En minutos u horas
         this.fotografia = fotografia // Como url hacia una carpeta de imágenes
         this.precio = precio // Valor monetario
         this.tipo_servicio = tipo_servicio // VIP o normal
+        this.estado = estado // ACTIVO o INACTIVO
     }
 
     // services = new Service() = [
@@ -71,13 +73,25 @@ class Servicio {
     }
 }
 
+/*
+    El Spa ofrece los siguientes servicios: depilación, faciales y masajes,
+    el sistema debe permitir agregar otros servicios. 
+*/
+
 // Lista estática de servicios
 const servicios = new Array();
-servicios.push(new Servicio("name1", "descripcion", "5 horas", "url/1.jpg", 20.4, "VIP"));
-servicios.push(new Servicio("name2", "descripcion2", "8 horas", "url/2.jpg", 5, "Normal"));
+                                                // 5 horas en minutos
+servicios.push(new Servicio(1, "name1", "descripcion", 300, "url/1.jpg", 20.4, "VIP", true));
+                                                // 8 horas en minutos
+servicios.push(new Servicio(2, "name2", "descripcion2", 480, "url/2.jpg", 50, "Normal", false));
+servicios.push(new Servicio(3, "Depilación", "descripcion3", 30, "url/2.jpg", 12.35, "Normal", true));
+servicios.push(new Servicio(4, "Facial", "descripcion4", 30, "url/2.jpg", 15.50, "Normal", true));
+servicios.push(new Servicio(5, "Masaje", "descripcion5", 60, "url/2.jpg", 20, "Normal", true));
+servicios.push(new Servicio(6, "Masaje VIP cuerpo completo", "Masaje de cuerpo completo con aloe vera, rocas calientes y sí se desea en el momento también con acupuntura especializada."
+, 90, "url/2.jpg", 40.35, "VIP", true));
 
 
-module.exports = Servicio; // CLass
+module.exports = Servicio; // Class
 module.exports = servicios; // Lista de la clase Servicio
 
 
