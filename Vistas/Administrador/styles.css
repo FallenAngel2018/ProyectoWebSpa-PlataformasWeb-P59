@@ -25,28 +25,39 @@ ul {
 .item {
     background-color: white;
     padding: 10px;
-    margin-left: 0px;
-    border: 5px solid black;
+    /* margin-left: 0px; */
+    border: 1px solid black;
     font-style: normal;
     /* text-decoration: underline; */
 }
 
+.formulario {
+    height: 300px;
+}
+
 .subItem {
-    background-color: white;
-    margin: auto;
-    padding-top: 10px;
-    margin-bottom: 20px;
+    background-color: lightsalmon;
+    border: 1px solid black;
+    /* margin: auto; */
+    /* padding-top: 10px; */
     padding-right: 10px;
     padding-left: 5px;
+    margin-bottom: 20px;
     text-align: center;
     color: rgb(42, 67, 180);
 } 
+
+.serv-button {
+    /* width: 170px; */
+    width: 100%;
+}
 
 .nav-item {
     text-align: center;
     box-sizing: content-box;
 
 }
+
 
 
 .footerItem {
@@ -57,3 +68,22 @@ ul {
 
 
 
+
+  /* Id's  */
+
+  #wrapper {
+    width: 100%;
+    border: 1px solid black;
+    overflow: hidden; /* will contain if #first is longer than #second */
+}
+#first {
+    /* width: 300px; */
+    float:left; /* add this */
+    border: 1px solid red;
+}
+#second {
+    border: 1px solid green;
+    float: left;
+    /* if you don't want #second to wrap below #first */
+    overflow: hidden;
+}

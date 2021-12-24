@@ -10,7 +10,7 @@ class Servicio {
         servicio (VIP o normal).
     */
     constructor(id, nombre, descripcion, duracion, fotografia, precio, tipo_servicio, estado) {
-        this.id = id
+        this.id = id // Valor oculto (hidden)
         this.nombre = nombre
         this.descripcion = descripcion
         this.duracion = duracion // En minutos u horas
