@@ -6,6 +6,7 @@
     
     #descripcion {
         margin-top: 15px;
+        text-align: left;
     }
 
     .bg-darks {
@@ -27,4 +28,18 @@
         margin-bottom: 55px;
     }
 
+    #a {
+        text-align: justify;
+        margin: 54px;
+    }
+
+    #fotoprincipal {
+        margin: 54px;
+    }
+
+    #tituloPrinc{
+        font-size: 50px;
+        margin: 20px;
+    }
+    
    
