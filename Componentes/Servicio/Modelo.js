@@ -1,6 +1,8 @@
 
 // Hola
-class Servicio {
+// export 
+// class Servicio {
+export default class Servicio {
     
     // constructor() { }
     
@@ -51,6 +53,20 @@ class Servicio {
         return services;
     }
 
+    static saveService(data) {
+        // var servicio = Object.assign(this, data);
+        var servicio = $.extend(new Service, data);
+        
+
+        servicios.push(servicio);
+
+        console.log("Todo ok: " + servicios.at(-1).nombre);
+        console.log("servicio: " + servicio);
+
+        debugger;
+
+    }
+
     // Definir función
     saludar(fn) {
         console.log( `Hola soy ${this.nombre} ${this.apellido}` )
@@ -79,7 +95,7 @@ class Servicio {
 */
 
 // Lista estática de servicios
-const servicios = new Array();
+export const servicios = new Array();
                                                 // 5 horas en minutos
 servicios.push(new Servicio(1, "name1", "descripcion", 300, "url/1.jpg", 20.4, "VIP", true));
                                                 // 8 horas en minutos
@@ -90,18 +106,17 @@ servicios.push(new Servicio(5, "Masaje", "descripcion5", 60, "url/2.jpg", 20, "N
 servicios.push(new Servicio(6, "Masaje VIP cuerpo completo", "Masaje de cuerpo completo con aloe vera, rocas calientes y sí se desea en el momento también con acupuntura especializada."
 , 90, "url/2.jpg", 40.35, "VIP", true));
 
+// // Esto funciona
+// export { Servicio };
 
-module.exports = Servicio; // Class
-// module.exports = servicios; // Lista de la clase Servicio
 
+function saveData(form) {
 
-export const serv = new Array();
+    console.log("form.nombre: " + form.nombre);
 
-// module.exports = {
-//     servicios,
-//     serv
+    return form != undefined || form != null ? "Todo correcto alv wooo!: " + form.nombre : "Algo salió mal :/" 
 
-// }; 
+}
 
 // Lista de la clase Servicio
 

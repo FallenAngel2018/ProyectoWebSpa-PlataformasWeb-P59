@@ -29,6 +29,8 @@ ul {
     border: 1px solid black;
     font-style: normal;
     /* text-decoration: underline; */
+    height: 600px;
+
 }
 
 .formulario {
@@ -69,9 +71,12 @@ ul {
 
 
 
-  /* Id's  */
+/* Id's  */
+#lista_servicios {
+    overflow-y: scroll;
+}
 
-  #wrapper {
+#wrapper {
     width: 100%;
     border: 1px solid black;
     overflow: hidden; /* will contain if #first is longer than #second */
@@ -80,10 +85,26 @@ ul {
     /* width: 300px; */
     float:left; /* add this */
     border: 1px solid red;
+    height: 625px;
+    
 }
 #second {
     border: 1px solid green;
     float: left;
     /* if you don't want #second to wrap below #first */
     overflow: hidden;
+
 }
+#flexCheckDefault {
+    padding-left: 0.25rem;
+    /* position: absolute; */
+
+}
+
+#guardarServicio {
+    /* position: center; */
+    justify-content: center;
+
+
+}
+

@@ -7,39 +7,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="styles.css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Spa Web Admin</title>
 </head>
 
-<body onload="getElements()">
+<body>
+<!-- <body onload="getElements()"> -->
     
     <div class="topItem">
         <h1>Spa Web App - Administrador</h1>
         <div class="float-right">
-            <!-- <div id="galery1" class="subItem"><span>Galería 1</span></div> -->
             <div id="nombre_usuario">Hola </div>
         </div>
     </div>
 
-    <section class="container-items">
+    <!-- <section class="container-items">
         <div class="item">
-        <!-- <div class="item col-8"> -->
             <div id="serv_1" class="subItem"><span>Masajes</span></div>
             <div id="serv_2" class="subItem"><span>Depilación</span></div>
             <div id="serv_3" class="subItem"><span>Facial</span></div>
-            <!-- <ul id="lista_servicios">
-                <li class="subItem">Masajes</li>
-                <li class="subItem">Depilación</li>
-                <li class="subItem">Facial</li>
-            </ul> -->
         </div>
 
         <div class="item formulario">
-            <!-- <p id="backward" class="flecha"><span>&#10094;</span></p>
-            <img src="Galeria_01/01.jpg" class="foto" id="foto_galeria">
-            <p id="forward" class="flecha"><span>&#10095;</span></p> -->
+
         </div>
         
-    </section>
+    </section> -->
 
     <!-- <div class="container">
         <div class="row">
@@ -73,9 +66,10 @@
                 <!-- <div id="serv_4" onclick="showId(this)" class="subItem"><span>Masajes</span></div>
                 <div id="serv_5" onclick="showId(this)" class="subItem"><span>Depilación</span></div>
                 <div id="serv_6" onclick="showId(this)" class="subItem"><span>Facial</span></div> -->
-                <button id="serv_4" onclick="showId(this)" class="subItem serv-button" value="1"><span>Facial</span></button>
-                <button id="serv_5" onclick="showId(this)" class="subItem serv-button" value="2"><span>Facial</span></button>
-                <button id="serv_6" onclick="showId(this)" class="subItem serv-button" value="3"><span>Facial</span></button>
+                <button id="serv_1" onclick="showModules()" class="subItem serv-button" value="1"><span>Masajes</span></button>
+                <!-- <button id="serv_1" onclick="showId(this)" class="subItem serv-button" value="1"><span>Masajes</span></button> -->
+                <button id="serv_2" onclick="showId(this)" class="subItem serv-button" value="2"><span>Depilación</span></button>
+                <button id="serv_3" onclick="showId(this)" class="subItem serv-button" value="3"><span>Facial</span></button>
 
                 <!-- <ul id="lista_servicios">
                     <li class="subItem">Masajes</li>
@@ -88,135 +82,100 @@
             <div id="serv_6" class="subItem"><span>Facial</span></div> -->
         </div>
         <div class="col-10" id="second">
-            <!-- When you post a new question, other users will almost immediately see it and try to provide good answers.
-            This often happens in a matter of minutes, so be sure to check back frequently when your question
-            is still new for the best response. -->
-            <form method="post">
-                <div class="form-group row">
-                  <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
-                  <div class="col-sm-10">
-                    <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="email@example.com">
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
-                  <div class="col-sm-10">
-                    <input type="password" class="form-control" id="inputPassword" placeholder="Password">
-                  </div>
-                </div>
-            </form>
+            <div class="container"> <div class=" text-center mt-5 ">
+                <h1>Formulario de Servicios</h1>
+            </div>
 
-            <div class="container-fluid px-1 py-5 mx-auto">
-                <div class="row d-flex justify-content-center">
-                    <div class="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
-                            <form class="form-card" onsubmit="event.preventDefault()">
-                                <div class="row justify-content-between text-left">
-                                    <div class="form-group col-sm-6 flex-column d-flex">
-                                        <label class="form-control-label px-3">Nombre<span class="text-danger"> *</span></label>
-                                        <input type="text" id="nombreServicio" name="nombreServicio" placeholder="" onblur="validate(1)">
-                                    </div>
-                                    <div class="form-group col-sm-6 flex-column d-flex">
-                                        <label class="form-control-label px-3">Duración<span class="text-danger"> *</span></label>
-                                        <input type="text" id="duracionServicio" name="duracionServicio" placeholder="Ingrese una duración en minutos" onblur="validate(2)">
-                                    </div>
-                                </div>
-                                <div class="row justify-content-between text-left">
-                                    <div class="form-group col-sm-6 flex-column d-flex">
-                                        <label class="form-control-label px-3">Business email<span class="text-danger"> *</span></label>
-                                        <input type="text" id="email" name="email" placeholder="" onblur="validate(3)">
-                                    </div>
-                                    <div class="form-group col-sm-6 flex-column d-flex">
-                                        <label class="form-control-label px-3">Phone number<span class="text-danger"> *</span></label>
-                                        <input type="text" id="mob" name="mob" placeholder="" onblur="validate(4)">
-                                    </div>
-                                </div>
-                                <div class="row justify-content-between text-left">
-                                    <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">Job title<span class="text-danger"> *</span></label> <input type="text" id="job" name="job" placeholder="" onblur="validate(5)"> </div>
-                                </div>
-                                <div class="row justify-content-between text-left">
-                                    <div class="form-group col-12 flex-column d-flex"> <label class="form-control-label px-3">What would you be using Flinks for?<span class="text-danger"> *</span></label> <input type="text" id="ans" name="ans" placeholder="" onblur="validate(6)"> </div>
-                                </div>
-                                <div class="row justify-content-end">
-                                    <div class="form-group col-sm-6"> <button type="submit" class="btn-block btn-primary">Request a demo</button> </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+            <input type="hidden" id="id" name="id" value="55">
 
-                <div class="container">] <div class=" text-center mt-5 ">
-                    <h1>Bootstrap Contact Form</h1>
-                </div>
-                <div class="row ">
-                    <div class="col-lg-10 mx-auto">
-                        <div class="card mt-2 mx-auto p-4 bg-light">
-                            <div class="card-body bg-light">
-                                <div class="container">
-                                    <form id="contact-form" role="form">
-                                        <div class="controls">
-                                            <div class="row">
-                                                <div class="col-md-5">
-                                                    <div class="form-group">
-                                                        <label for="form_name">Nombre *</label>
-                                                        <input id="form_name" type="text" name="name" class="form-control" placeholder="Ingrese el nombre del producto." required="required" data-error="Firstname is required.">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <div class="form-group">
-                                                        <label for="form_lastname">Duración *</label>
-                                                        <input id="form_lastname" type="number" min="1" name="surname" class="form-control" placeholder="" required="required" data-error="Lastname is required.">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <div class="form-group">
-                                                        <label for="form_email">Precio *</label>
-                                                        <input id="form_email" type="number" name="email" class="form-control" placeholder="" required="required" data-error="Valid email is required.">
-                                                    </div>
+            <div class="row ">
+                <div class="col-lg-10 mx-auto">
+                    <div class="card mt-2 mx-auto p-4 bg-light">
+                        <div class="card-body bg-light">
+                            <div class="container">
+                                <form id="formCrudServicio" role="form" method="post">
+                                    <div class="controls">
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <div class="form-group">
+                                                    <label for="form_name">Nombre *</label>
+                                                    <input id="form_name" type="text" name="nombre" value="ddd" class="form-control" placeholder="Ingrese el nombre del producto." required="required" data-error="Firstname is required.">
                                                 </div>
                                             </div>
-                                            <div class="row">
-                                                <!-- <div class="col-md-2">
-                                                    <div class="form-group">
-                                                        <label for="form_email">Precio *</label>
-                                                        <input id="form_email" type="number" name="email" class="form-control" placeholder="" required="required" data-error="Valid email is required.">
-                                                    </div>
-                                                </div> -->
-                                                <div class="col-md-5">
-                                                    <div class="form-group">
-                                                        <label for="tipo_servicio">Tipo de servicio *</label>
-                                                        <select id="form_need" name="need" class="form-control" required="required" data-error="Please specify your need.">
-                                                            <option value="0" selected disabled>-- Seleccione el tipo de servicio --</option>
-                                                            <option value="1" >Normal</option>
-                                                            <option value="2" >VIP</option>
-                                                        </select>
-                                                    </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="form_lastname">Duración (min) *</label>
+                                                    <input id="form_lastname" type="number" value="5" min="1" name="duracion" class="form-control" placeholder="" required="required" data-error="Lastname is required.">
                                                 </div>
                                             </div>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <label for="form_message">Descripción *</label>
-                                                        <textarea id="form_message" name="message" class="form-control" resize="vertical" placeholder="Escriba la descripción del servicio." rows="4" required="required" data-error="Please, leave us a message."></textarea>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <input type="submit" class="btn btn-success btn-send pt-2 btn-block " value="Send Message">
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label for="precio">Precio *</label>
+                                                    <input type="number" id="precio" class="form-control" required name="precio" min="1" value="1" step=".01">
                                                 </div>
                                             </div>
                                         </div>
-                                    </form>
-                                </div>
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <div class="form-group">
+                                                    <label for="tipo_servicio">Tipo de servicio *</label>
+                                                    <select id="tipo_servicio" name="tipo_servicio" class="form-control" required="required" data-error="Please specify your need.">
+                                                        <option value="0" selected disabled>-- Seleccione el tipo de servicio --</option>
+                                                        <option value="1" >Normal</option>
+                                                        <option value="2" >VIP</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="fotografia">Seleccionar imagen: *</label>
+                                                    <!-- <input type="file" id="fotografia" name="fotografia" accept="image/*"> -->
+                                                    <!-- <input type="file" id="fotografia" name="fotografia" accept="image/*,.jpg,.png" src="#"> -->
+                                                    <input type="file" id="fotografia" name="fotografia" accept="image/png, image/jpg" src="#">
+                                                    <img id="blah" width="100px" height="100px" src="#" alt="your image" />
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="descripcion">Descripción *</label>
+                                                    <textarea id="descripcion" name="descripcion" class="form-control" resize="vertical"
+                                                                placeholder="Escriba la descripción del servicio." rows="4"
+                                                                    data-error="Please, leave us a message."></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 form-check">
+                                                <div class="form-group">
+                                                    <input class="" id="estado" name="estado" type="checkbox" >
+                                                    <label class="form-check-label" for="estado">
+                                                        Estado del servicio *
+                                                    </label>
+                                                </div>  
+                                                </div>
+                                            <div class="d-grid gap-2 col-6 mx-auto">
+                                                <input id="guardarServicio" type="submit" class="btn btn-success btn-send pt-2 btn-block " value="Guardar Servicio">
+                                            </div>
+                                            <!-- <div class="d-grid gap-2 col-6 mx-auto">
+                                                <button id="probarServicio" type="button" class="btn btn-success btn-send pt-2 btn-block " onclick="showModules()">Probar Servicio</button>
+                                            </div> -->
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
-                        </div> <!-- /.8 -->
-                    </div> <!-- /.row-->
-                </div>
+                        </div>
+                    </div> <!-- /.8 -->
+                </div> <!-- /.row-->
+            </div>
             </div>
 
 
-            </div>
+        </div>
 
         </div>
     </div>
+
 
 
     <div class="footerItem"></div>
@@ -225,21 +184,167 @@
 </body>
 </html>
 
+<script type="module">
 
-<script>
+    import Servicio, {servicios} from '../../Componentes/Servicio/Modelo.js'
 
-    function getElements() {
-        
-        arreglo = ["1", "2", "3","4"];
+    var modelo = new Servicio();
 
-        // arreglo.forEach(element => {
-        //     document.getElementById("lista_servicios").innerHTML += 
-        //       "<li>" + element + "</li>";
-        // });
+    modelo.nombre = "Pedro";
+
+    console.log('modelo.nombre: ' + modelo.nombre);
+
+    showModules1();
+
+    $('#fotografia').on('change', function () {
+        const [file] = fotografia.files
+        if (file) {
+            blah.src = URL.createObjectURL(file);
+            console.log('blah.src: ' + blah.src);
+        }
+    });
+    
+    
+
+
+    // HASTA AQUI FUNCIONA LA WEBADAAAAA
+
+    function showModules1() {
+        // var se = new Servicio();
+        const se = new Array();
+        // debugger;
+
+        console.log('servicios.length: ' + servicios.length);
+
+        se.push(new Servicio(8, "name2", "descripcion2", 480, "url/2.jpg", 50, "Normal", false));
+        servicios.push(new Servicio(8, "name2", "descripcion2", 480, "url/2.jpg", 50, "Normal", false));
+
+        console.log('se: ' + se);
+        console.log('se[0].nombre: ' + se[0].nombre);
+
+        // 2) HASTA AQUI FUNCIONAAAA
+
+
+
+        // console.log('se')
+
+
+        console.log('servicios: ' + servicios);
+        console.log('servicios[5].nombre: ' + servicios[5].nombre); // Masaje VIP cuerpo completo
+        console.log('servicios.length: ' + servicios.length);
+
+        // 3) Hasta aqui funciona todo posi
+        // las funciones se llaman de forma automática,
+        // falta probar si el html puede ejecutar correctamente esas im
 
     }
 
-    i = 0;
+    // submitData();   
+
+    // function submitData() {
+    $('#formCrudServicio').submit(function (e) {
+
+        e.preventDefault();
+        var form = $(this);
+        var url = "../../Componentes/Servicio/Modelo.js";
+        
+        $('#id').val(servicios.at(-1).id + 1);
+        // console.log('#id input hidden ACTUALIZADO: ' + $('#id').val());
+
+        // var formData = form.serialize();
+        var formData = JSON.stringify(form.serializeArray());
+        // var formData = JSON.stringify($("#myForm").serializeArray());
+        
+
+
+        console.log('formData: ' + formData);
+
+        Servicio.saveService(formData);
+
+        // $.ajax({
+        //     type: "POST",
+        //     url: url,
+        //     contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
+        //     processData: false, // NEEDED, DON'T OMIT THIS
+        //     dataType: "json",
+        //     data: formData,
+        //     success: function (data) {
+        //         // presentar mensaje modal que se actualizo
+        //         mostrarPopUpBasic(data.Mensaje);
+
+        //         console.log('data (Mensaje): ' + data);
+
+        //         // idDetalleAntibiotico = [];
+                
+        //         // $('#divSeccionCRUDPlantillaAntibiograma').load("/PlantillaAB/Empty");
+        //         // $("#divListaPlantillaAB").load("/PlantillaAB/ListaPlantillasAB");
+
+        //     },
+        //     error: function (XMLHttpRequest, textStatus, errorThrown) {
+        //         console.log(textStatus);
+        //     }
+        // });
+
+
+        // // Por JavaScript
+        // var idHidden = document.getElementById("id").value;
+        // // Por JQuery
+        // var idHidden2 = $('input#id').val();
+        // var idHidden3 = $('#id').val();
+        
+        // console.log('idHidden: ' + idHidden);
+        // console.log('idHidden2: ' + idHidden2);
+        // console.log('idHidden3: ' + idHidden2);
+
+        // // Por JavaScript - Actualiza el valor del elemento oculto con id "id"
+        // // sumando 1 al último id registrado en el arreglo "servicios" de la clase Modelo.js
+        // document.getElementById("id").value = servicios.at(-1).id + 1;
+
+        // // Por JQuery - Actualiza el valor del input hidden a 49
+        // $('#id').val("49");
+
+        // console.log('#id input hidden ACTUALIZADO: ' + $('#id').val());
+        
+
+    // }
+    });
+
+</script>
+
+
+<script type="module">
+
+    function showModules() {
+        // var se = new Servicio();
+        debugger;
+
+        // se.push(new Servicio(7, "name2", "descripcion2", 480, "url/2.jpg", 50, "Normal", false));
+
+        // console.log('se: ' + se);
+        console.log('servicios: ' + servicios);
+        
+        // return false;
+    }
+
+    // import {servicios, Servicio} from "../../Componentes/Servicio/Modelo"
+    import {servicios} from "../../Componentes/Servicio/Modelo.js";
+
+    // $('#probarServicio').on('click', function () {
+    //     // alert("The paragraph was clicked.");
+
+    //     var se = new Servicio();
+
+    //     se.push(new Servicio(7, "name2", "descripcion2", 480, "url/2.jpg", 50, "Normal", false));
+
+    //     console.log('se: ' + se);
+    //     // console.log('servicios: ' + servicios);
+    //     return true;
+    // });
+
+    
+
+
+    var i = 0;
 
 
     function showId(e) {
@@ -260,10 +365,16 @@
             document.getElementById("lista_servicios").innerHTML += 
               "<button id=\"serv_" + i + "\"" + " onclick=\"showId(this)\" class=\"subItem serv-button\">" + nombres[i] + "</button>";
                 // <button id="serv_6" onclick="showId(this)" class="subItem serv-button" value="3"><span>Facial</span></button>
+                
+                // document.getElementById("lista_servicios").innerHTML +=
+                // `<button id="serv_${i}" onclick="${showId(this)}" class="subItem serv-button"> ${nombres[i]} </button>`;
+
             i++;
             
         });
 
     }
+
+    
 
 </script>
