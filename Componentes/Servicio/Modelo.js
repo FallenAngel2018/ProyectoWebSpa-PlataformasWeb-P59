@@ -34,9 +34,6 @@ export default class Servicio {
         
     // ];
 
-    services =[]
-
-    
     
     // new Service() {
     //     new {"nombre": "name1", "descripcion": "descripcion", "duracion": "5 horas", "fotografia": "url/1.jpg", 
@@ -49,21 +46,44 @@ export default class Servicio {
     //     "precio": 15.85,"tipo_servicio": "VIP"}
     // }   
 
-    getServices() {
-        return services;
-    }
+    static saveService(servicio) {
+        // var servicio = Object.assign(this.Servicio(), data);
 
-    static saveService(data) {
-        // var servicio = Object.assign(this, data);
-        var servicio = $.extend(new Service, data);
-        
+        // for(const item in data) {
+        //     // console.log(item)
+        //     // console.log("json item: " + item)
 
-        servicios.push(servicio);
+        //     for(const s in classObject) {
+        //         // console.log("Servicio object property 's': " + s);
 
-        console.log("Todo ok: " + servicios.at(-1).nombre);
-        console.log("servicio: " + servicio);
+        //         if(item == s) {
+        //             // console.log(`item ${item} == ${s}`)
+        //             console.log(`PRUEBAAA ${item} data[item]: ${data[item]}`)
+        //             // console.log("PRUEBAAA data[item]: " + data[item])
+        //             // debugger;
 
-        debugger;
+        //         }
+
+        //     }
+        // }
+
+        lista_servicios.push(servicio);
+
+        if(servicio == lista_servicios.at(-1)) {
+            console.log("Se agregó correctamente a la lista.")
+        }
+
+        console.log("Todo ok: " + lista_servicios.at(-1).nombre);
+        // console.log("servicio: " + servicio);
+        console.log("servicio.nombre: " + servicio.nombre);
+
+        console.log({ lista_servicios });
+        console.log({ servicio });
+
+        // console.log("data: " + data);
+        // console.log("object1[0].nombre: " + object1["nombre"]);
+
+        // debugger;
 
     }
 
@@ -94,16 +114,21 @@ export default class Servicio {
     el sistema debe permitir agregar otros servicios. 
 */
 
+
+// Tal vez haya que hacer esta lista parte
+// de la clase Servicio para hacerla privada
+// Fuente: https://www.c-sharpcorner.com/article/encapsulation-in-javascript/#:~:text=Using%20a%20little%20finesse%2C%20we,vanilla%20JavaScript%20(ES6)%20classes.&text=To%20do%20this%2C%20we%20can,operate%20on%20these%20encapsulated%20variables.
+
 // Lista estática de servicios
-export const servicios = new Array();
+export const lista_servicios = new Array();
                                                 // 5 horas en minutos
-servicios.push(new Servicio(1, "name1", "descripcion", 300, "url/1.jpg", 20.4, "VIP", true));
+lista_servicios.push(new Servicio(1, "name1", "descripcion", 300, "url/1.jpg", 20.4, "VIP", true));
                                                 // 8 horas en minutos
-servicios.push(new Servicio(2, "name2", "descripcion2", 480, "url/2.jpg", 50, "Normal", false));
-servicios.push(new Servicio(3, "Depilación", "descripcion3", 30, "url/2.jpg", 12.35, "Normal", true));
-servicios.push(new Servicio(4, "Facial", "descripcion4", 30, "url/2.jpg", 15.50, "Normal", true));
-servicios.push(new Servicio(5, "Masaje", "descripcion5", 60, "url/2.jpg", 20, "Normal", true));
-servicios.push(new Servicio(6, "Masaje VIP cuerpo completo", "Masaje de cuerpo completo con aloe vera, rocas calientes y sí se desea en el momento también con acupuntura especializada."
+lista_servicios.push(new Servicio(2, "name2", "descripcion2", 480, "url/2.jpg", 50, "Normal", false));
+lista_servicios.push(new Servicio(3, "Depilación", "descripcion3", 30, "url/2.jpg", 12.35, "Normal", true));
+lista_servicios.push(new Servicio(4, "Facial", "descripcion4", 30, "url/2.jpg", 15.50, "Normal", true));
+lista_servicios.push(new Servicio(5, "Masaje", "descripcion5", 60, "url/2.jpg", 20, "Normal", true));
+lista_servicios.push(new Servicio(6, "Masaje VIP cuerpo completo", "Masaje de cuerpo completo con aloe vera, rocas calientes y sí se desea en el momento también con acupuntura especializada."
 , 90, "url/2.jpg", 40.35, "VIP", true));
 
 // // Esto funciona

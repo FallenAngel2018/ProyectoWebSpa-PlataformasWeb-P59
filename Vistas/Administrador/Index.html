@@ -62,7 +62,7 @@
     <div id="wrapper">
         <div class="col-2" id="first">
             <!-- Stack Overflow is for professional and enthusiast programmers, people who write code because they love it. -->
-            <div id="lista_servicios" class="item">
+            <div id="listadoServicios" class="item">
                 <!-- <div id="serv_4" onclick="showId(this)" class="subItem"><span>Masajes</span></div>
                 <div id="serv_5" onclick="showId(this)" class="subItem"><span>Depilación</span></div>
                 <div id="serv_6" onclick="showId(this)" class="subItem"><span>Facial</span></div> -->
@@ -71,7 +71,7 @@
                 <button id="serv_2" onclick="showId(this)" class="subItem serv-button" value="2"><span>Depilación</span></button>
                 <button id="serv_3" onclick="showId(this)" class="subItem serv-button" value="3"><span>Facial</span></button>
 
-                <!-- <ul id="lista_servicios">
+                <!-- <ul id="listadoServicios">
                     <li class="subItem">Masajes</li>
                     <li class="subItem">Depilación</li>
                     <li class="subItem">Facial</li>
@@ -86,14 +86,15 @@
                 <h1>Formulario de Servicios</h1>
             </div>
 
-            <input type="hidden" id="id" name="id" value="55">
 
             <div class="row ">
                 <div class="col-lg-10 mx-auto">
                     <div class="card mt-2 mx-auto p-4 bg-light">
                         <div class="card-body bg-light">
                             <div class="container">
-                                <form id="formCrudServicio" role="form" method="post">
+                                <form id="formCrudServicio"  method="post">
+                                    <input type="hidden" id="id" name="id" value="55">
+
                                     <div class="controls">
                                         <div class="row">
                                             <div class="col-md-5">
@@ -119,8 +120,8 @@
                                             <div class="col-md-5">
                                                 <div class="form-group">
                                                     <label for="tipo_servicio">Tipo de servicio *</label>
-                                                    <select id="tipo_servicio" name="tipo_servicio" class="form-control" required="required" data-error="Please specify your need.">
-                                                        <option value="0" selected disabled>-- Seleccione el tipo de servicio --</option>
+                                                    <select id="tipo_servicio" name="tipo_servicio" class="form-control" required data-error="Please specify your need.">
+                                                        <option value="" selected disabled>-- Seleccione el tipo de servicio --</option>
                                                         <option value="1" >Normal</option>
                                                         <option value="2" >VIP</option>
                                                     </select>
@@ -148,7 +149,7 @@
                                             </div>
                                             <div class="col-md-12 form-check">
                                                 <div class="form-group">
-                                                    <input class="" id="estado" name="estado" type="checkbox" >
+                                                    <input type="checkbox" class="" id="estado" name="estado" value="false" >
                                                     <label class="form-check-label" for="estado">
                                                         Estado del servicio *
                                                     </label>
@@ -186,15 +187,14 @@
 
 <script type="module">
 
-    import Servicio, {servicios} from '../../Componentes/Servicio/Modelo.js'
+// Clase export default, export objeto
+    import Servicio, {lista_servicios} from '../../Componentes/Servicio/Modelo.js'
+    import GenericUtils from '../../Componentes/GenericUtils/GenericUtils.js'
 
-    var modelo = new Servicio();
 
-    modelo.nombre = "Pedro";
+    // FALTA CARGAR CUANDO SE CARGA LA PANTALLA
+    // DESDE LA "BASE DE DATOS" LOS ELEMENTOS EN EL MENÚ DE LOS SERVICIOS
 
-    console.log('modelo.nombre: ' + modelo.nombre);
-
-    showModules1();
 
     $('#fotografia').on('change', function () {
         const [file] = fotografia.files
@@ -204,42 +204,13 @@
         }
     });
     
-    
-
-
-    // HASTA AQUI FUNCIONA LA WEBADAAAAA
-
-    function showModules1() {
-        // var se = new Servicio();
-        const se = new Array();
-        // debugger;
-
-        console.log('servicios.length: ' + servicios.length);
-
-        se.push(new Servicio(8, "name2", "descripcion2", 480, "url/2.jpg", 50, "Normal", false));
-        servicios.push(new Servicio(8, "name2", "descripcion2", 480, "url/2.jpg", 50, "Normal", false));
-
-        console.log('se: ' + se);
-        console.log('se[0].nombre: ' + se[0].nombre);
-
-        // 2) HASTA AQUI FUNCIONAAAA
 
 
 
-        // console.log('se')
-
-
-        console.log('servicios: ' + servicios);
-        console.log('servicios[5].nombre: ' + servicios[5].nombre); // Masaje VIP cuerpo completo
-        console.log('servicios.length: ' + servicios.length);
-
-        // 3) Hasta aqui funciona todo posi
-        // las funciones se llaman de forma automática,
-        // falta probar si el html puede ejecutar correctamente esas im
-
+    const getFormData = () => {
+        const form = document.getElementById("formCrudServicio");
+        return new FormData(form);
     }
-
-    // submitData();   
 
     // function submitData() {
     $('#formCrudServicio').submit(function (e) {
@@ -248,42 +219,86 @@
         var form = $(this);
         var url = "../../Componentes/Servicio/Modelo.js";
         
-        $('#id').val(servicios.at(-1).id + 1);
-        // console.log('#id input hidden ACTUALIZADO: ' + $('#id').val());
+        // Obtiene el id del último elemento de la lista
+        $('#id').val(parseInt(lista_servicios.at(-1).id) + 1);
 
-        // var formData = form.serialize();
-        var formData = JSON.stringify(form.serializeArray());
-        // var formData = JSON.stringify($("#myForm").serializeArray());
+        // $("<input />").attr("type", "hidden")
+        //     .attr("name", "id")
+        //     .attr("value", $('#id').val())
+        //     .appendTo("#formCrudServicio");
+        
+        // addFieldToForm("id", $('#id').val(), "formCrudServicio");
+        // ARREGLAR: El Id se va como String y no como Int
+        // GenericUtils.addFieldToForm1("id", parseInt($('#id').val()), "formCrudServicio");
+
+        // Gets the checkbox
+        var checkBox = document.getElementById("estado");
+
+        // addFieldToForm("estado", checkBox.checked, "#formCrudServicio");
+        GenericUtils.addFieldToForm1("estado", checkBox.checked, "#formCrudServicio");
         
 
+        
+        // Convertir los datos del formulario #formCrudServicio
+        // a un objeto JSON
+        // Fuente: https://www.learnwithjason.dev/blog/get-form-values-as-json
+        const data = new FormData(e.target);
 
-        console.log('formData: ' + formData);
+        const jsonValue = Object.fromEntries(data.entries());
+        const s = new Servicio();
 
-        Servicio.saveService(formData);
+        console.log({ jsonValue });
+        console.log("jsonValue.nombre: " + jsonValue.nombre);
+        console.log("jsonValue.tipo_servicio: " + jsonValue.tipo_servicio);
+        console.log("jsonValue.precio: " + jsonValue.precio);
+        console.log("typeof(jsonValue): " + typeof(jsonValue.id));
+        console.log("typeof($('#id').val()): " + typeof($('#id').val()));
 
-        // $.ajax({
-        //     type: "POST",
-        //     url: url,
-        //     contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
-        //     processData: false, // NEEDED, DON'T OMIT THIS
-        //     dataType: "json",
-        //     data: formData,
-        //     success: function (data) {
-        //         // presentar mensaje modal que se actualizo
-        //         mostrarPopUpBasic(data.Mensaje);
+        console.log();
 
-        //         console.log('data (Mensaje): ' + data);
+        // Genera el objeto a través del objeto JSON
+        var nuevo_servicio = GenericUtils.getObjectFromJson(jsonValue, s);
 
-        //         // idDetalleAntibiotico = [];
-                
-        //         // $('#divSeccionCRUDPlantillaAntibiograma').load("/PlantillaAB/Empty");
-        //         // $("#divListaPlantillaAB").load("/PlantillaAB/ListaPlantillasAB");
+        // Guarda en la "base" el objeto creado
+        Servicio.saveService(nuevo_servicio);
 
-        //     },
-        //     error: function (XMLHttpRequest, textStatus, errorThrown) {
-        //         console.log(textStatus);
-        //     }
-        // });
+        // Termina el guardado de datos
+
+        // // 1era Forma
+        // var formData = form.serialize();
+        // var formData = JSON.stringify(form.serializeArray()); // Esta funciona
+        // var formData = JSON.stringify($("#myForm").serializeArray());
+        // console.log('formData: ' + formData);
+        
+        // // 2da Forma
+        var object = {};
+        const formData = getFormData();
+        // // Para cada dato existente en el formData...
+        formData.forEach((value, key) => 
+            object[key] = value
+        );
+
+        Object.keys(object).forEach(key => formData.append(key, object[key]));
+        
+
+        var json = JSON.stringify(object);
+        // var json = JSON.stringify(formData);
+        
+        // console.log('formData: ' + json);
+
+        var keys = Object.keys(json);
+        // console.log("JSON keys[0]: " + keys["nombre"]);
+
+        // Read key
+        for (var key in json) {
+            // console.log("key: " + key);
+            // console.log("json[key]: " + json[key]);
+        }
+
+        for (var key of Object.keys(json)) {
+            // console.log(key + " -> " + json[key])
+        }
+
 
 
         // // Por JavaScript
@@ -307,7 +322,35 @@
         
 
     // }
+
     });
+
+    /**
+     * Añade un campo al formulario que se le especifique en el parámetro formId
+     */
+    function addFieldToForm(name, value, formId) {
+
+        console.log('formId: ' + formId);
+        
+        // Si en la 1era posición del formId no está el #...
+        // if(!formId.indexOf("#", 0)) {
+        if(formId.charAt(0) != "#") {
+            let temp = formId;
+            formId = "#" + temp;
+        }
+
+        // console.log('formId: ' + formId);
+
+        // Añade el campo estado al formulario #formCrudServicio
+        // porque cuando tiene value = false, no se incluye
+        // en los datos del formulario
+        // Fuente: https://stackoverflow.com/questions/17809056/how-to-add-additional-fields-to-form-before-submit
+        $("<input />").attr("type", "hidden")
+            .attr("name", name)
+            .attr("value",value)
+            // .appendTo("#formCrudServicio");
+            .appendTo(formId);
+    }
 
 </script>
 
@@ -327,7 +370,7 @@
     }
 
     // import {servicios, Servicio} from "../../Componentes/Servicio/Modelo"
-    import {servicios} from "../../Componentes/Servicio/Modelo.js";
+    import {lista_servicios} from "../../Componentes/Servicio/Modelo.js";
 
     // $('#probarServicio').on('click', function () {
     //     // alert("The paragraph was clicked.");
@@ -362,7 +405,7 @@
 
 
         arreglo.forEach(element => {
-            document.getElementById("lista_servicios").innerHTML += 
+            document.getElementById("listadoServicios").innerHTML += 
               "<button id=\"serv_" + i + "\"" + " onclick=\"showId(this)\" class=\"subItem serv-button\">" + nombres[i] + "</button>";
                 // <button id="serv_6" onclick="showId(this)" class="subItem serv-button" value="3"><span>Facial</span></button>
                 
