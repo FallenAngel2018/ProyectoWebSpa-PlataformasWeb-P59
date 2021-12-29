@@ -9,7 +9,7 @@ export default class Servicio {
     /* 
         Un nombre, descripción, una duración en tiempo aproximado (en
         minutos u horas), una fotografía, un valor monetario y tipo de
-        servicio (VIP o normal).
+        servicio (VIP o normal).    
     */
     constructor(id, nombre, descripcion, duracion, fotografia, precio, tipo_servicio, estado) {
         this.id = id // Valor oculto (hidden)

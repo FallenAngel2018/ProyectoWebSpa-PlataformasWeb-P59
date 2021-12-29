@@ -66,10 +66,10 @@
                 <!-- <div id="serv_4" onclick="showId(this)" class="subItem"><span>Masajes</span></div>
                 <div id="serv_5" onclick="showId(this)" class="subItem"><span>Depilación</span></div>
                 <div id="serv_6" onclick="showId(this)" class="subItem"><span>Facial</span></div> -->
-                <button id="serv_1" onclick="showModules()" class="subItem serv-button" value="1"><span>Masajes</span></button>
+                <!-- <button id="serv_1" onclick="showModules()" class="subItem serv-button" value="1"><span>Masajes</span></button> -->
                 <!-- <button id="serv_1" onclick="showId(this)" class="subItem serv-button" value="1"><span>Masajes</span></button> -->
-                <button id="serv_2" onclick="showId(this)" class="subItem serv-button" value="2"><span>Depilación</span></button>
-                <button id="serv_3" onclick="showId(this)" class="subItem serv-button" value="3"><span>Facial</span></button>
+                <!-- <button id="serv_2" onclick="showId(this)" class="subItem serv-button" value="2"><span>Depilación</span></button>
+                <button id="serv_3" onclick="showId(this)" class="subItem serv-button" value="3"><span>Facial</span></button> -->
 
                 <!-- <ul id="listadoServicios">
                     <li class="subItem">Masajes</li>
@@ -85,7 +85,6 @@
             <div class="container"> <div class=" text-center mt-5 ">
                 <h1>Formulario de Servicios</h1>
             </div>
-
 
             <div class="row ">
                 <div class="col-lg-10 mx-auto">
@@ -195,6 +194,23 @@
     // FALTA CARGAR CUANDO SE CARGA LA PANTALLA
     // DESDE LA "BASE DE DATOS" LOS ELEMENTOS EN EL MENÚ DE LOS SERVICIOS
 
+    $(document).ready(function(){
+       
+        lista_servicios.forEach(element => {
+            // document.getElementById("listadoServicios").innerHTML += 
+            //   "<button id=\"serv_" + i + "\"" + " onclick=\"showId(this)\" class=\"subItem serv-button\">" + nombres[i] + "</button>";
+            //     // <button id="serv_6" onclick="showId(this)" class="subItem serv-button" value="3"><span>Facial</span></button>
+                
+                document.getElementById("listadoServicios").innerHTML +=
+                // `<button id="serv_${i}" onclick="${showId(this)}" class="subItem serv-button"> ${nombres[i]} </button>`;
+                `<button id="serv_${element.id}" class="subItem serv-button" value="${element.id}"> ${element.nombre} </button>`;
+
+            // i++;
+            
+        });
+
+    });
+
 
     $('#fotografia').on('change', function () {
         const [file] = fotografia.files
@@ -222,11 +238,6 @@
         // Obtiene el id del último elemento de la lista
         $('#id').val(parseInt(lista_servicios.at(-1).id) + 1);
 
-        // $("<input />").attr("type", "hidden")
-        //     .attr("name", "id")
-        //     .attr("value", $('#id').val())
-        //     .appendTo("#formCrudServicio");
-        
         // addFieldToForm("id", $('#id').val(), "formCrudServicio");
         // ARREGLAR: El Id se va como String y no como Int
         // GenericUtils.addFieldToForm1("id", parseInt($('#id').val()), "formCrudServicio");
@@ -264,41 +275,48 @@
 
         // Termina el guardado de datos
 
+        const fotografia = document.getElementById("fotografia");
+
+        const endpoint = "upload.php";
+        const formData = new FormData();
+
+        formData.append("fotografia", fotografia.files[0]);
+
+        fetch(endpoint, {
+            method: "post",
+            body: formData,
+            headers: {
+                "Content-type": "application/json"
+            },
+        }).catch(console.error);
+
+        // let photo = document.getElementById("fotografia").files[0];  // file from input
+        // let req = new XMLHttpRequest();
+        // let formData = new FormData();
+
+        // formData.append("photo", photo);                                
+        // // req.open("POST", '/upload/image');
+        // // req.send(formData);
+
+        // $.ajax({
+        //     // url: '..//image',
+        //     url: '../../Recursos/ImagenesServicios',
+        //     type: "POST",
+        //     data: formData,
+        //     processData: false,  // tell jQuery not to process the data
+        //     contentType: false,   // tell jQuery not to set contentType
+        //     success: function (response) {
+        //         alert(response);
+        //     }
+        // });
+
+
+
         // // 1era Forma
         // var formData = form.serialize();
         // var formData = JSON.stringify(form.serializeArray()); // Esta funciona
         // var formData = JSON.stringify($("#myForm").serializeArray());
         // console.log('formData: ' + formData);
-        
-        // // 2da Forma
-        var object = {};
-        const formData = getFormData();
-        // // Para cada dato existente en el formData...
-        formData.forEach((value, key) => 
-            object[key] = value
-        );
-
-        Object.keys(object).forEach(key => formData.append(key, object[key]));
-        
-
-        var json = JSON.stringify(object);
-        // var json = JSON.stringify(formData);
-        
-        // console.log('formData: ' + json);
-
-        var keys = Object.keys(json);
-        // console.log("JSON keys[0]: " + keys["nombre"]);
-
-        // Read key
-        for (var key in json) {
-            // console.log("key: " + key);
-            // console.log("json[key]: " + json[key]);
-        }
-
-        for (var key of Object.keys(json)) {
-            // console.log(key + " -> " + json[key])
-        }
-
 
 
         // // Por JavaScript
