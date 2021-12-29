@@ -46,44 +46,22 @@ export default class Servicio {
     //     "precio": 15.85,"tipo_servicio": "VIP"}
     // }   
 
-    static saveService(servicio) {
+    static saveService(service) {
         // var servicio = Object.assign(this.Servicio(), data);
 
-        // for(const item in data) {
-        //     // console.log(item)
-        //     // console.log("json item: " + item)
+        lista_servicios.push(service);
 
-        //     for(const s in classObject) {
-        //         // console.log("Servicio object property 's': " + s);
-
-        //         if(item == s) {
-        //             // console.log(`item ${item} == ${s}`)
-        //             console.log(`PRUEBAAA ${item} data[item]: ${data[item]}`)
-        //             // console.log("PRUEBAAA data[item]: " + data[item])
-        //             // debugger;
-
-        //         }
-
-        //     }
-        // }
-
-        lista_servicios.push(servicio);
-
-        if(servicio == lista_servicios.at(-1)) {
+        if(service == lista_servicios.at(-1)) {
             console.log("Se agregó correctamente a la lista.")
         }
 
-        console.log("Todo ok: " + lista_servicios.at(-1).nombre);
-        // console.log("servicio: " + servicio);
-        console.log("servicio.nombre: " + servicio.nombre);
+        var lastElement = lista_servicios.at(-1);
 
         console.log({ lista_servicios });
-        console.log({ servicio });
+        console.log({ lastElement });
+        console.log({ service });
 
-        // console.log("data: " + data);
-        // console.log("object1[0].nombre: " + object1["nombre"]);
-
-        // debugger;
+        return lastElement == service;
 
     }
 

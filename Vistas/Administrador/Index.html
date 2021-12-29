@@ -12,7 +12,6 @@
 </head>
 
 <body>
-<!-- <body onload="getElements()"> -->
     
     <div class="topItem">
         <h1>Spa Web App - Administrador</h1>
@@ -20,44 +19,6 @@
             <div id="nombre_usuario">Hola </div>
         </div>
     </div>
-
-    <!-- <section class="container-items">
-        <div class="item">
-            <div id="serv_1" class="subItem"><span>Masajes</span></div>
-            <div id="serv_2" class="subItem"><span>Depilación</span></div>
-            <div id="serv_3" class="subItem"><span>Facial</span></div>
-        </div>
-
-        <div class="item formulario">
-
-        </div>
-        
-    </section> -->
-
-    <!-- <div class="container">
-        <div class="row">
-            <div style="border: 1px black solid" class="col-xs-6">
-                ONE
-            </div>
-            <div class="col-xs-6">
-                TWO
-            </div>
-        </div>
-    </div> -->
-    
-    <!-- <div class="container">
-        <div class="row">
-            <div class="col">
-                One of three columns
-            </div>
-            <div class="col">
-                One of three columns
-            </div>
-            <div class="col">
-                One of three columns
-            </div>
-        </div>
-    </div> -->
 
     <div id="wrapper">
         <div class="col-2" id="first">
@@ -71,15 +32,8 @@
                 <!-- <button id="serv_2" onclick="showId(this)" class="subItem serv-button" value="2"><span>Depilación</span></button>
                 <button id="serv_3" onclick="showId(this)" class="subItem serv-button" value="3"><span>Facial</span></button> -->
 
-                <!-- <ul id="listadoServicios">
-                    <li class="subItem">Masajes</li>
-                    <li class="subItem">Depilación</li>
-                    <li class="subItem">Facial</li>
-                </ul> -->
             </div>
-            <!-- <div id="serv_4" class="subItem"><span>Masajes</span></div>
-            <div id="serv_5" class="subItem"><span>Depilación</span></div>
-            <div id="serv_6" class="subItem"><span>Facial</span></div> -->
+
         </div>
         <div class="col-10" id="second">
             <div class="container"> <div class=" text-center mt-5 ">
@@ -129,14 +83,14 @@
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label for="fotografia">Seleccionar imagen: *</label>
-                                                    <!-- <input type="file" id="fotografia" name="fotografia" accept="image/*"> -->
-                                                    <!-- <input type="file" id="fotografia" name="fotografia" accept="image/*,.jpg,.png" src="#"> -->
                                                     <!-- <input type="file" id="fotografia" name="fotografia" accept="image/png, image/jpg" src="#">
                                                     <img id="blah" width="100px" height="100px" src="#" alt="your image" /> -->
-                                                    <input type="file" name="file" id="file">
-                                                    <input type="button" id="btn_uploadfile" 
+                                                    <!-- <input type="file" name="file" id="file"> -->
+                                                    <input type="file" name="fotografia" id="fotografia">
+                                                    <img id="blah" width="100px" height="100px" src="#" alt="" hidden/>
+                                                    <!-- <input type="button" id="btn_uploadfile" 
                                                     value="Upload" 
-                                                    onclick="uploadFile();" >
+                                                    onclick="uploadFile();" > -->
                                                 </div>
                                             </div>
 
@@ -161,9 +115,6 @@
                                             <div class="d-grid gap-2 col-6 mx-auto">
                                                 <input id="guardarServicio" type="submit" class="btn btn-success btn-send pt-2 btn-block " value="Guardar Servicio">
                                             </div>
-                                            <!-- <div class="d-grid gap-2 col-6 mx-auto">
-                                                <button id="probarServicio" type="button" class="btn btn-success btn-send pt-2 btn-block " onclick="showModules()">Probar Servicio</button>
-                                            </div> -->
                                         </div>
                                     </div>
                                 </form>
@@ -179,7 +130,6 @@
 
         </div>
     </div>
-
 
 
     <div class="footerItem"></div>
@@ -201,15 +151,11 @@
     $(document).ready(function(){
        
         lista_servicios.forEach(element => {
-            // document.getElementById("listadoServicios").innerHTML += 
-            //   "<button id=\"serv_" + i + "\"" + " onclick=\"showId(this)\" class=\"subItem serv-button\">" + nombres[i] + "</button>";
-            //     // <button id="serv_6" onclick="showId(this)" class="subItem serv-button" value="3"><span>Facial</span></button>
-                
-                document.getElementById("listadoServicios").innerHTML +=
+
+            document.getElementById("listadoServicios").innerHTML +=
                 // `<button id="serv_${i}" onclick="${showId(this)}" class="subItem serv-button"> ${nombres[i]} </button>`;
                 `<button id="serv_${element.id}" class="subItem serv-button" value="${element.id}"> ${element.nombre} </button>`;
 
-            // i++;
             
         });
 
@@ -221,10 +167,11 @@
         if (file) {
             blah.src = URL.createObjectURL(file);
             console.log('blah.src: ' + blah.src);
+            // $('#blah').show();
+            $('#blah').css("visibility", "visible");
+
         }
     });
-    
-
 
 
     const getFormData = () => {
@@ -232,27 +179,23 @@
         return new FormData(form);
     }
 
-    // function submitData() {
     $('#formCrudServicio').submit(function (e) {
 
         e.preventDefault();
         var form = $(this);
-        var url = "../../Componentes/Servicio/Modelo.js";
         
         // Obtiene el id del último elemento de la lista
         $('#id').val(parseInt(lista_servicios.at(-1).id) + 1);
 
         // addFieldToForm("id", $('#id').val(), "formCrudServicio");
         // ARREGLAR: El Id se va como String y no como Int
-        // GenericUtils.addFieldToForm1("id", parseInt($('#id').val()), "formCrudServicio");
+        // GenericUtils.addFieldToForm("id", parseInt($('#id').val()), "formCrudServicio");
 
         // Gets the checkbox
         var checkBox = document.getElementById("estado");
 
-        // addFieldToForm("estado", checkBox.checked, "#formCrudServicio");
-        GenericUtils.addFieldToForm1("estado", checkBox.checked, "#formCrudServicio");
+        GenericUtils.addFieldToForm("estado", checkBox.checked, "#formCrudServicio");
         
-
         
         // Convertir los datos del formulario #formCrudServicio
         // a un objeto JSON
@@ -260,162 +203,74 @@
         const data = new FormData(e.target);
 
         const jsonValue = Object.fromEntries(data.entries());
-        const s = new Servicio();
+        var nuevo_servicio = new Servicio();
 
-        console.log({ jsonValue });
-        console.log("jsonValue.nombre: " + jsonValue.nombre);
-        console.log("jsonValue.tipo_servicio: " + jsonValue.tipo_servicio);
-        console.log("jsonValue.precio: " + jsonValue.precio);
-        console.log("typeof(jsonValue): " + typeof(jsonValue.id));
-        console.log("typeof($('#id').val()): " + typeof($('#id').val()));
+        // console.log({ jsonValue });
+        // console.log("jsonValue.nombre: " + jsonValue.nombre);
+        // console.log("typeof(jsonValue): " + typeof(jsonValue.id));
+        // console.log("typeof($('#id').val()): " + typeof($('#id').val()));
 
-        console.log();
+        // console.log();
 
         // Genera el objeto a través del objeto JSON
-        var nuevo_servicio = GenericUtils.getObjectFromJson(jsonValue, s);
+        // var nuevo_servicio = GenericUtils.getObjectFromJson(jsonValue, s);
+        nuevo_servicio = GenericUtils.getObjectFromJson(jsonValue, nuevo_servicio);
 
-        // Guarda en la "base" el objeto creado
-        Servicio.saveService(nuevo_servicio);
+        console.log({ nuevo_servicio });
 
-        // Termina el guardado de datos
+        // Guarda en la "base" el objeto creado y devuelve si salió todo bien
+        var verificacion_guardado = Servicio.saveService(nuevo_servicio);
 
-        const fotografia = document.getElementById("fotografia");
+        // Termina el proceso de guardado de datos
 
-        const endpoint = "upload.php";
-        const formData = new FormData();
+        var verificacion_img = uploadFile();
 
-        formData.append("fotografia", fotografia.files[0]);
+        console.log({ verificacion_guardado });
+        console.log({ verificacion_img });
 
-        fetch(endpoint, {
-            method: "post",
-            body: formData,
-            headers: {
-                "Content-type": "application/json"
-            },
-        }).catch(console.error);
+        // Si se guardó correctamente el servicio...
+        if (verificacion_guardado && verificacion_img) {
+            // Código que tendrá el botón en base al servicio creado anteriormente
+            let boton_servicio = `<button id="serv_${nuevo_servicio.id}" class="subItem serv-button"
+                                    value="${nuevo_servicio.id}"> ${nuevo_servicio.nombre} </button>`;
 
-        // let photo = document.getElementById("fotografia").files[0];  // file from input
-        // let req = new XMLHttpRequest();
-        // let formData = new FormData();
+            document.getElementById("listadoServicios").innerHTML += boton_servicio;
 
-        // formData.append("photo", photo);                                
-        // // req.open("POST", '/upload/image');
-        // // req.send(formData);
+            console.log("La imagen y el servicio se guardaron correctamente.");
 
-        // $.ajax({
-        //     // url: '..//image',
-        //     url: '../../Recursos/ImagenesServicios',
-        //     type: "POST",
-        //     data: formData,
-        //     processData: false,  // tell jQuery not to process the data
-        //     contentType: false,   // tell jQuery not to set contentType
-        //     success: function (response) {
-        //         alert(response);
-        //     }
-        // });
+        }
+        // Si se guardó el servicio pero la imagen no se subió...
+        else if(verificacion_guardado && !verificacion_img){
+
+            // Elimina el último elemento de la lista que fue agregado
+            lista_servicios.pop();
+
+            console.log("El servicio se guardó correctamente PERO LA IMAGEN NO SE SUBIÓ BIEN.");
+
+        }
 
 
-
-        // // 1era Forma
-        // var formData = form.serialize();
-        // var formData = JSON.stringify(form.serializeArray()); // Esta funciona
-        // var formData = JSON.stringify($("#myForm").serializeArray());
-        // console.log('formData: ' + formData);
-
-
-        // // Por JavaScript
-        // var idHidden = document.getElementById("id").value;
-        // // Por JQuery
-        // var idHidden2 = $('input#id').val();
-        // var idHidden3 = $('#id').val();
-        
-        // console.log('idHidden: ' + idHidden);
-        // console.log('idHidden2: ' + idHidden2);
-        // console.log('idHidden3: ' + idHidden2);
-
-        // // Por JavaScript - Actualiza el valor del elemento oculto con id "id"
-        // // sumando 1 al último id registrado en el arreglo "servicios" de la clase Modelo.js
-        // document.getElementById("id").value = servicios.at(-1).id + 1;
-
-        // // Por JQuery - Actualiza el valor del input hidden a 49
-        // $('#id').val("49");
-
-        // console.log('#id input hidden ACTUALIZADO: ' + $('#id').val());
         
 
-    // }
+
 
     });
 
-    /**
-     * Añade un campo al formulario que se le especifique en el parámetro formId
-     */
-    function addFieldToForm(name, value, formId) {
 
-        console.log('formId: ' + formId);
-        
-        // Si en la 1era posición del formId no está el #...
-        // if(!formId.indexOf("#", 0)) {
-        if(formId.charAt(0) != "#") {
-            let temp = formId;
-            formId = "#" + temp;
-        }
-
-        // console.log('formId: ' + formId);
-
-        // Añade el campo estado al formulario #formCrudServicio
-        // porque cuando tiene value = false, no se incluye
-        // en los datos del formulario
-        // Fuente: https://stackoverflow.com/questions/17809056/how-to-add-additional-fields-to-form-before-submit
-        $("<input />").attr("type", "hidden")
-            .attr("name", name)
-            .attr("value",value)
-            // .appendTo("#formCrudServicio");
-            .appendTo(formId);
-    }
 
 </script>
 
 
 <script type="module">
 
-    function showModules() {
-        // var se = new Servicio();
-        debugger;
-
-        // se.push(new Servicio(7, "name2", "descripcion2", 480, "url/2.jpg", 50, "Normal", false));
-
-        // console.log('se: ' + se);
-        console.log('servicios: ' + servicios);
-        
-        // return false;
-    }
-
     // import {servicios, Servicio} from "../../Componentes/Servicio/Modelo"
     import {lista_servicios} from "../../Componentes/Servicio/Modelo.js";
-
-    // $('#probarServicio').on('click', function () {
-    //     // alert("The paragraph was clicked.");
-
-    //     var se = new Servicio();
-
-    //     se.push(new Servicio(7, "name2", "descripcion2", 480, "url/2.jpg", 50, "Normal", false));
-
-    //     console.log('se: ' + se);
-    //     // console.log('servicios: ' + servicios);
-    //     return true;
-    // });
-
-    
 
 
     var i = 0;
 
-
     function showId(e) {
         var id = e.id;
-        // debugger;
-        // var value = e.val();
         var value = e.value;
 
         console.log('id: ' + id);
@@ -446,39 +301,50 @@
 
 <script>
     // Upload file
-function uploadFile() {
+    function uploadFile() {
+        var img_flag = false; // Retorna si se subió la imagen
 
-var files = document.getElementById("file").files;
+        // var files = document.getElementById("file").files;
+        var files = document.getElementById("fotografia").files;
 
-if(files.length > 0 ){
+        if(files.length > 0 ) {
 
- var formData = new FormData();
- formData.append("file", files[0]);
+            var formData = new FormData();
+            // formData.append("file", files[0]);
+            formData.append("fotografia", files[0]);
 
- var xhttp = new XMLHttpRequest();
+            var xhttp = new XMLHttpRequest();
 
- // Set POST method and ajax file path
- xhttp.open("POST", "ajaxfile.php", true);
+            // Set POST method and ajax file path
+            xhttp.open("POST", "ajaxfile.php", true);
 
- // call on request changes state
- xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
+            // call on request changes state
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
 
-      var response = this.responseText;
-      if(response == 1){
-         alert("Upload successfully.");
-      }else{
-         alert("File not uploaded.");
-      }
+                    var response = this.responseText;
+
+                    if(response == 1){
+                        // alert("Upload successfully.");
+                        console.log("Upload successfully.");
+                        img_flag = true;
+                    } else {
+                        // alert("File not uploaded.");
+                        console.log("File not uploaded.");
+
+                    }
+                }
+            };
+
+            // Send request with data
+            xhttp.send(formData);
+
+        } else {
+            alert("Please select a file");
+        }
+
+        return img_flag;
+
     }
- };
 
- // Send request with data
- xhttp.send(formData);
-
-}else{
- alert("Please select a file");
-}
-
-}
 </script>

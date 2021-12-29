@@ -44,7 +44,7 @@ export default class GenericUtils {
     /**
     * Añade un campo al formulario que se le especifique en el parámetro formId
     */
-    static addFieldToForm1(name, value, formId) {
+    static addFieldToForm(name, value, formId) {
 
        console.log('formId: ' + formId);
        
@@ -64,7 +64,6 @@ export default class GenericUtils {
        $("<input />").attr("type", "hidden")
            .attr("name", name)
            .attr("value",value)
-           // .appendTo("#formCrudServicio");
            .appendTo(formId);
    }
 
