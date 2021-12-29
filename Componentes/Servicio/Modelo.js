@@ -46,22 +46,26 @@ export default class Servicio {
     //     "precio": 15.85,"tipo_servicio": "VIP"}
     // }   
 
-    static saveService(service) {
+    static get saveService(service) {
         // var servicio = Object.assign(this.Servicio(), data);
+
+        var flag_service = false;
 
         lista_servicios.push(service);
 
         if(service == lista_servicios.at(-1)) {
             console.log("Se agregó correctamente a la lista.")
+            flag_service = true;
         }
 
         var lastElement = lista_servicios.at(-1);
 
-        console.log({ lista_servicios });
+        // console.log({ lista_servicios });
         console.log({ lastElement });
         console.log({ service });
+        console.log({ flag_service });
 
-        return lastElement == service;
+        return flag_service;
 
     }
 
