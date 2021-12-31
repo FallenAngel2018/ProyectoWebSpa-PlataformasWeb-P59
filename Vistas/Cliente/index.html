@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Spa Web Cliente</title>
+</head>
+
+<body>
+  
+  <img id = "logo"  height="85px" width="85px" src="../../Recursos/Logos/logo.png" alt=""> 
+  
+    <div class="topItem">
+      <h1 id="titulo">Spa Web App - Cliente</h1>
+        <!-- <div class="float-right">
+            <div id="nombre_usuario">Hola </div>
+        </div> -->
+    </div>
+
+    <div id="wrapper">
+        <div class="col-2" id="first">
+          <center><h4>Servicios Disponibles</h4></center>
+            <div id="listadoServicios" class="item">   
+
+            </div>
+
+        </div>
+        <div class="col-6" id="second">
+            <div class="container"> <div class=" text-center mt-5 ">
+                <h2>Formulario de Registro</h2>
+            </div>
+
+            <div class="row ">
+                <div class="col-lg-15 mx-auto">
+                    <div class="card mt-2 mx-auto p-2 bg-light">
+                        <div class="card-body bg-light">
+                            <div class="container">
+                                <form id="formCrudServicio"  method="post">
+                                    <input type="hidden" id="id" name="id" value="55">
+
+                                    <div class="controls">
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <div class="form-group">
+                                                    <label for="form_name">Nombre *</label>
+                                                    <!-- <input id="form_name" type="text" name="nombre" value="ddd" class="form-control" placeholder="Ingrese el nombre del producto." required="required" data-error="Firstname is required."> -->
+                                                    <select id="tipo_servicio" name="tipo_servicio" class="form-control" required data-error="Please specify your need.">
+                                                      <option value="" selected disabled>-- Seleccione el tipo de servicio --</option>
+                                                      <option value="1" >Facial</option>
+                                                      <option value="2" >Masaje</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="form_lastname">Selecciona el dia</label>
+                                                    <!-- <input id="form_lastname" type="number" value="5" min="1" name="duracion" class="form-control" placeholder="" required="required" data-error="Lastname is required."> -->
+                                          
+
+                                                      <input type="date" id="start" name="trip-start"
+                                                            value="2018-07-22"
+                                                            min="2018-01-01" max="2018-12-31">
+
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label for="precio">Precio *</label>
+                                                    <input type="number" id="precio" class="form-control" required name="precio" min="1" value="1" step=".01">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <div class="form-group">
+                                                    <label for="tipo_servicio">Tipo de servicio *</label>
+                                                    <select id="tipo_servicio" name="tipo_servicio" class="form-control" required data-error="Please specify your need.">
+                                                        <option value="" selected disabled>-- Seleccione el tipo de servicio --</option>
+                                                        <option value="1" >Normal</option>
+                                                        <option value="2" >VIP</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="fotografia">Seleccionar imagen:</label>
+                                                    <!-- <input type="file" id="fotografia" name="fotografia" accept="image/png, image/jpg" src="#">
+                                                    <img id="blah" width="100px" height="100px" src="#" alt="your image" /> -->
+                                                    <!-- <input type="file" name="file" id="file"> -->
+                                                    <input type="file" name="fotografia" id="fotografia">
+                                                    <img id="blah" width="100px" height="100px" src="#" alt="" hidden/>
+                                                    <!-- <input type="button" id="btn_uploadfile" 
+                                                    value="Upload" 
+                                                    onclick="uploadFile();" > -->
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="descripcion">Descripción *</label>
+                                                    <textarea id="descripcion" name="descripcion" class="form-control" resize="vertical"
+                                                                placeholder="Escriba la descripción del servicio." rows="4"
+                                                                    data-error="Please, leave us a message."></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 form-check">
+                                                <div class="form-group">
+                                                    <input type="checkbox" class="" id="estado" name="estado" value="false" >
+                                                    <label class="form-check-label" for="estado">
+                                                        Estado del servicio *
+                                                    </label>
+                                                </div>  
+                                                </div>
+                                            <div class="d-grid gap-2 col-6 mx-auto">
+                                                <input id="guardarServicio" type="submit" class="btn btn-success btn-send pt-2 btn-block " value="Guardar Servicio">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div> <!-- /.8 -->
+                </div> <!-- /.row-->
+            </div>
+            </div>
+
+           
+        </div>
+        <div class="col-4" id="first">
+            <center><h4>Servicios Reservados</h4  ></center>
+          <div id="listadoServicios" class="item">   
+
+          </div>
+
+      </div>
+
+        </div>
+    </div>
+
+
+    <div class="footerItem"></div>
+    
+
+</body>
+</html>
