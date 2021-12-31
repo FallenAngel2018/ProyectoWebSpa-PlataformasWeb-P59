@@ -6,7 +6,8 @@
 
 .container-items {
 	display: grid;
-    grid-template-columns: 15% 80%;
+    /* grid-template-columns: 15% 80%; */
+    grid-template-columns: 15% 55% 30%;
     grid-gap: 10px;
     max-width: 2000px;
 }

@@ -53,7 +53,7 @@
                                             <div class="col-md-5">
                                                 <div class="form-group">
                                                     <label for="form_name">Nombre *</label>
-                                                    <input id="form_name" type="text" name="nombre" value="ddd" class="form-control" placeholder="Ingrese el nombre del producto." required="required" data-error="Firstname is required.">
+                                                    <input id="form_name" type="text" name="nombre" value="Masaje asiático" class="form-control" placeholder="Ingrese el nombre del producto." required="required" data-error="Firstname is required.">
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
@@ -128,6 +128,8 @@
 
         </div>
 
+        <!-- <div class="col-4" id="third"></div> -->
+
         </div>
     </div>
 
@@ -144,6 +146,7 @@
     import Servicio, {lista_servicios} from '../../Componentes/Servicio/Modelo.js'
     import GenericUtils from '../../Componentes/GenericUtils/GenericUtils.js'
 
+    var img_flag = false; // Retorna si se subió la imagen
 
     // FALTA CARGAR CUANDO SE CARGA LA PANTALLA
     // DESDE LA "BASE DE DATOS" LOS ELEMENTOS EN EL MENÚ DE LOS SERVICIOS
@@ -152,11 +155,33 @@
        
         lista_servicios.forEach(element => {
 
-            document.getElementById("listadoServicios").innerHTML +=
-                // `<button id="serv_${i}" onclick="${showId(this)}" class="subItem serv-button"> ${nombres[i]} </button>`;
-                `<button id="serv_${element.id}" class="subItem serv-button" value="${element.id}"> ${element.nombre} </button>`;
-
+            // document.getElementById("listadoServicios").innerHTML +=
+            //     // `<button id="serv_${i}" onclick="${showId(this)}" class="subItem serv-button"> ${nombres[i]} </button>`;
+            //     // `<button id="serv_${element.id}" onclick="${showId(this)}" class="subItem serv-button" value="${element.id}"> ${element.nombre} </button>`;
+            //     // `<button id="serv_${element.id}" onclick="showId(this)" class="subItem serv-button" value="${element.id}"> ${element.nombre} </button>`;
+            //     // "<button id='serv_\"" + element.id + "' onclick='showId(this)\"" + "' class='subItem serv-button' value='\"" + element.id + "'>" + element.nombre + "</button>"
+            //     "<button id='serv_\"'" + element.id + "\"  value='\"" + element.id + "' class='subItem serv-button'>" + element.nombre + "</button>"
             
+            let service_id = "#serv_" + element.id;
+            let service_name = element.nombre;
+            var theDiv = document.getElementById("listadoServicios");
+
+            var x = document.createElement("BUTTON");
+            x.setAttribute("id", service_id);
+            x.setAttribute("class", "subItem serv-button");
+            x.innerHTML = service_name;    
+            x.value = service_name;
+
+            x.onclick = function(){
+                // alert('here be dragons');return false;
+                showId(this);
+
+            };
+
+            theDiv.appendChild(x);
+
+
+
         });
 
     });
@@ -187,7 +212,6 @@
         // Obtiene el id del último elemento de la lista
         $('#id').val(parseInt(lista_servicios.at(-1).id) + 1);
 
-        // addFieldToForm("id", $('#id').val(), "formCrudServicio");
         // ARREGLAR: El Id se va como String y no como Int
         // GenericUtils.addFieldToForm("id", parseInt($('#id').val()), "formCrudServicio");
 
@@ -218,91 +242,54 @@
 
         console.log({ nuevo_servicio });
 
-        // Guarda en la "base" el objeto creado y devuelve si salió todo bien
+        // // Guarda en la "base" el objeto creado y devuelve si salió todo bien
         var verificacion_guardado = Servicio.saveService(nuevo_servicio);
 
         // Termina el proceso de guardado de datos
 
-        var verificacion_img = uploadFile();
+        uploadFile();
 
         console.log({ verificacion_guardado });
-        console.log({ verificacion_img });
+
 
         // Si se guardó correctamente el servicio...
-        if (verificacion_guardado && verificacion_img) {
+        if (verificacion_guardado) {
             // Código que tendrá el botón en base al servicio creado anteriormente
-            let boton_servicio = `<button id="serv_${nuevo_servicio.id}" class="subItem serv-button"
-                                    value="${nuevo_servicio.id}"> ${nuevo_servicio.nombre} </button>`;
+            // let boton_servicio = `<button id="serv_${nuevo_servicio.id}" class="subItem serv-button"
+            //                         value="${nuevo_servicio.id}"> ${nuevo_servicio.nombre} </button>`;
 
-            document.getElementById("listadoServicios").innerHTML += boton_servicio;
+            // document.getElementById("listadoServicios").innerHTML += boton_servicio;
+
+            let service_id = "#serv_" + nuevo_servicio.id;
+            let service_name = nuevo_servicio.nombre;
+            var theDiv = document.getElementById("listadoServicios");
+
+            // const btn = document.getElementById(service_id);
+
+            var x = document.createElement("BUTTON");
+            x.setAttribute("id", service_id);
+            x.setAttribute("class", "subItem serv-button");
+            x.innerHTML = service_name;    
+            x.value = service_name;
+
+            x.onclick = function(){
+                // alert('here be dragons');return false;
+                showId(this);
+
+            };
+
+            theDiv.appendChild(x);
 
             console.log("La imagen y el servicio se guardaron correctamente.");
 
         }
-        // Si se guardó el servicio pero la imagen no se subió...
-        else if(verificacion_guardado && !verificacion_img){
-
-            // Elimina el último elemento de la lista que fue agregado
-            lista_servicios.pop();
-
-            console.log("El servicio se guardó correctamente PERO LA IMAGEN NO SE SUBIÓ BIEN.");
-
-        }
-
-
-        
-
-
+       
 
     });
 
 
-
-</script>
-
-
-<script type="module">
-
-    // import {servicios, Servicio} from "../../Componentes/Servicio/Modelo"
-    import {lista_servicios} from "../../Componentes/Servicio/Modelo.js";
-
-
-    var i = 0;
-
-    function showId(e) {
-        var id = e.id;
-        var value = e.value;
-
-        console.log('id: ' + id);
-        console.log('value: ' + value);
-
-
-        arreglo = ["7", "8", "9", "10"];
-        nombres = ["servicio 7", "servicio 8", "servicio 9", "servicio 10"]
-
-
-        arreglo.forEach(element => {
-            document.getElementById("listadoServicios").innerHTML += 
-              "<button id=\"serv_" + i + "\"" + " onclick=\"showId(this)\" class=\"subItem serv-button\">" + nombres[i] + "</button>";
-                // <button id="serv_6" onclick="showId(this)" class="subItem serv-button" value="3"><span>Facial</span></button>
-                
-                // document.getElementById("lista_servicios").innerHTML +=
-                // `<button id="serv_${i}" onclick="${showId(this)}" class="subItem serv-button"> ${nombres[i]} </button>`;
-
-            i++;
-            
-        });
-
-    }
-
-    
-
-</script>
-
-<script>
     // Upload file
     function uploadFile() {
-        var img_flag = false; // Retorna si se subió la imagen
 
         // var files = document.getElementById("file").files;
         var files = document.getElementById("fotografia").files;
@@ -318,22 +305,23 @@
             // Set POST method and ajax file path
             xhttp.open("POST", "ajaxfile.php", true);
 
-            // call on request changes state
+            // Call on request changes state
             xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
 
                     var response = this.responseText;
 
-                    if(response == 1){
-                        // alert("Upload successfully.");
+                    if(response == 1) {
                         console.log("Upload successfully.");
                         img_flag = true;
+
                     } else {
-                        // alert("File not uploaded.");
                         console.log("File not uploaded.");
+                        img_flag = false;
 
                     }
                 }
+
             };
 
             // Send request with data
@@ -343,8 +331,115 @@
             alert("Please select a file");
         }
 
-        return img_flag;
+    }
+
+    function verificar_subida_imagen() {
+
+        console.log("Método verificar_subida_imagen");
+        console.log("img_flag: " + img_flag);
+
+        return Boolean(img_flag);
+    }
+
+
+    // #region Métodos - Menú Items
+
+    function showId(e) {
+        var id = e.id;
+        var value = e.value;
+
+        console.log('id: ' + id);
+        console.log('value: ' + value);
+
+        for(const item in lista_servicios) { // Propiedades del objeto JSON
+
+            let elementId = id.split("#serv_");
+            console.log(elementId[1]);
+
+            if (item == elementId[1] - 1) {
+                $('#form_name').val(lista_servicios[item].nombre);
+            }
+
+
+        }
 
     }
+
+    // #endregion
+
+
+</script>
+
+
+<script>
+
+    var i = 0;
+
+</script>
+
+<script>
+
+    // // Upload file
+    // function uploadFile() {
+
+    //     // var files = document.getElementById("file").files;
+    //     var files = document.getElementById("fotografia").files;
+
+    //     if(files.length > 0 ) {
+
+    //         var formData = new FormData();
+    //         // formData.append("file", files[0]);
+    //         formData.append("fotografia", files[0]);
+
+    //         var xhttp = new XMLHttpRequest();
+
+    //         // Set POST method and ajax file path
+    //         xhttp.open("POST", "ajaxfile.php", true);
+
+    //         // Call on request changes state
+    //         xhttp.onreadystatechange = function() {
+    //             if (this.readyState == 4 && this.status == 200) {
+
+                    
+
+    //                 var response = this.responseText;
+
+    //                 if(response == 1) {
+    //                     // alert("Upload successfully.");
+    //                     console.log("Upload successfully.");
+    //                     img_flag = true;
+    //                     // console.log("img_flag response == 1: " + img_flag);
+
+    //                     // return Boolean(img_flag); shoot()
+
+    //                 } else {
+    //                     // alert("File not uploaded.");
+    //                     console.log("File not uploaded.");
+    //                     img_flag = false;
+
+    //                     // return Boolean(img_flag);
+
+    //                 }
+    //             }
+
+    //         };
+
+    //         // Send request with data
+    //         xhttp.send(formData);
+
+    //         // console.log("img_flag after xhttp.send(formData);: " + img_flag);
+
+
+    //     } else {
+    //         alert("Please select a file");
+    //     }
+
+    //     // console.log("img_flag before return: " + img_flag);
+
+    //     // return Boolean(img_flag);
+    //     // return true;
+
+    // }
+
 
 </script>

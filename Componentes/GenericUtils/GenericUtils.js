@@ -49,13 +49,10 @@ export default class GenericUtils {
        console.log('formId: ' + formId);
        
        // Si en la 1era posición del formId no está el #...
-       // if(!formId.indexOf("#", 0)) {
        if(formId.charAt(0) != "#") {
            let temp = formId;
            formId = "#" + temp;
        }
-
-       // console.log('formId: ' + formId);
 
        // Añade el campo estado al formulario #formCrudServicio
        // porque cuando tiene value = false, no se incluye
