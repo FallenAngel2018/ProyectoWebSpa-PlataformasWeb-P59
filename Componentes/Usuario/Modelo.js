@@ -1,21 +1,27 @@
-class Cliente {
+
+// export default: Sirve para que se pueda importar el uso de esta clase desde otra.
+export default class Usuario {
     
     /* 
         Los clientes que deseen optar por estos servicios, deben registrarse,
         ingresando los siguientes datos: cédula, nombre, apellido, domicilio,
         teléfono y correo electrónico.
     */
-    constructor(id, nombre, apellido, cedula, domicilio, telefeono, correoel) {
-        this.id = id
+    constructor(id, nombre, apellido, cedula, domicilio, telefono, correoelec, clave) {
+        this.id = id // Campo oculto (hidden)
+
+        this.cedula = cedula 
         this.nombre = nombre
         this.apellido = apellido
-        this.cedula = cedula 
         this.domicilio = domicilio 
-        this.telefeono = telefeono 
-        this.correoel = correoel 
+        this.telefono = telefono 
+
+        // @gmail.com, @hotmail.com: Clientes
+        // @spaweb.com: Admin
+        this.correoelec = correoelec
+        this.clave = clave
+
     }
-
-
    
 
     // Definir función
