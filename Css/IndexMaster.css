@@ -15,6 +15,7 @@
 
 
     #m{
+        text-align: center;
         margin-top: 300px;
     }
 
@@ -42,4 +43,31 @@
         margin: 20px;
     }
     
+    #logo{
+        margin-top: 0px;
+        margin-left: 40px;
+        float: left;
+      }
+
+    .topItem {
+        background-color: #FFF28C;
+        border: 0px #FFF28C ;
+        padding: 25px;
+        text-align: center;
+    }
+
+    #titulo{
+        margin-right: 59px;
+    }
+
+    #topItem{
+        background-color: #FFF28C;
+        border: 1px solid black;
+        padding: 45px;
+        text-align: center;
+    }
+
+    #Barra{
+        margin-top: 10px;
+    }
    
