@@ -46,7 +46,8 @@
                         <div class="card-body bg-light">
                             <div class="container">
                                 <form id="formCrudServicio"  method="post">
-                                    <input type="hidden" id="id" name="id" value="55">
+                                    <!-- <input type="hidden" id="id" name="id" value="55"> -->
+                                    <input type="hidden" id="id_servicio" name="id">
 
                                     <div class="controls">
                                         <div class="row">
@@ -58,8 +59,8 @@
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
-                                                    <label for="form_lastname">Duración (min) *</label>
-                                                    <input id="form_lastname" type="number" value="5" min="1" name="duracion" class="form-control" placeholder="" required="required" data-error="Lastname is required.">
+                                                    <label for="duracion">Duración (min) *</label>
+                                                    <input id="duracion" type="number" value="5" min="1" name="duracion" class="form-control" placeholder="" required="required" data-error="Lastname is required.">
                                                 </div>
                                             </div>
                                             <div class="col-md-2">
@@ -75,8 +76,8 @@
                                                     <label for="tipo_servicio">Tipo de servicio *</label>
                                                     <select id="tipo_servicio" name="tipo_servicio" class="form-control" required data-error="Please specify your need.">
                                                         <option value="" selected disabled>-- Seleccione el tipo de servicio --</option>
-                                                        <option value="1" >Normal</option>
-                                                        <option value="2" >VIP</option>
+                                                        <option value="1">Normal</option>
+                                                        <option value="2"   >VIP</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -147,6 +148,7 @@
     import GenericUtils from '../../Componentes/GenericUtils/GenericUtils.js'
 
     var img_flag = false; // Retorna si se subió la imagen
+    var formElements;
 
     // FALTA CARGAR CUANDO SE CARGA LA PANTALLA
     // DESDE LA "BASE DE DATOS" LOS ELEMENTOS EN EL MENÚ DE LOS SERVICIOS
@@ -210,21 +212,23 @@
         var form = $(this);
         
         // Obtiene el id del último elemento de la lista
-        $('#id').val(parseInt(lista_servicios.at(-1).id) + 1);
+        $('#id_servicio').val(parseInt(lista_servicios.at(-1).id) + 1);
 
         // ARREGLAR: El Id se va como String y no como Int
-        // GenericUtils.addFieldToForm("id", parseInt($('#id').val()), "formCrudServicio");
+        GenericUtils.addFieldToForm("id_servicio", parseInt($('#id_servicio').val()), "formCrudServicio");
 
         // Gets the checkbox
         var checkBox = document.getElementById("estado");
 
         GenericUtils.addFieldToForm("estado", checkBox.checked, "#formCrudServicio");
         
+        formElements = e.target;
         
         // Convertir los datos del formulario #formCrudServicio
         // a un objeto JSON
         // Fuente: https://www.learnwithjason.dev/blog/get-form-values-as-json
-        const data = new FormData(e.target);
+        // const data = new FormData(e.target);
+        const data = new FormData(formElements);
 
         const jsonValue = Object.fromEntries(data.entries());
         var nuevo_servicio = new Servicio();
@@ -351,13 +355,23 @@
         console.log('id: ' + id);
         console.log('value: ' + value);
 
-        for(const item in lista_servicios) { // Propiedades del objeto JSON
+        for(const lista_item in lista_servicios) { // Propiedades del objeto JSON
 
             let elementId = id.split("#serv_");
             console.log(elementId[1]);
 
-            if (item == elementId[1] - 1) {
-                $('#form_name').val(lista_servicios[item].nombre);
+            // Si el elemento de la lista de servicios
+            // es igual a 
+            if (lista_item == elementId[1] - 1) {
+                console.log(lista_servicios[lista_item]);
+
+                $('#id_servicio').val(lista_servicios[lista_item].id);
+                $('#form_name').val(lista_servicios[lista_item].nombre);
+                $('#duracion').val(lista_servicios[lista_item].duracion);
+                $('#precio').val(lista_servicios[lista_item].precio);
+                $('#tipo_servicio').val(lista_servicios[lista_item].tipo_servicio);
+                $('#descripcion').val(lista_servicios[lista_item].descripcion);
+                
             }
 
 
@@ -367,13 +381,6 @@
 
     // #endregion
 
-
-</script>
-
-
-<script>
-
-    var i = 0;
 
 </script>
 
