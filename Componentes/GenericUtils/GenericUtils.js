@@ -3,18 +3,10 @@ export default class GenericUtils {
     
     constructor() { }
 
-    // 
     /**
     * Retorna un objeto a través del los campos del objeto JSON
     */
     static getObjectFromJson(jsonData, classObject) {
-        // foreach (var fieldInfo in fields) // JSON
-        // {
-        //     foreach (DataColumn dc in dt.Columns) // Propiedades de la clase Servicio
-        //     {
-        //         // Matching the columns with fields
-        //         if (fieldInfo.Name == dc.ColumnName)
-        //         {
         
         for(const item in jsonData) { // Propiedades del objeto JSON
 
@@ -25,8 +17,7 @@ export default class GenericUtils {
 
                 // Si las propiedades se llaman igual...
                 if(item == T) {
-                    // console.log(`PRUEBAAA ${item} jsonData[item]: ${jsonData[item]}`)
-                    
+
                     // En la posición T del objeto genérico, se setea
                     // el valor actual del objeto JSON
                     classObject[T] = jsonData[item];
@@ -46,7 +37,7 @@ export default class GenericUtils {
     */
     static addFieldToForm(name, value, formId) {
 
-       console.log('formId: ' + formId);
+    //    console.log('formId: ' + formId);
        
        // Si en la 1era posición del formId no está el #...
        if(formId.charAt(0) != "#") {
