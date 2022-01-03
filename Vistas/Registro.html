@@ -12,22 +12,22 @@
     <center><h1 id="tituloPrinc" >Spa California</h1></center>
    <center> <p>Registrate Ahora!</p> </center>   
     <div class="col-md-10 mx-auto col-lg-5">
-        <form class="p-4 p-md-5 border rounded-3 bg-dark">
+        <form class="p-4 p-md-5 border rounded-3 bg-dark" id="formCrudRegistro">
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="floatingInput" placeholder="Guillermo">
-                <label for="floatingInput">Nombre</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Guillermo">
+                <label for="nombre">Nombre</label>
             </div> 
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="floatingInput" placeholder="Mite">
-                <label for="floatingInput">Apellido</label>
+                <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Mite">
+                <label for="apellido">Apellido</label>
             </div>
             <div class="form-floating mb-3">
-                <input type="number" class="form-control" id="floatingInput" placeholder="0547845216">
-                <label for="floatingInput">Cedula</label>
+                <input type="number" class="form-control" id="cedula" name="cedula" placeholder="0547845216">
+                <label for="cedula">Cedula</label>
             </div> 
             <div class="form-floating mb-3">
                 <input type="number" class="form-control" id="floatingInput" placeholder="0985478520">
-                <label for="floatingInput">Telefono</label>
+                <label for="floatingInput">Teléfono</label>
               </div>    
           <div class="form-floating mb-3">
             <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
@@ -49,3 +49,114 @@
         </form>
 </body>
 </html>
+
+<script type="module">
+
+  // Clase export default, export objeto
+  import Usuario, {lista_usuarios} from '../Componentes/Usuario/Modelo.js'
+  import GenericUtils from '../Componentes/GenericUtils/GenericUtils.js'
+
+  
+    // #region Jquery (Formulario) - Método Submit 
+
+    $('#formCrudRegistro').submit(function (e) {
+
+      e.preventDefault();
+
+      // // Obtiene el id del último elemento de la lista y lo setea en #id_servicio
+      // $('#id_servicio').val(parseInt(lista_servicios.at(-1).id) + 1);
+
+      // // ARREGLAR: El Id se va como String y no como Int
+      // GenericUtils.addFieldToForm("id_servicio", parseInt($('#id_servicio').val()), "formCrudRegistro");
+
+
+      // // Gets the checkbox
+      // var checkBox = document.getElementById("estado");
+
+      // GenericUtils.addFieldToForm("estado", checkBox.checked, "#formCrudRegistro");
+
+
+      // var photo_file = document.getElementById("fotografia_file").files;
+
+      // if (photo_file.length > 0) {
+          
+      //     img_name = photo_file.item(0).name;
+      //     // img_name = document.getElementById("fotografia_file").files.item(0).name;
+
+      // }
+
+      // // Agrega el campo 'fotografia' por debajo, que servirá para almacenar
+      // // el nombre de la imagen que se necesita mostrar
+      // GenericUtils.addFieldToForm("fotografia", img_name, "#formCrudRegistro");
+
+      // // console.log({img_name});
+
+      // Convertir los datos del formulario #formCrudRegistro
+      // a un objeto JSON
+      // Fuente: https://www.learnwithjason.dev/blog/get-form-values-as-json
+      const data = new FormData(e.target);
+
+      const jsonValue = Object.fromEntries(data.entries());
+      var nuevo_usuario = new Usuario();
+
+      console.log({ jsonValue });
+      console.log("jsonValue.nombre: " + jsonValue.nombre);
+      console.log("typeof(jsonValue): " + typeof(jsonValue.id));
+      console.log("typeof($('#id').val()): " + typeof($('#id').val()));
+
+      // console.log();
+
+      // Genera el objeto a través del objeto JSON
+      nuevo_usuario = GenericUtils.getObjectFromJson(jsonValue, nuevo_usuario);
+
+      console.log({ nuevo_usuario });
+
+      // // // Guarda en la "base" el objeto creado y devuelve si salió todo bien
+      // var verificacion_guardado = Servicio.saveService(nuevo_usuario);
+
+      // // Termina el proceso de guardado de datos
+
+      // uploadFile();
+
+      // console.log({ verificacion_guardado });
+
+
+      // // Si se guardó correctamente el servicio...
+      // if (verificacion_guardado) {
+
+      //     var theDiv = document.getElementById("listadoServicios");
+      //     let service_id = "#serv_" + nuevo_usuario.id;
+      //     let service_name = nuevo_usuario.nombre;
+          
+      //     // Fuente: https://stackoverflow.com/questions/263965/how-can-i-convert-a-string-to-boolean-in-javascript
+      //     let service_class = nuevo_usuario.estado == 'true' ? "subItem serv-button" : " subItem serv-deactivated-button"
+
+      //     var x = document.createElement("BUTTON");
+      //     x.setAttribute("id", service_id);
+      //     x.setAttribute("class", service_class);
+      //     x.innerHTML = service_name;    
+      //     x.value = service_name;
+
+      //     x.onclick = function(){
+      //         // alert('here be dragons');return false;
+      //         showServiceInfo(this);
+
+      //     };
+
+      //     theDiv.appendChild(x);
+
+      //     console.log("La imagen y el servicio se guardaron correctamente.");
+
+      //     // Limpia los datos del formulario
+      //     clearFields();
+
+      }
+
+
+    });
+
+    //#endregion
+
+
+
+</script>

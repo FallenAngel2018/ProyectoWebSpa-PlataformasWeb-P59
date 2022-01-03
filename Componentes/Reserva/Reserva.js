@@ -51,7 +51,7 @@ export default class Reserva {
 // de la clase Servicio para hacerla privada
 // Fuente: https://www.c-sharpcorner.com/article/encapsulation-in-javascript/#:~:text=Using%20a%20little%20finesse%2C%20we,vanilla%20JavaScript%20(ES6)%20classes.&text=To%20do%20this%2C%20we%20can,operate%20on%20these%20encapsulated%20variables.
 
-// Lista estática de servicios
+// Lista estática de reservas
 export const lista_reservas = new Array();
 
 lista_reservas.push(new Reserva(1, 2, 1, 4, "HORARIOOOO", true));

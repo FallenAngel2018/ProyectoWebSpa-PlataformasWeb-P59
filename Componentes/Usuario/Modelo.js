@@ -7,8 +7,8 @@ export default class Usuario {
         ingresando los siguientes datos: cédula, nombre, apellido, domicilio,
         teléfono y correo electrónico.
     */
-    constructor(id, nombre, apellido, cedula, domicilio, telefono, correoelec, clave) {
-        this.id = id // Campo oculto (hidden)
+    constructor(id_usuario, cedula, nombre, apellido, domicilio, telefono, correoelec, clave, estado_usuario) {
+        this.id_usuario = id_usuario // Campo oculto (hidden)
 
         this.cedula = cedula 
         this.nombre = nombre
@@ -16,21 +16,42 @@ export default class Usuario {
         this.domicilio = domicilio 
         this.telefono = telefono 
 
-        // @gmail.com, @hotmail.com: Clientes
-        // @spaweb.com: Admin
+        // Clientes: @gmail.com, @hotmail.com
+        // Admin: @spaweb.com
         this.correoelec = correoelec
         this.clave = clave
+
+        this.estado_usuario = estado_usuario
 
     }
    
 
     // Definir función
-    saludar(fn) {
-        console.log( `Hola soy ${this.nombre} ${this.apellido}` )
-        if (fn) {
-            fn(this.nombre, this.apellido)
+    static saveUser(user) {
+
+        var flag_user = false;
+
+        lista_sucursales.push(user);
+
+        var lastElement = lista_usuarios.at(-1);
+
+        if(user == lastElement) {
+            flag_user = true;
+
         }
+
+        return Boolean(flag_user);
+
     }
+
 
     
 }
+
+// Lista estática de usuarios
+export const lista_usuarios = new Array();
+
+lista_usuarios.push(new Usuario(1, "0952468591", "Johnny", "Lawrence", "Fishbourne #098 & Main St."
+                                    , "0945754165", "cobrakai_2019@gmail.com", "hotbabes1975", true));
+// lista_usuarios.push(new Usuario(2, 2, 1, 2, "HORARIOOOO", true));
+// lista_usuarios.push(new Usuario(3, 2, 1, 1, "HORARIOOOO", true));
