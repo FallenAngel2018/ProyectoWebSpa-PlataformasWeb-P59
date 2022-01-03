@@ -141,6 +141,7 @@
 
 // Clase export default, export objeto
     import Servicio, {lista_servicios} from '../../Componentes/Servicio/Modelo.js'
+    import { lista_usuarios } from '../../Componentes/Usuario/Modelo.js'
     import GenericUtils from '../../Componentes/GenericUtils/GenericUtils.js'
 
     var img_flag = false;
@@ -151,6 +152,27 @@
     // #region Jquery - On document ready
 
     $(document).ready(function(){
+
+        // Accede al objeto "localStorage" que viene nativamente con javascript
+        // y obtiene la propiedad que se le indica.
+        var prueba = localStorage.getItem("id_usuario");
+
+        console.log({ prueba });
+
+        // Itera sobre la lista de usuarios...
+        lista_usuarios.forEach(element => {
+
+            // para obtener los datos del usuario que correspondan a su id
+            // y mostrar su nombre en la esquina superior derecha.
+            if (parseInt(prueba) == parseInt(element.id_usuario)) {
+
+                // Fuente: https://stackoverflow.com/questions/1103172/jquery-change-div-text/1103191
+                $("#nombre_usuario").text("Hola " + element.nombre);
+
+            }
+
+        });
+        
        
         lista_servicios.forEach(element => {
 
