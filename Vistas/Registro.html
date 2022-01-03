@@ -4,38 +4,52 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro</title>
 </head>
 <body style="background-color:#FFF28C">
     
     <center><h1 id="tituloPrinc" >Spa California</h1></center>
-   <center> <p>Registrate Ahora!</p> </center>   
+    <center> <p>Registrate Ahora!</p> </center>
+
     <div class="col-md-10 mx-auto col-lg-5">
         <form class="p-4 p-md-5 border rounded-3 bg-dark" id="formCrudRegistro">
-            <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Guillermo">
-                <label for="nombre">Nombre</label>
-            </div> 
-            <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Mite">
-                <label for="apellido">Apellido</label>
-            </div>
-            <div class="form-floating mb-3">
-                <input type="number" class="form-control" id="cedula" name="cedula" placeholder="0547845216">
-                <label for="cedula">Cedula</label>
-            </div> 
-            <div class="form-floating mb-3">
-                <input type="number" class="form-control" id="floatingInput" placeholder="0985478520">
-                <label for="floatingInput">Teléfono</label>
-              </div>    
           <div class="form-floating mb-3">
-            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-            <label for="floatingInput">Direccion de Email</label>
+              <!-- <input type="text" class="form-control" pattern="\d{1,5}" id="cedula" name="cedula" -->
+              <input type="text" class="form-control" pattern="[0-9]{1,10}" id="cedula" name="cedula"
+                placeholder="0547845216" value="0984518597">
+              <label for="cedula">Cédula</label>
+          </div> 
+          <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="nombre" name="nombre"
+                placeholder="Guillermo" value="Suckmy">
+              <label for="nombre">Nombre</label>
+          </div> 
+          <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="apellido" name="apellido"
+                  placeholder="Mite" value="Suckmy">
+              <label for="apellido">Apellido</label>
           </div>
           <div class="form-floating mb-3">
-            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-            <label for="floatingPassword">Contraseña</label>
+              <input type="text" class="form-control" id="domicilio" name="domicilio"
+                placeholder="Los Esteroshhh" value="Dick Los Esteroshhh">
+              <label for="domicilio">Dirección</label>
+          </div>
+          <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="telefono" name="telefono"
+                placeholder="0985478520" value="0985478520">
+              <label for="telefono">Teléfono</label>
+          </div>
+          <div class="form-floating mb-3">
+              <input type="email" class="form-control" id="correoelec" name="correoelec"
+                placeholder="name@example.com" value="name@spaweb.com">
+              <label for="correoelec">Dirección de Email</label>
+          </div>
+          <div class="form-floating mb-3">
+              <input type="password" class="form-control" id="clave" name="clave"
+                placeholder="Password" value="xdd">
+              <label for="clave">Contraseña</label>
           </div>
           <!-- <div class="checkbox mb-3">
             <label>
@@ -57,103 +71,90 @@
   import GenericUtils from '../Componentes/GenericUtils/GenericUtils.js'
 
   
-    // #region Jquery (Formulario) - Método Submit 
+  // #region Formulario - Método Submit 
 
-    $('#formCrudRegistro').submit(function (e) {
+  $('#formCrudRegistro').submit(function (e) {
+    
+    e.preventDefault();
 
-      e.preventDefault();
+    var form = $(this).serialize();
 
-      // // Obtiene el id del último elemento de la lista y lo setea en #id_servicio
-      // $('#id_servicio').val(parseInt(lista_servicios.at(-1).id) + 1);
+    // Obtiene el id del último elemento de la lista sumándole 1
+    var id_usuario = lista_usuarios.at(-1).id_usuario + 1;
+    // console.log({id_usuario});
+    console.log({form});
 
-      // // ARREGLAR: El Id se va como String y no como Int
-      // GenericUtils.addFieldToForm("id_servicio", parseInt($('#id_servicio').val()), "formCrudRegistro");
-
-
-      // // Gets the checkbox
-      // var checkBox = document.getElementById("estado");
-
-      // GenericUtils.addFieldToForm("estado", checkBox.checked, "#formCrudRegistro");
+    // ARREGLAR: El Id se va como String y no como Int
+    GenericUtils.addFieldToForm("id_usuario", parseInt(id_usuario), "formCrudRegistro");
 
 
-      // var photo_file = document.getElementById("fotografia_file").files;
-
-      // if (photo_file.length > 0) {
-          
-      //     img_name = photo_file.item(0).name;
-      //     // img_name = document.getElementById("fotografia_file").files.item(0).name;
-
-      // }
-
-      // // Agrega el campo 'fotografia' por debajo, que servirá para almacenar
-      // // el nombre de la imagen que se necesita mostrar
-      // GenericUtils.addFieldToForm("fotografia", img_name, "#formCrudRegistro");
-
-      // // console.log({img_name});
-
-      // Convertir los datos del formulario #formCrudRegistro
-      // a un objeto JSON
-      // Fuente: https://www.learnwithjason.dev/blog/get-form-values-as-json
-      const data = new FormData(e.target);
-
-      const jsonValue = Object.fromEntries(data.entries());
-      var nuevo_usuario = new Usuario();
-
-      console.log({ jsonValue });
-      console.log("jsonValue.nombre: " + jsonValue.nombre);
-      console.log("typeof(jsonValue): " + typeof(jsonValue.id));
-      console.log("typeof($('#id').val()): " + typeof($('#id').val()));
-
-      // console.log();
-
-      // Genera el objeto a través del objeto JSON
-      nuevo_usuario = GenericUtils.getObjectFromJson(jsonValue, nuevo_usuario);
-
-      console.log({ nuevo_usuario });
-
-      // // // Guarda en la "base" el objeto creado y devuelve si salió todo bien
-      // var verificacion_guardado = Servicio.saveService(nuevo_usuario);
-
-      // // Termina el proceso de guardado de datos
-
-      // uploadFile();
-
-      // console.log({ verificacion_guardado });
+    GenericUtils.addFieldToForm("estado_usuario", true, "formCrudRegistro");
 
 
-      // // Si se guardó correctamente el servicio...
-      // if (verificacion_guardado) {
+    // Convertir los datos del formulario #formCrudRegistro
+    // a un objeto JSON
+    // Fuente: https://www.learnwithjason.dev/blog/get-form-values-as-json
+    const data = new FormData(e.target);
 
-      //     var theDiv = document.getElementById("listadoServicios");
-      //     let service_id = "#serv_" + nuevo_usuario.id;
-      //     let service_name = nuevo_usuario.nombre;
-          
-      //     // Fuente: https://stackoverflow.com/questions/263965/how-can-i-convert-a-string-to-boolean-in-javascript
-      //     let service_class = nuevo_usuario.estado == 'true' ? "subItem serv-button" : " subItem serv-deactivated-button"
+    const jsonValue = Object.fromEntries(data.entries());
+    var nuevo_usuario = new Usuario();
 
-      //     var x = document.createElement("BUTTON");
-      //     x.setAttribute("id", service_id);
-      //     x.setAttribute("class", service_class);
-      //     x.innerHTML = service_name;    
-      //     x.value = service_name;
+    console.log({ jsonValue });
+    console.log("jsonValue.nombre: " + jsonValue.nombre);
+    console.log("typeof(jsonValue): " + typeof(jsonValue.id));
+    console.log("typeof($('#id').val()): " + typeof($('#id').val()));
 
-      //     x.onclick = function(){
-      //         // alert('here be dragons');return false;
-      //         showServiceInfo(this);
+    // console.log();
 
-      //     };
+    // Genera el objeto a través del objeto JSON
+    nuevo_usuario = GenericUtils.getObjectFromJson(jsonValue, nuevo_usuario);
 
-      //     theDiv.appendChild(x);
+    console.log({ nuevo_usuario });
 
-      //     console.log("La imagen y el servicio se guardaron correctamente.");
+    // // Guarda en la "base" el objeto creado y devuelve si salió todo bien
+    var verificacion_guardado = Usuario.saveUser(nuevo_usuario);
 
-      //     // Limpia los datos del formulario
-      //     clearFields();
+    // // Termina el proceso de guardado de datos
 
-      }
+    // uploadFile();
+
+    console.log({ verificacion_guardado });
+    console.log({ lista_usuarios });
 
 
-    });
+    // // Si se guardó correctamente el servicio...
+    // if (verificacion_guardado) {
+
+    //     var theDiv = document.getElementById("listadoServicios");
+    //     let service_id = "#serv_" + nuevo_usuario.id;
+    //     let service_name = nuevo_usuario.nombre;
+        
+    //     // Fuente: https://stackoverflow.com/questions/263965/how-can-i-convert-a-string-to-boolean-in-javascript
+    //     let service_class = nuevo_usuario.estado == 'true' ? "subItem serv-button" : " subItem serv-deactivated-button"
+
+    //     var x = document.createElement("BUTTON");
+    //     x.setAttribute("id", service_id);
+    //     x.setAttribute("class", service_class);
+    //     x.innerHTML = service_name;    
+    //     x.value = service_name;
+
+    //     x.onclick = function(){
+    //         // alert('here be dragons');return false;
+    //         showServiceInfo(this);
+
+    //     };
+
+    //     theDiv.appendChild(x);
+
+    //     console.log("La imagen y el servicio se guardaron correctamente.");
+
+    //     // Limpia los datos del formulario
+    //     clearFields();
+
+    // }
+
+
+  });
 
     //#endregion
 

@@ -31,13 +31,12 @@ export default class Usuario {
 
         var flag_user = false;
 
-        lista_sucursales.push(user);
+        lista_usuarios.push(user);
 
         var lastElement = lista_usuarios.at(-1);
 
         if(user == lastElement) {
             flag_user = true;
-
         }
 
         return Boolean(flag_user);
@@ -53,5 +52,5 @@ export const lista_usuarios = new Array();
 
 lista_usuarios.push(new Usuario(1, "0952468591", "Johnny", "Lawrence", "Fishbourne #098 & Main St."
                                     , "0945754165", "cobrakai_2019@gmail.com", "hotbabes1975", true));
-// lista_usuarios.push(new Usuario(2, 2, 1, 2, "HORARIOOOO", true));
-// lista_usuarios.push(new Usuario(3, 2, 1, 1, "HORARIOOOO", true));
+lista_usuarios.push(new Usuario(2, "0984518597", "Suckmy", "Suckmy", "Dick Los Esteroshhh"
+                                    , "0985478520", "name@spaweb.com", "xdd", true));
