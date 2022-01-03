@@ -39,7 +39,7 @@ ul {
 }
 
 .subItem {
-    background-color: lightsalmon;
+    /* background-color: lightsalmon; */
     border: 1px solid black;
     /* margin: auto; */
     /* padding-top: 10px; */
@@ -51,6 +51,14 @@ ul {
 } 
 
 .serv-button {
+    /* background-color: lightsalmon; */
+    background-color: rgb(102, 243, 66);
+    /* width: 170px; */
+    width: 100%;
+}
+
+.serv-deactivated-button {
+    background-color: rgb(245, 105, 105);
     /* width: 170px; */
     width: 100%;
 }
