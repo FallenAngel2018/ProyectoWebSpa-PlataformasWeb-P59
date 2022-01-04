@@ -70,7 +70,9 @@
   import Usuario, {lista_usuarios} from '../Componentes/Usuario/Modelo.js'
   import GenericUtils from '../Componentes/GenericUtils/GenericUtils.js'
 
+  console.log({ lista_usuarios });
   
+
   // #region Formulario - Método Submit 
 
   $('#formCrudRegistro').submit(function (e) {
@@ -83,6 +85,7 @@
     var id_usuario = lista_usuarios.at(-1).id_usuario + 1;
     // console.log({id_usuario});
     console.log({form});
+
 
     // ARREGLAR: El Id se va como String y no como Int
     GenericUtils.addFieldToForm("id_usuario", parseInt(id_usuario), "formCrudRegistro");
@@ -99,12 +102,10 @@
     const jsonValue = Object.fromEntries(data.entries());
     var nuevo_usuario = new Usuario();
 
-    console.log({ jsonValue });
-    console.log("jsonValue.nombre: " + jsonValue.nombre);
-    console.log("typeof(jsonValue): " + typeof(jsonValue.id));
-    console.log("typeof($('#id').val()): " + typeof($('#id').val()));
-
-    // console.log();
+    // console.log({ jsonValue });
+    // console.log("jsonValue.nombre: " + jsonValue.nombre);
+    // console.log("typeof(jsonValue): " + typeof(jsonValue.id));
+    // console.log("typeof($('#id').val()): " + typeof($('#id').val()));
 
     // Genera el objeto a través del objeto JSON
     nuevo_usuario = GenericUtils.getObjectFromJson(jsonValue, nuevo_usuario);
@@ -122,36 +123,13 @@
     console.log({ lista_usuarios });
 
 
-    // // Si se guardó correctamente el servicio...
-    // if (verificacion_guardado) {
+    // Si se guardó correctamente el usuario...
+    if (verificacion_guardado) {
 
-    //     var theDiv = document.getElementById("listadoServicios");
-    //     let service_id = "#serv_" + nuevo_usuario.id;
-    //     let service_name = nuevo_usuario.nombre;
-        
-    //     // Fuente: https://stackoverflow.com/questions/263965/how-can-i-convert-a-string-to-boolean-in-javascript
-    //     let service_class = nuevo_usuario.estado == 'true' ? "subItem serv-button" : " subItem serv-deactivated-button"
+      // window.location.href = "./Login.html";
 
-    //     var x = document.createElement("BUTTON");
-    //     x.setAttribute("id", service_id);
-    //     x.setAttribute("class", service_class);
-    //     x.innerHTML = service_name;    
-    //     x.value = service_name;
 
-    //     x.onclick = function(){
-    //         // alert('here be dragons');return false;
-    //         showServiceInfo(this);
-
-    //     };
-
-    //     theDiv.appendChild(x);
-
-    //     console.log("La imagen y el servicio se guardaron correctamente.");
-
-    //     // Limpia los datos del formulario
-    //     clearFields();
-
-    // }
+    }
 
 
   });

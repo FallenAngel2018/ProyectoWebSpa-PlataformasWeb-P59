@@ -34,7 +34,8 @@ export default class Servicio {
         if(service == lastElement) {
             flag_service = true;
 
-            sessionStorage.setItem("lista_servicios", lista_servicios);
+            // sessionStorage.setItem("lista_servicios", lista_servicios);
+            sessionStorage.setItem("lista_servicios", JSON.stringify(lista_servicios));
 
         }
 
@@ -80,7 +81,11 @@ lista_servicios.push(new Servicio(5, "Masaje", "descripcion5", 60, "url/5.jpg", 
 lista_servicios.push(new Servicio(6, "Masaje VIP cuerpo completo", "Masaje de cuerpo completo con aloe vera, rocas calientes y sí se desea en el momento también con acupuntura especializada."
 , 90, "url/6.jpg", 40.35, "2", true));
 
-sessionStorage.setItem("lista_servicios", lista_servicios);
+// sessionStorage.setItem("lista_servicios", lista_servicios);
+
+// Se tiene que convertir a Json porque sino los objetos
+// guardados son indefinibles a la hora de consultarlos.
+sessionStorage.setItem("lista_servicios", JSON.stringify(lista_servicios));
 
 
 
