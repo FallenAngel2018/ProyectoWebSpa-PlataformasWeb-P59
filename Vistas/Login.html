@@ -16,12 +16,12 @@
     <div class="col-md-10 mx-auto col-lg-5">
         <form class="p-4 p-md-5 border rounded-3 bg-dark" id="formCrudLogin">
           <div class="form-floating mb-3">
-            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-            <label for="floatingInput">Direccion de Email</label>
+            <input type="email" class="form-control" id="correoelec" name="correoelec" placeholder="name@example.com">
+            <label for="correoelec">Direccion de Email</label>
           </div>
           <div class="form-floating mb-3">
-            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-            <label for="floatingPassword">Contraseña</label>
+            <input type="password" class="form-control" id="clave" name="clave" placeholder="Password">
+            <label for="clave">Contraseña</label>
           </div>
           <!-- <div class="checkbox mb-3">
             <label>
@@ -42,83 +42,79 @@
 
   // Clase export default, export objeto
   import Usuario, {lista_usuarios} from '../Componentes/Usuario/Modelo.js'
+  import Servicio, {lista_servicios} from '../Componentes/Servicio/Modelo.js'
   import GenericUtils from '../Componentes/GenericUtils/GenericUtils.js'
 
-  
+
   // #region Formulario - Método Submit 
 
   $('#formCrudLogin').submit(function (e) {
     
     e.preventDefault();
 
-    localStorage.setItem("id_usuario", 1);
-    // var prueba = localStorage.getItem("id_usuario");
-
-    // console.log({ prueba });
-
-
-    window.location.href = "./Administrador/Index.html";
-
-
-
-
-    // var form = $(this).serialize();
-
-    // // Obtiene el id del último elemento de la lista sumándole 1
-    // var id_usuario = lista_usuarios.at(-1).id_usuario + 1;
-    // // console.log({id_usuario});
-    // console.log({form});
-
-    // // ARREGLAR: El Id se va como String y no como Int
-    // GenericUtils.addFieldToForm("id_usuario", parseInt(id_usuario), "formCrudLogin");
-
-
-    // GenericUtils.addFieldToForm("estado_usuario", true, "formCrudLogin");
-
-
     // // Convertir los datos del formulario #formCrudLogin
     // // a un objeto JSON
     // // Fuente: https://www.learnwithjason.dev/blog/get-form-values-as-json
-    // const data = new FormData(e.target);
+    const data = new FormData(e.target);
 
-    // const jsonValue = Object.fromEntries(data.entries());
-    // var nuevo_usuario = new Usuario();
+    const jsonValue = Object.fromEntries(data.entries());
+    var usuario = new Usuario();
 
-    // console.log({ jsonValue });
-    // console.log("jsonValue.nombre: " + jsonValue.nombre);
-    // console.log("typeof(jsonValue): " + typeof(jsonValue.id));
-    // console.log("typeof($('#id').val()): " + typeof($('#id').val()));
+    // Genera el objeto a través del objeto JSON
+    usuario = GenericUtils.getObjectFromJson(jsonValue, usuario);
 
-    // // console.log();
+    // Guarda en la "base" el objeto creado y devuelve si salió todo bien
+    var verificacion_login = Usuario.loginValidation(usuario);
 
-    // // Genera el objeto a través del objeto JSON
-    // nuevo_usuario = GenericUtils.getObjectFromJson(jsonValue, nuevo_usuario);
+    // Termina el proceso de guardado de datos
 
-    // console.log({ nuevo_usuario });
+    console.log({ verificacion_login });
 
-    // // // Guarda en la "base" el objeto creado y devuelve si salió todo bien
-    // var verificacion_guardado = Usuario.saveUser(nuevo_usuario);
+    if (verificacion_login) {
 
-    // // // Termina el proceso de guardado de datos
+      var correo_clientes = ["@gmail.com", "@hotmail.com"];
+      var correo_administrador = ["@spaweb.com"];
 
-    // // uploadFile();
+      // Revisa si es el correo de un cliente,
+      correo_clientes.forEach(function (dominio) {
 
-    // console.log({ verificacion_guardado });
-    // console.log({ lista_usuarios });
+        console.log(dominio);
 
+        if(usuario.correoelec.includes(dominio)) {
+          
+          console.log("Correo es gmail o hotmail.");
 
-    // // Si se guardó correctamente el servicio...
-    // if (verificacion_guardado) {
+          // Y lo envia a la ventana de los clientes que corresponde a las reservas.
+          window.location.href = "../Vistas/Cliente/Index.html";
 
-    //   localStorage.setItem("id_usuario", "id");
-    //   var prueba = localStorage.getItem("id_usuario");
+        }
 
-    //   console.log({ prueba });
-
-    // window.location.href = "./Administrador/Index.html";
+      });
 
 
-    // }
+      // Revisa si es el correo de un administrador,
+      correo_administrador.forEach(function (dominio) {
+
+        console.log(dominio);
+
+        if(usuario.correoelec.includes(dominio)) {
+
+          console.log("Correo es de administrador.");
+
+          // Y lo envia a la ventana que corresponde a agregar servicios.
+          window.location.href = "../Vistas/Administrador/Index.html";
+
+        }
+          
+      });
+      
+    } else {
+
+      let error_login = "Correo o contraseña incorrectos.";
+      console.log(error_login);
+      alert(error_login)
+
+    }
 
 
   });
