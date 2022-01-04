@@ -15,18 +15,32 @@
 
 
     #m{
-        text-align: center;
+        /* t-align: texleft; */
         margin-top: 300px;
     }
 
     .ImgSucursales {
 
-        float: left;
+        /* float: left; */
         position: relative;
-
+        margin-top: 50px;
         margin-right: 55px;
         margin-left: 55px;
         margin-bottom: 55px;
+    }
+
+    .map{
+        float: right;
+        height: 320px;
+        width: 400px;
+        margin-right: 20px;
+
+    }
+
+    .DescripccionSuc{
+        float: left;
+        position: relative;
+        
     }
 
     #a {
@@ -71,3 +85,5 @@
         margin-top: 10px;
     }
    
+
+  

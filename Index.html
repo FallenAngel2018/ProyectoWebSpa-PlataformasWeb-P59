@@ -65,24 +65,85 @@
 
   <div id="m">
       <center><h1>Sucursales</h1></center>
-      <p></p>
+      <center><p style="font-size: x-large;">Disponemos de tres sucursales en la ciudad de Guayaquil</p></center>
       <br>
      <div class="ImgSucursales" >
         <center> <h3>Sucursal Norte</h3> </center>
+        <br>
+        
          <Img width="320px" height="300px" src= "./Recursos/Sucursales/SucNorte1.png"></Img>
+
+         <div class="DescripccionSuc">
+           
+         </div>
+         <div class="map" id = "mapSucNorte"></div>
      </div>
 
      <div class="ImgSucursales" >
        <center> <h3>Sucursal Centro</h3> </center>
+       <br>
+       
         <Img width="320px" height="300px" src= "./Recursos/Sucursales/SucCentro1.png"></Img>
+      
+        <div class="map" id = "mapSucCentro"></div>
     </div>
 
     <div class="ImgSucursales" >
         <center> <h3>Sucursal Sur</h3> </center>
+        <br>
          <Img width="320px" height="300px" src= "./Recursos/Sucursales/SucSur1.png"></Img>
+         <div class="map" id = "mapSucSur"></div>
      </div>
  </div>
 
+
+
 </body>
-    
+
+
 </html>
+
+<script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCKiIqCdZGrVxx06LSbe7uG3zXOq1Cz5k&callback=initMap">
+</script>
+
+<script>
+		
+  var map;
+ function initMap() {
+    map = new google.maps.Map(document.getElementById('mapSucNorte'), {
+  center: {lat: -2.104843657222783, lng: -79.8655563574946},
+      zoom: 13,
+    });
+    var marker = new google.maps.Marker({
+      position: {lat: -2.104843657222783, lng: -79.8655563574946}, 
+      map: map,
+title: 'Sucursal Norte'
+    });
+
+
+    map = new google.maps.Map(document.getElementById('mapSucCentro'), {
+  center: {lat: -2.2106090820400985, lng: -79.89722507880677}, //-2.2106090820400985, -79.89722507880677
+      zoom: 13,
+    });
+    var marker = new google.maps.Marker({
+      position: {lat: -2.2106090820400985, lng: -79.89722507880677},
+      map: map,
+title: 'Sucursal Centro'
+    });
+
+
+    map = new google.maps.Map(document.getElementById('mapSucSur'), {
+  center: {lat: -2.2557535593571036, lng: -79.89918395689483}, //-2.2557535593571036, -79.89918395689483
+      zoom: 13,
+    });
+    var marker = new google.maps.Marker({
+      position: {lat: -2.2557535593571036, lng: -79.89918395689483},
+      map: map,
+  title: 'Sucursal Sur'
+    });
+
+  }
+
+</script>
+
