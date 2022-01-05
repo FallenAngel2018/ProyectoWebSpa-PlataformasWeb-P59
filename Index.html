@@ -108,47 +108,141 @@
 
 </html>
 
+<script type="module" src="./db.js"></script>
+
+
 <script async defer
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCKiIqCdZGrVxx06LSbe7uG3zXOq1Cz5k&callback=initMap">
 </script>
 
 <script>
+
+  var lista_sucursales = JSON.parse(localStorage.getItem("lista_sucursales"));
+
+  console.log({lista_sucursales});
 		
   var map;
- function initMap() {
+
+  var mapa_latitud = "";
+  var mapa_longitud = "";
+
+  function initMap() {
+
+    var sucursal_titulo = "Sucursal Norte";
+
+    // Setea la latitud y longitud dependiendo de cual sucursal se consulte.
+    setUbicacionSucursal(sucursal_titulo);
+
+
+    console.log({mapa_latitud});
+    console.log({mapa_longitud});
+
+
+    // Fuente Number("String"): https://dev.to/sanchithasr/7-ways-to-convert-a-string-to-number-in-javascript-4l
     map = new google.maps.Map(document.getElementById('mapSucNorte'), {
-  center: {lat: -2.104843657222783, lng: -79.8655563574946},
-      zoom: 13,
+        center: {lat: Number(mapa_latitud), lng: Number(mapa_longitud)},
+        zoom: 13,
     });
     var marker = new google.maps.Marker({
-      position: {lat: -2.104843657222783, lng: -79.8655563574946}, 
-      map: map,
-title: 'Sucursal Norte'
+        position: {lat: Number(mapa_latitud), lng: Number(mapa_longitud)},
+        map: map,
+        title: 'Sucursal Norte'
     });
 
 
+    sucursal_titulo = "Sucursal Centro";
+
+    // Setea la latitud y longitud dependiendo de cual sucursal se consulte.
+    setUbicacionSucursal(sucursal_titulo);
+
+    // Fuente Number("String"): https://dev.to/sanchithasr/7-ways-to-convert-a-string-to-number-in-javascript-4l
     map = new google.maps.Map(document.getElementById('mapSucCentro'), {
-  center: {lat: -2.2106090820400985, lng: -79.89722507880677}, //-2.2106090820400985, -79.89722507880677
-      zoom: 13,
+        center: {lat: Number(mapa_latitud), lng: Number(mapa_longitud)}, //-2.2106090820400985, -79.89722507880677
+        zoom: 13,
     });
     var marker = new google.maps.Marker({
-      position: {lat: -2.2106090820400985, lng: -79.89722507880677},
-      map: map,
-title: 'Sucursal Centro'
+        position: {lat: Number(mapa_latitud), lng: Number(mapa_longitud)},
+        map: map,
+        title: 'Sucursal Centro'
     });
 
 
+    sucursal_titulo = "Sucursal Sur";
+
+    // Setea la latitud y longitud dependiendo de cual sucursal se consulte.
+    setUbicacionSucursal(sucursal_titulo);
+
+    // Fuente Number("String"): https://dev.to/sanchithasr/7-ways-to-convert-a-string-to-number-in-javascript-4l
     map = new google.maps.Map(document.getElementById('mapSucSur'), {
-  center: {lat: -2.2557535593571036, lng: -79.89918395689483}, //-2.2557535593571036, -79.89918395689483
-      zoom: 13,
+        center: {lat: Number(mapa_latitud), lng: Number(mapa_longitud)}, //-2.2557535593571036, -79.89918395689483
+        zoom: 13,
     });
     var marker = new google.maps.Marker({
-      position: {lat: -2.2557535593571036, lng: -79.89918395689483},
-      map: map,
-  title: 'Sucursal Sur'
+        position: {lat: Number(mapa_latitud), lng: Number(mapa_longitud)},
+        map: map,
+        title: 'Sucursal Sur'
+    });
+
+
+
+//     var map;
+//  function initMap() {
+//     map = new google.maps.Map(document.getElementById('mapSucNorte'), {
+//   center: {lat: -2.104843657222783, lng: -79.8655563574946},
+//       zoom: 13,
+//     });
+//     var marker = new google.maps.Marker({
+//       position: {lat: -2.104843657222783, lng: -79.8655563574946}, 
+//       map: map,
+// title: 'Sucursal Norte'
+//     });
+
+
+//     map = new google.maps.Map(document.getElementById('mapSucCentro'), {
+//   center: {lat: -2.2106090820400985, lng: -79.89722507880677}, //-2.2106090820400985, -79.89722507880677
+//       zoom: 13,
+//     });
+//     var marker = new google.maps.Marker({
+//       position: {lat: -2.2106090820400985, lng: -79.89722507880677},
+//       map: map,
+// title: 'Sucursal Centro'
+//     });
+
+
+//     map = new google.maps.Map(document.getElementById('mapSucSur'), {
+//   center: {lat: -2.2557535593571036, lng: -79.89918395689483}, //-2.2557535593571036, -79.89918395689483
+//       zoom: 13,
+//     });
+//     var marker = new google.maps.Marker({
+//       position: {lat: -2.2557535593571036, lng: -79.89918395689483},
+//       map: map,
+//   title: 'Sucursal Sur'
+//     });
+
+
+  }
+
+
+  function setUbicacionSucursal(nombreSucursal) {
+    
+    lista_sucursales.forEach(function (sucursal) {
+
+        // console.log(`${sucursal.nombre_sucursal}: ${sucursal.latitud_sucursal}`);
+        // console.log(`${sucursal.nombre_sucursal}: ${sucursal.longitud_sucursal}`);
+
+        //   console.log("");
+
+        if(sucursal.nombre_sucursal == nombreSucursal) {
+
+          mapa_latitud = sucursal.latitud_sucursal;
+          mapa_longitud = sucursal.longitud_sucursal;
+
+        }
+
     });
 
   }
+
 
 </script>
 

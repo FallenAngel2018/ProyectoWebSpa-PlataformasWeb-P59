@@ -41,9 +41,12 @@
 <script type="module">
 
   // Clase export default, export objeto
-  import Usuario, {lista_usuarios} from '../Componentes/Usuario/Modelo.js'
-  import Servicio, {lista_servicios} from '../Componentes/Servicio/Modelo.js'
+  import Usuario from '../Componentes/Usuario/Modelo.js'
+  // import Usuario, {lista_usuarios} from '../Componentes/Usuario/Modelo.js'
   import GenericUtils from '../Componentes/GenericUtils/GenericUtils.js'
+
+  var lista_usuarios = JSON.parse(localStorage.getItem("lista_usuarios"));
+  console.log({lista_usuarios});
 
 
   // #region Formulario - Método Submit 
@@ -75,17 +78,20 @@
       var correo_clientes = ["@gmail.com", "@hotmail.com"];
       var correo_administrador = ["@spaweb.com"];
 
+      // Se usará para asignarle la dirección de destino que tendrá el usuario
+      // dependiendo si es admin o cliente.
+      var url_destino = "";
+
       // Revisa si es el correo de un cliente,
       correo_clientes.forEach(function (dominio) {
 
-        console.log(dominio);
+        // console.log(dominio);
 
         if(usuario.correoelec.includes(dominio)) {
           
           console.log("Correo es gmail o hotmail.");
 
-          // Y lo envia a la ventana de los clientes que corresponde a las reservas.
-          window.location.href = "../Vistas/Cliente/Index.html";
+          url_destino = "../Vistas/Cliente/Index.html";
 
         }
 
@@ -95,18 +101,25 @@
       // Revisa si es el correo de un administrador,
       correo_administrador.forEach(function (dominio) {
 
-        console.log(dominio);
-
         if(usuario.correoelec.includes(dominio)) {
 
           console.log("Correo es de administrador.");
 
-          // Y lo envia a la ventana que corresponde a agregar servicios.
-          window.location.href = "../Vistas/Administrador/Index.html";
+          url_destino = "../Vistas/Administrador/Index.html";
 
         }
           
       });
+
+      // Obtiene el Id del usuario que hizo el login, y lo agrega
+      // en el localStorage para usarse en otros procesos.
+      let id = Usuario.GetUserId(usuario);
+      localStorage.setItem("id_usuario", id);
+
+      console.log({url_destino});
+
+      window.location.href = url_destino;
+
       
     } else {
 

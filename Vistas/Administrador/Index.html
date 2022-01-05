@@ -137,23 +137,34 @@
 </body>
 </html>
 
+<script type="module" src="../../db.js"></script>
+
+
 <script type="module">
 
 // Clase export default, export objeto
-    import Servicio, {lista_servicios} from '../../Componentes/Servicio/Modelo.js'
-    import { lista_usuarios } from '../../Componentes/Usuario/Modelo.js'
+    import Servicio from '../../Componentes/Servicio/Modelo.js'
+    // import Servicio, {lista_servicios} from '../../Componentes/Servicio/Modelo.js'
+    // import { lista_usuarios } from '../../Componentes/Usuario/Modelo.js'
     import GenericUtils from '../../Componentes/GenericUtils/GenericUtils.js'
+
 
     var img_flag = false;
     var imgs_service_root_path = "../../Tests/images/"; // Ruta raíz de las Imágenes de servicios
     var img_name = ""; // Nombre de la imagen
+
+    var lista_servicios = JSON.parse(localStorage.getItem("lista_servicios"));
+    var lista_usuarios = JSON.parse(localStorage.getItem("lista_usuarios"));
+
+    console.log({lista_servicios});
+    console.log({lista_usuarios});
 
 
     // #region Jquery - On document ready
 
     $(document).ready(function(){
 
-        // Accede al objeto "localStorage" que viene nativamente con javascript
+        // Accede al objeto "sessionStorage" que viene nativamente con javascript
         // y obtiene la propiedad que se le indica.
         var prueba = localStorage.getItem("id_usuario");
 
@@ -238,6 +249,10 @@
     $('#formCrudServicio').submit(function (e) {
 
         e.preventDefault();
+
+        
+        var lista_servicios = JSON.parse(localStorage.getItem("lista_servicios"));
+
         
         // Obtiene el id del último elemento de la lista y lo setea en #id_servicio
         $('#id_servicio').val(parseInt(lista_servicios.at(-1).id) + 1);
@@ -341,6 +356,7 @@
         var id = e.id;
         var value = e.value;
 
+        var lista_servicios = JSON.parse(localStorage.getItem("lista_servicios"));
 
         for(const lista_item in lista_servicios) { // Obtiene los servicios de la lista importada "lista_servicios"
 

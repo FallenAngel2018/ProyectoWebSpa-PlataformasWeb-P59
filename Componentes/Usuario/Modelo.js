@@ -29,6 +29,8 @@ export default class Usuario {
     // Definir función
     static saveUser(user) {
 
+        var lista_usuarios = JSON.parse(localStorage.getItem("lista_usuarios"));
+
         var flag_user = false;
 
         lista_usuarios.push(user);
@@ -39,7 +41,7 @@ export default class Usuario {
             flag_user = true;
 
             // Los agrega en sesión para consultarse desde otras ventanas
-            sessionStorage.setItem("lista_usuarios", JSON.stringify(lista_usuarios));
+            localStorage.setItem("lista_usuarios", JSON.stringify(lista_usuarios));
 
         }
 
@@ -47,8 +49,30 @@ export default class Usuario {
 
     }
 
+    static checkIfUserExists(usuario) {
+        console.log("MÉTODO checkIfUserExists - Usuario ya existe, cédula o correo electrónico repetidos.");
+
+        var lista_usuarios = JSON.parse(localStorage.getItem("lista_usuarios"));
+        var user_exists = false;
+
+        // console.log({usuario})
+
+        // Itera sobre la lista de usuarios...
+        lista_usuarios.forEach(user => {
+
+            if(usuario.cedula == user.cedula || usuario.correoelec == user.correoelec) {
+                user_exists = true;
+            }
+
+        });
+
+        return Boolean(user_exists);
+
+    }
+
     static loginValidation(usuario) {
 
+        var lista_usuarios = JSON.parse(localStorage.getItem("lista_usuarios"));
         var flag_login = false;
 
         // console.log({usuario})
@@ -58,9 +82,6 @@ export default class Usuario {
 
             if(usuario.correoelec == user.correoelec && usuario.clave == user.clave) {
                 flag_login = true;
-
-                // console.log({user})
-
             }
 
         });
@@ -69,18 +90,28 @@ export default class Usuario {
 
     }
 
+    static GetUserId(usuario) {
+
+        var lista_usuarios = JSON.parse(localStorage.getItem("lista_usuarios"));
+        var id = 0;
+
+        // console.log({usuario})
+
+        // Itera sobre la lista de usuarios...
+        lista_usuarios.forEach(user => {
+
+            if(usuario.correoelec == user.correoelec && usuario.clave == user.clave) {
+                id = parseInt(user.id_usuario);
+            }
+
+        });
+
+        return id;
+
+    }
+
+
 
 }
 
-// Lista estática de usuarios
-export const lista_usuarios = new Array();
-
-lista_usuarios.push(new Usuario(1, "0952468591", "Johnny", "Lawrence", "Fishbourne #098 & Main St."
-                                    , "0945754165", "cobrakai_2019@gmail.com", "hotbabes1975", true));
-lista_usuarios.push(new Usuario(2, "0984518597", "Suckmy", "Suckmy", "Dick Los Esteroshhh"
-                                    , "0985478520", "name@spaweb.com", "xdd", true));
-
-// Se tiene que convertir a Json porque sino los objetos
-// guardados son indefinibles a la hora de consultarlos.
-sessionStorage.setItem("lista_usuarios", JSON.stringify(lista_usuarios));
 

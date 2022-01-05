@@ -67,9 +67,11 @@
 <script type="module">
 
   // Clase export default, export objeto
-  import Usuario, {lista_usuarios} from '../Componentes/Usuario/Modelo.js'
+  import Usuario from '../Componentes/Usuario/Modelo.js'
+  // import Usuario, {lista_usuarios} from '../Componentes/Usuario/Modelo.js'
   import GenericUtils from '../Componentes/GenericUtils/GenericUtils.js'
 
+  var lista_usuarios = JSON.parse(localStorage.getItem("lista_usuarios"));
   console.log({ lista_usuarios });
   
 
@@ -81,9 +83,10 @@
 
     var form = $(this).serialize();
 
-    // Obtiene el id del último elemento de la lista sumándole 1
-    var id_usuario = lista_usuarios.at(-1).id_usuario + 1;
-    // console.log({id_usuario});
+    // Obtiene el id del último elemento de la lista sumándole 1.
+    // El parseInt es porque obtiene el elemento de la lista
+    // como si fuera un String, por eso hay que convertirlo.
+    var id_usuario = parseInt(lista_usuarios.at(-1).id_usuario) + 1;
     console.log({form});
 
 
@@ -102,22 +105,25 @@
     const jsonValue = Object.fromEntries(data.entries());
     var nuevo_usuario = new Usuario();
 
-    // console.log({ jsonValue });
-    // console.log("jsonValue.nombre: " + jsonValue.nombre);
-    // console.log("typeof(jsonValue): " + typeof(jsonValue.id));
-    // console.log("typeof($('#id').val()): " + typeof($('#id').val()));
-
     // Genera el objeto a través del objeto JSON
     nuevo_usuario = GenericUtils.getObjectFromJson(jsonValue, nuevo_usuario);
 
     console.log({ nuevo_usuario });
+
+
+    var usuario_existe = Usuario.checkIfUserExists(nuevo_usuario);
+
+    if (usuario_existe) {
+        alert("Usuario ya existe, cédula o correo electrónico repetidos.");
+        return;
+    }
 
     // // Guarda en la "base" el objeto creado y devuelve si salió todo bien
     var verificacion_guardado = Usuario.saveUser(nuevo_usuario);
 
     // // Termina el proceso de guardado de datos
 
-    // uploadFile();
+    lista_usuarios = JSON.parse(localStorage.getItem("lista_usuarios"));
 
     console.log({ verificacion_guardado });
     console.log({ lista_usuarios });
@@ -125,6 +131,7 @@
 
     // Si se guardó correctamente el usuario...
     if (verificacion_guardado) {
+        alert("Usuario fue registrado con éxito.");
 
       // window.location.href = "./Login.html";
 

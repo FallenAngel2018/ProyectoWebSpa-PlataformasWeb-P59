@@ -18,13 +18,52 @@ export default class Servicio {
         this.precio = precio // Valor monetario
         this.tipo_servicio = tipo_servicio // VIP o normal
         this.estado = estado // ACTIVO o INACTIVO
+
     }
+
+
+    // lista_servicios = []
+
+    // lista_servicios = [
+    //     new Servicio(1, "Masaje asiático", "descripcion", 300, "url/1.jpg", 20.4, "2", true),
+    //     new Servicio(2, "Acupuntura abdominal", "descripcion2", 480, "url/2.jpg", 50, "1", false),
+    //     new Servicio(3, "Depilación", "descripcion3", 30, "url/3.jpg", 12.35, "1", false),
+    //     new Servicio(4, "Facial", "descripcion4", 30, "url/4.jpg", 15.50, "1", true),
+    //     new Servicio(5, "Masaje", "descripcion5", 60, "url/5.jpg", 20, "1", true),
+        
+
+    // ]
+
+    // static getLista_Servicios() {
+    //     return lista_servicios;
+    // }
+
+
+    // #lista_servicios2 = []
+
+    // #lista_servicios2 = [
+    //     new Servicio(1, "Masaje asiático", "descripcion", 300, "url/1.jpg", 20.4, "2", true),
+    //     new Servicio(2, "Acupuntura abdominal", "descripcion2", 480, "url/2.jpg", 50, "1", false),
+    //     new Servicio(3, "Depilación", "descripcion3", 30, "url/3.jpg", 12.35, "1", false),
+    //     new Servicio(4, "Facial", "descripcion4", 30, "url/4.jpg", 15.50, "1", true),
+    //     new Servicio(5, "Masaje", "descripcion5", 60, "url/5.jpg", 20, "1", true),
+    //     new Servicio(6, "Masaje VIP cuerpo completo", "Masaje de cuerpo completo con aloe vera, rocas calientes y sí se desea en el momento también con acupuntura especializada."
+    //     , 90, "url/6.jpg", 40.35, "2", true),
+
+    // ]
+
+    // static getLista_Servicios2() {
+    //     return this.#lista_servicios2;
+    // }
+
 
 
     // Definir función
     static saveService(service) {
         // var servicio = Object.assign(this.Servicio(), data);
 
+        var lista_servicios = JSON.parse(localStorage.getItem("lista_servicios"));
+        
         var flag_service = false;
 
         lista_servicios.push(service);
@@ -34,8 +73,7 @@ export default class Servicio {
         if(service == lastElement) {
             flag_service = true;
 
-            // sessionStorage.setItem("lista_servicios", lista_servicios);
-            sessionStorage.setItem("lista_servicios", JSON.stringify(lista_servicios));
+            localStorage.setItem("lista_servicios", JSON.stringify(lista_servicios));
 
         }
 
@@ -58,34 +96,24 @@ export default class Servicio {
 
 }
 
-/*
-    El Spa ofrece los siguientes servicios: depilación, faciales y masajes,
-    el sistema debe permitir agregar otros servicios. 
-*/
-
-
 // Tal vez haya que hacer esta lista parte
 // de la clase Servicio para hacerla privada
 // Fuente: https://www.c-sharpcorner.com/article/encapsulation-in-javascript/#:~:text=Using%20a%20little%20finesse%2C%20we,vanilla%20JavaScript%20(ES6)%20classes.&text=To%20do%20this%2C%20we%20can,operate%20on%20these%20encapsulated%20variables.
 
-// Lista estática de servicios
-export const lista_servicios = new Array();
-                                                        // 5 horas en minutos                2 = VIP
-lista_servicios.push(new Servicio(1, "Masaje asiático", "descripcion", 300, "url/1.jpg", 20.4, "2", true));
+// // Lista estática de servicios
+// export const lista_servicios = new Array();
+//                                                         // 5 horas en minutos                2 = VIP
 // lista_servicios.push(new Servicio(1, "Masaje asiático", "descripcion", 300, "url/1.jpg", 20.4, "2", true));
-                                                               // 8 horas en minutos u horas     1 = Normal
-lista_servicios.push(new Servicio(2, "Acupuntura abdominal", "descripcion2", 480, "url/2.jpg", 50, "1", false));
-lista_servicios.push(new Servicio(3, "Depilación", "descripcion3", 30, "url/3.jpg", 12.35, "1", false));
-lista_servicios.push(new Servicio(4, "Facial", "descripcion4", 30, "url/4.jpg", 15.50, "1", true));
-lista_servicios.push(new Servicio(5, "Masaje", "descripcion5", 60, "url/5.jpg", 20, "1", true));
-lista_servicios.push(new Servicio(6, "Masaje VIP cuerpo completo", "Masaje de cuerpo completo con aloe vera, rocas calientes y sí se desea en el momento también con acupuntura especializada."
-, 90, "url/6.jpg", 40.35, "2", true));
+// // lista_servicios.push(new Servicio(1, "Masaje asiático", "descripcion", 300, "url/1.jpg", 20.4, "2", true));
+//                                                                // 8 horas en minutos u horas     1 = Normal
+// lista_servicios.push(new Servicio(2, "Acupuntura abdominal", "descripcion2", 480, "url/2.jpg", 50, "1", false));
+// lista_servicios.push(new Servicio(3, "Depilación", "descripcion3", 30, "url/3.jpg", 12.35, "1", false));
+// lista_servicios.push(new Servicio(4, "Facial", "descripcion4", 30, "url/4.jpg", 15.50, "1", true));
+// lista_servicios.push(new Servicio(5, "Masaje", "descripcion5", 60, "url/5.jpg", 20, "1", true));
+// lista_servicios.push(new Servicio(6, "Masaje VIP cuerpo completo", "Masaje de cuerpo completo con aloe vera, rocas calientes y sí se desea en el momento también con acupuntura especializada."
+// , 90, "url/6.jpg", 40.35, "2", true));
 
-// sessionStorage.setItem("lista_servicios", lista_servicios);
 
-// Se tiene que convertir a Json porque sino los objetos
-// guardados son indefinibles a la hora de consultarlos.
-sessionStorage.setItem("lista_servicios", JSON.stringify(lista_servicios));
 
 
 
