@@ -82,9 +82,17 @@ ul {
 
 .footerItem {
     background-color: #FFF28C;
-      padding: 30px; /* Espacio de 10 pixeles entre el texto y el borde del div */
-      border: 1px solid black;
-  }
+    padding: 30px; /* Espacio de 10 pixeles entre el texto y el borde del div */
+    border: 1px solid black;
+}
+
+.divPrecio {
+    font-size: 30px;
+    font-weight: bold;
+    float: left; /* Los alinea uno al lado del otro */
+    margin-left: 20px;
+
+}
 
 
 
@@ -174,11 +182,11 @@ table thead, table tbody tr {
 
 
 table, tr td {
-    border: 1px solid red
+    /* border: 1px solid rgb(0, 0, 0) */
 }
 tbody {
     display: block;
-    height: 50px;
+    height: 250px;
     /* overflow: auto; */
     overflow-y: scroll;
 }

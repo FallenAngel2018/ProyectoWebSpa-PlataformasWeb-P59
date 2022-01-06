@@ -1,4 +1,6 @@
 
+
+// // Descomente estas líneas para reiniciar las listas en el localStorage.
 // // // Fuente: https://stackoverflow.com/questions/9943220/how-to-delete-a-localstorage-item-when-the-browser-window-tab-is-closed
 // localStorage.removeItem("lista_servicios");
 // localStorage.removeItem("lista_usuarios");
@@ -24,7 +26,7 @@ if (!verificar_lista_servicios) {
         // 8 horas en minutos u horas     1 = Normal
     lista_servicios.push(new Servicio(2, "Acupuntura abdominal", "descripcion2", 480, "url/2.jpg", 50, "1", false));
     lista_servicios.push(new Servicio(3, "Depilación", "descripcion3", 30, "url/3.jpg", 12.35, "1", false));
-    lista_servicios.push(new Servicio(4, "Facial", "descripcion4", 30, "canasta de compra online.png", 15.50, "1", true));
+    lista_servicios.push(new Servicio(4, "Facial", "descripcion4", 30, "Sama Spa Facial.jpg", 15.50, "1", true));
     lista_servicios.push(new Servicio(5, "Masaje", "descripcion5", 60, "url/5.jpg", 20, "1", true));
     lista_servicios.push(new Servicio(6, "Masaje VIP cuerpo completo", "Masaje de cuerpo completo con aloe vera, rocas calientes y sí se desea en el momento también con acupuntura especializada."
     , 90, "url/6.jpg", 40.35, "2", true));

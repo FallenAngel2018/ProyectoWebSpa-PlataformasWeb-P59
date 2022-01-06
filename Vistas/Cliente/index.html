@@ -140,7 +140,9 @@
                                                 </div>  
                                             </div> -->
                                             <div class="d-grid gap-2 col-6 mx-auto">
-                                                <input id="guardarServicio" type="button" class="btn btn-success btn-send pt-2 btn-block " value="Agregar Servicio">
+                                                <input id="guardarServicio" type="button"
+                                                    class="btn btn-success btn-send pt-2 btn-block "
+                                                        value="Agregar Servicio" disabled>
                                             </div>
                                         </div>
                                     </div>
@@ -164,37 +166,38 @@
                 <table id="tblServicios" class="table">
                     <thead>
                         <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Servicio</th>
-                            <th scope="col">Precio</th>
+                            <th style="display: none;" scope="col">#</th>
+                            <th scope="col-2">Servicio</th>
+                            <th scope="col-1">Precio</th>
                             <!-- <th scope="col">Handle</th> -->
                             <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <!-- <tr>
                             <th scope="row">1</th>
                             <td>Mark</td>
-                            <td>Otto</td>
-                            <!-- <td>@mdo</td> -->
+                            <td>$25</td>
                             <td></td>
                         </tr>
                         <tr>
                             <th scope="row">2</th>
                             <td>Jacob</td>
-                            <td>Thornton</td>
-                            <!-- <td>@fat</td> -->
+                            <td>$25</td>
                             <td></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <!-- <td>@fat</td> -->
-                            <td></td>
-                        </tr>
+                        </tr> -->
                     </tbody>
                 </table>
+            </div>
+
+            <br>
+            <br>
+            <br>
+
+            <div>
+                <div class="divPrecio">Precio:</div>
+                <div id="divPrecioTotal" class="divPrecio"> $50</div>
+                 
             </div>
 
         </div>
@@ -283,37 +286,9 @@
 
         // $("#imgServicio").attr("src", `../../Tests/images/canasta de compra online.png`);
 
-
-        lista_servicios.forEach(element => {
-
-            // document.getElementById("listadoServicios").innerHTML +=
-            //     // `<button id="serv_${i}" onclick="${showServiceInfo(this)}" class="subItem serv-button"> ${nombres[i]} </button>`;
-            //     // `<button id="serv_${element.id}" onclick="${showServiceInfo(this)}" class="subItem serv-button" value="${element.id}"> ${element.nombre} </button>`;
-            //     // `<button id="serv_${element.id}" onclick="showServiceInfo(this)" class="subItem serv-button" value="${element.id}"> ${element.nombre} </button>`;
-            //     // "<button id='serv_\"" + element.id + "' onclick='showServiceInfo(this)\"" + "' class='subItem serv-button' value='\"" + element.id + "'>" + element.nombre + "</button>"
-            //     "<button id='serv_\"'" + element.id + "\"  value='\"" + element.id + "' class='subItem serv-button'>" + element.nombre + "</button>"
-            
-            var theDiv = document.getElementById("listadoServicios");
-            let service_id = "#serv_" + element.id;
-            let service_name = element.nombre;
-
-            let service_class = element.estado ? "subItem serv-button" : " subItem serv-deactivated-button"
-
-            var x = document.createElement("BUTTON");
-            x.setAttribute("id", service_id);
-            x.setAttribute("class", service_class);
-            x.innerHTML = service_name;    
-            x.value = service_name;
-
-            x.onclick = function(){
-                // alert('here be dragons');return false;
-                showServiceInfo(this);
-
-            };
-
-            theDiv.appendChild(x);
-
-        });
+        // let row = `<tr><td style="display:none;">1</td><td>${servicio_nombre}</td><td>${servicio_precio}</td><td></td></tr>`
+        
+        // $('#tblServicios > tbody:last-child').append(row);
 
     });
 
@@ -324,6 +299,8 @@
 
     $('#cmbSucursales').on('change', function () {
         
+        checkIfActivateAddButton();
+
         if (cmbSucursales.value > 0) {
             console.log("Campos activados.")
 
@@ -347,6 +324,8 @@
         
         if (cmbServicios.value > 0) {
             console.log("Campos activados.")
+
+            checkIfActivateAddButton();
 
             // Itera sobre la lista de sucursales...
             lista_servicios.forEach(servicio => {
@@ -372,6 +351,18 @@
 
     // #endregion
 
+    // #region #cmbHorarioReserva - On change
+
+    $('#cmbHorarioReserva').on('change', function () {
+        
+        checkIfActivateAddButton();
+
+    });
+
+    // #endregion
+
+
+
     // #region #guardarServicio - On click
 
     $('#guardarServicio').on('click', function () {
@@ -381,7 +372,8 @@
         var servicio_precio = $("#precio").val();
 
         // Fuente: https://stackoverflow.com/questions/41995372/how-to-add-rows-in-html-table-using-jquery
-        let row = `<tr><td>1</td><td>${servicio_nombre}</td><td>${servicio_precio}</td><td></td></tr>`
+        // Fuente: https://stackoverflow.com/questions/5440657/how-to-hide-columns-in-html-table
+        let row = `<tr><td style="display:none;">1</td><td>${servicio_nombre}</td><td>${servicio_precio}</td><td></td></tr>`
         
         $('#tblServicios > tbody:last-child').append(row);
 
@@ -424,6 +416,23 @@
 
     // #endregion
 
+
+    function checkIfActivateAddButton() {
+        let cmb_sucursales_value = $("#cmbSucursales").val();
+        let cmb_servicios_value = $("#cmbServicios").val();
+        let cmb_horario_value = $("#cmbHorarioReserva").val();
+
+        console.log({cmb_servicios_value});
+        console.log({cmb_sucursales_value});
+
+        if (cmb_sucursales_value > 0 && cmb_servicios_value > 0 && cmb_horario_value > 0) {
+            $("#guardarServicio").attr('disabled', false);
+            
+        } else {
+            $("#guardarServicio").attr('disabled', 'disabled');
+
+        }
+    }
 
 
 </script>
