@@ -95,8 +95,6 @@ export default class Usuario {
         var lista_usuarios = JSON.parse(localStorage.getItem("lista_usuarios"));
         var id = 0;
 
-        // console.log({usuario})
-
         // Itera sobre la lista de usuarios...
         lista_usuarios.forEach(user => {
 

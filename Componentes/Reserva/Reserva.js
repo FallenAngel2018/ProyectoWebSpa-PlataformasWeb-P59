@@ -10,7 +10,7 @@ export default class Reserva {
         si existen solapamientos de horarios con respecto a otros clientes
         con el mismo servicio o sucursal).
     */
-    constructor(id_reserva, id_sucursal, id_cliente, id_servicio, horario_reserva, estado_reserva) {
+    constructor(id_reserva, id_sucursal, id_cliente, id_servicio, dia_reserva, horario_reserva, estado_reserva) {
         this.id_reserva = id_reserva // Valor oculto (hidden), se suma 1 al último Id añadido de la lista.
         this.id_sucursal = id_sucursal // Valor oculto (hidden), se obtiene de un combobox.
         this.id_cliente = id_cliente // Valor oculto (hidden), se obtiene de la sesión iniciada.
@@ -20,7 +20,12 @@ export default class Reserva {
         // su respectivo Id, para ser agregado y referenciado
         // con el servicio o los servicios que el cliente contrate.
         this.id_servicio = id_servicio
-        
+
+        this.dia_reserva = dia_reserva // 22/05/2022
+
+        // 1: Mañana (9h00 a 13h00)
+        // 2: Tarde (14h00 a 18h00)
+        // 3: Noche (18h00 a 21h00)
         this.horario_reserva = horario_reserva
         this.estado_reserva = estado_reserva // ACTIVO o INACTIVO
     }
@@ -51,18 +56,12 @@ export default class Reserva {
 // de la clase Servicio para hacerla privada
 // Fuente: https://www.c-sharpcorner.com/article/encapsulation-in-javascript/#:~:text=Using%20a%20little%20finesse%2C%20we,vanilla%20JavaScript%20(ES6)%20classes.&text=To%20do%20this%2C%20we%20can,operate%20on%20these%20encapsulated%20variables.
 
-// Lista estática de reservas
-export const lista_reservas = new Array();
+// // Lista estática de reservas
+// export const lista_reservas = new Array();
 
-lista_reservas.push(new Reserva(1, 2, 1, 4, "HORARIOOOO", true));
-lista_reservas.push(new Reserva(1, 2, 1, 2, "HORARIOOOO", true));
-lista_reservas.push(new Reserva(1, 2, 1, 1, "HORARIOOOO", true));
+// lista_reservas.push(new Reserva(1, 2, 1, 4, "1", true));
+// lista_reservas.push(new Reserva(1, 2, 1, 2, "3", true));
+// lista_reservas.push(new Reserva(1, 2, 1, 1, "2", true));
 
 
-lista_reservas.push(new Reserva(2, "Acupuntura abdominal", "descripcion2", 480, "url/2.jpg", 50, "1", false));
-lista_reservas.push(new Reserva(3, "Depilación", "descripcion3", 30, "url/3.jpg", 12.35, "1", false));
-lista_reservas.push(new Reserva(4, "Facial", "descripcion4", 30, "url/4.jpg", 15.50, "1", true));
-lista_reservas.push(new Reserva(5, "Masaje", "descripcion5", 60, "url/5.jpg", 20, "1", true));
-lista_reservas.push(new Reserva(6, "Masaje VIP cuerpo completo", "Masaje de cuerpo completo con aloe vera, rocas calientes y sí se desea en el momento también con acupuntura especializada."
-, 90, "url/6.jpg", 40.35, "2", true));
 

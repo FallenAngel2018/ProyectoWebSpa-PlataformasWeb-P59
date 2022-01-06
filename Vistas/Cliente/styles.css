@@ -12,6 +12,15 @@
     margin-right: 99px;
 }
 
+#blah {
+
+}
+
+.nombre_usuario {
+    font-size: 30px !important;
+    font-weight: bold;
+}
+
 .container-items {
 	display: grid;
     grid-template-columns: 15% 80%;
@@ -117,3 +126,70 @@ ul {
 
 }
 
+
+
+/* For small screen */
+/* .row :nth-child(even){
+    background-color: #dcdcdc;
+  }
+  .row :nth-child(odd){
+    background-color: #aaaaaa;
+  } */
+  
+  /* For medium screen */    
+  /* @media (min-width: 768px) {
+      .row :nth-child(4n), .row :nth-child(4n-1) {
+          background: #dcdcdc;
+      }
+      .row :nth-child(4n-2), .row :nth-child(4n-3) {
+          background: #aaaaaa;
+      }
+  } */
+  
+  /* For large screen */
+  /* @media (min-width: 992px) {
+      .row :nth-child(6n), .row :nth-child(6n-1), .row :nth-child(6n-2) {
+          background: #dcdcdc;
+      }
+      .row :nth-child(6n-3), .row :nth-child(6n-4), .row :nth-child(6n-5) {
+          background: #aaaaaa;
+      }
+  } */
+
+
+
+/* It is simple way to use scroll bar to table body*/
+
+/* table tbody {
+    display: block;
+    max-height: 300px;
+    overflow-y: scroll;
+}
+
+table thead, table tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+} */
+
+
+table, tr td {
+    border: 1px solid red
+}
+tbody {
+    display: block;
+    height: 50px;
+    /* overflow: auto; */
+    overflow-y: scroll;
+}
+thead, tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;/* even columns width , fix width of table too*/
+}
+thead {
+    width: calc( 100% - 1em )/* scrollbar is average 1em/16px width, remove it from thead width */
+}
+table {
+    width: 400px;
+}

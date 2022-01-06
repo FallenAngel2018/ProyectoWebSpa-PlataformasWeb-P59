@@ -20,11 +20,11 @@ if (!verificar_lista_servicios) {
     const lista_servicios = new Array();
     // export const lista_servicios = new Array();
     // 5 horas en minutos                2 = VIP
-    lista_servicios.push(new Servicio(1, "Masaje asiático", "descripcion", 300, "url/1.jpg", 20.4, "2", true));
+    lista_servicios.push(new Servicio(1, "Masaje asiático", "descripcion", 300, "Servicio Masaje asiático.jpg", 20.4, "2", true));
         // 8 horas en minutos u horas     1 = Normal
     lista_servicios.push(new Servicio(2, "Acupuntura abdominal", "descripcion2", 480, "url/2.jpg", 50, "1", false));
     lista_servicios.push(new Servicio(3, "Depilación", "descripcion3", 30, "url/3.jpg", 12.35, "1", false));
-    lista_servicios.push(new Servicio(4, "Facial", "descripcion4", 30, "url/4.jpg", 15.50, "1", true));
+    lista_servicios.push(new Servicio(4, "Facial", "descripcion4", 30, "canasta de compra online.png", 15.50, "1", true));
     lista_servicios.push(new Servicio(5, "Masaje", "descripcion5", 60, "url/5.jpg", 20, "1", true));
     lista_servicios.push(new Servicio(6, "Masaje VIP cuerpo completo", "Masaje de cuerpo completo con aloe vera, rocas calientes y sí se desea en el momento también con acupuntura especializada."
     , 90, "url/6.jpg", 40.35, "2", true));
@@ -35,9 +35,11 @@ if (!verificar_lista_servicios) {
     verificar_lista_servicios = JSON.parse(localStorage.getItem("lista_servicios"));
 
 
+} else {
+    verificar_lista_servicios = JSON.parse(localStorage.getItem("lista_servicios"));
 }
 
-// console.log({verificar_lista_servicios});
+console.log({verificar_lista_servicios});
 
 
 
@@ -95,6 +97,31 @@ if (!verificar_lista_sucursales) {
 // console.log({verificar_lista_sucursales});
 
 
+
+import Reserva from './Componentes/Reserva/Reserva.js'
+
+var verificar_lista_reservas = localStorage.getItem("lista_reservas");
+
+// console.log({verificar_lista_reservas});
+
+// Si viene null...
+if (!verificar_lista_reservas) {
+
+    // Lista estática de reservas
+    const lista_reservas = new Array();
+
+    lista_reservas.push(new Reserva(1, 2, 1, 4, "1", true));
+    lista_reservas.push(new Reserva(1, 2, 1, 2, "3", true));
+    lista_reservas.push(new Reserva(1, 2, 1, 1, "2", true));
+
+    // Se setea la lista_usuarios en el localStorage
+    localStorage.setItem("lista_reservas", JSON.stringify(lista_sucursales));
+
+    verificar_lista_reservas = JSON.parse(localStorage.getItem("lista_reservas"));
+
+}
+
+// console.log({verificar_lista_reservas});
 
 
 
