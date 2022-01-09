@@ -69,13 +69,19 @@ ul {
 
 }
 
+.btnIcon {
+    background-image: url("../../Recursos/ImagenesGeneral/menu-edit.png");
+    width: 24px !important;
+    height: 24px !important;
+}
+
 
 
 .footerItem {
     background-color: yellow;
-      padding: 30px; /* Espacio de 10 pixeles entre el texto y el borde del div */
-      border: 1px solid black;
-  }
+    padding: 30px; /* Espacio de 10 pixeles entre el texto y el borde del div */
+    border: 1px solid black;
+}
 
 
 

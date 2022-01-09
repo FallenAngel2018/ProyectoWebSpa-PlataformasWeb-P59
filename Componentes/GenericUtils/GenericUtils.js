@@ -37,23 +37,37 @@ export default class GenericUtils {
     */
     static addFieldToForm(name, value, formId) {
 
-    //    console.log('formId: ' + formId);
-       
-       // Si en la 1era posición del formId no está el #...
-       if(formId.charAt(0) != "#") {
-           let temp = formId;
-           formId = "#" + temp;
-       }
+        //    console.log('formId: ' + formId);
+        
+        // Si en la 1era posición del formId no está el #...
+        if(formId.charAt(0) != "#") {
+            let temp = formId;
+            formId = "#" + temp;
+        }
 
-       // Añade el campo estado al formulario #formCrudServicio
-       // porque cuando tiene value = false, no se incluye
-       // en los datos del formulario
-       // Fuente: https://stackoverflow.com/questions/17809056/how-to-add-additional-fields-to-form-before-submit
-       $("<input />").attr("type", "hidden")
-           .attr("name", name)
-           .attr("value",value)
-           .appendTo(formId);
-   }
+        // Añade el campo estado al formulario #formCrudServicio
+        // porque cuando tiene value = false, no se incluye
+        // en los datos del formulario
+        // Fuente: https://stackoverflow.com/questions/17809056/how-to-add-additional-fields-to-form-before-submit
+        $("<input />").attr("type", "hidden")
+            .attr("name", name)
+            .attr("value",value)
+            .appendTo(formId);
+    }
+
+    static getLastId(ls_itemId, idFieldName) {
+
+        var lista = JSON.parse(localStorage.getItem(ls_itemId));
+        // var lista_servicios = JSON.parse(localStorage.getItem("lista_servicios"));
+            
+        // Obtiene el id del último elemento de la lista y lo setea en #id_servicio
+        var pruebaID = parseInt(lista.at(-1)[idFieldName]);
+
+        console.log({lista})
+        console.log({pruebaID})
+
+        return pruebaID;
+    }
 
 
 }

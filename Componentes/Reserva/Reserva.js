@@ -2,16 +2,16 @@
 export default class Reserva {
     
     /* 
-        Se puede reservar, pero para ello el cliente debe registrarse en el
-        sistema, y seleccionar el servicio o los servicios que desea, al realizar
-        esta selección se debe presentar el total a pagar incluyendo el IVA.
-        En la reserva debe seleccionar la sucursal, el día y hora que puede
-        asistir dentro de los turnos de atención de los Spa (no se consideran
-        si existen solapamientos de horarios con respecto a otros clientes
-        con el mismo servicio o sucursal).
+        Se puede reservar, pero para ello el cliente debe registrarse en el sistema,
+        y seleccionar el servicio o los servicios que desea, al realizar esta selección
+        se debe presentar el total a pagar incluyendo el IVA.
+        En la reserva debe seleccionar la sucursal, el día y hora que puede asistir
+        dentro de los turnos de atención de los Spa (no se consideran si existen
+        solapamientos de horarios con respecto a otros clientes con el mismo servicio o sucursal).
     */
-    constructor(id_reserva, id_sucursal, id_cliente, id_servicio, dia_reserva, horario_reserva, estado_reserva) {
+    constructor(id_reserva, id_detalleReserva, id_sucursal, id_cliente, id_servicio, dia_reserva, horario_reserva, total_reserva, estado_reserva) {
         this.id_reserva = id_reserva // Valor oculto (hidden), se suma 1 al último Id añadido de la lista.
+        this.id_detalleReserva = id_detalleReserva // Valor oculto (hidden), se suma 1 al último Id añadido de la lista.
         this.id_sucursal = id_sucursal // Valor oculto (hidden), se obtiene de un combobox.
         this.id_cliente = id_cliente // Valor oculto (hidden), se obtiene de la sesión iniciada.
         
@@ -27,6 +27,7 @@ export default class Reserva {
         // 2: Tarde (14h00 a 18h00)
         // 3: Noche (18h00 a 21h00)
         this.horario_reserva = horario_reserva
+        this.total_reserva = total_reserva
         this.estado_reserva = estado_reserva // ACTIVO o INACTIVO
     }
 

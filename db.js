@@ -1,10 +1,9 @@
 
 
-// // Descomente estas líneas para reiniciar las listas en el localStorage.
+// // // Descomente estas líneas para reiniciar las listas en el localStorage.
 // // // Fuente: https://stackoverflow.com/questions/9943220/how-to-delete-a-localstorage-item-when-the-browser-window-tab-is-closed
 // localStorage.removeItem("lista_servicios");
 // localStorage.removeItem("lista_usuarios");
-// localStorage.removeItem("lista_usuarios2");
 // localStorage.removeItem("lista_sucursales");
 // localStorage.removeItem("lista_reservas");
 
@@ -41,7 +40,7 @@ if (!verificar_lista_servicios) {
     verificar_lista_servicios = JSON.parse(localStorage.getItem("lista_servicios"));
 }
 
-console.log({verificar_lista_servicios});
+// console.log({verificar_lista_servicios});
 
 
 
@@ -112,18 +111,48 @@ if (!verificar_lista_reservas) {
     // Lista estática de reservas
     const lista_reservas = new Array();
 
-    lista_reservas.push(new Reserva(1, 2, 1, 4, "1", true));
-    lista_reservas.push(new Reserva(1, 2, 1, 2, "3", true));
-    lista_reservas.push(new Reserva(1, 2, 1, 1, "2", true));
+    // 20 + 15.50 + 20.4
+    lista_reservas.push(new Reserva(1, 1, 2, 1, 4, "2022-01-09", "1", 55.9, true));
+    lista_reservas.push(new Reserva(1, 2, 2, 1, 5, "2022-01-09", "3", 55.9, true));
+    lista_reservas.push(new Reserva(1, 3, 2, 1, 1, "2022-01-09", "2", 55.9, true));
+
+    // // Error de formato al insertarse en la lista
+    // lista_reservas.push(new Reserva({
+    //     id_reserva: 1,
+    //     id_detalleReserva: 1,
+    //     id_sucursal: 2,
+    //     id_cliente: 1,
+    //     id_servicio: 4,
+    //     dia_reserva: "2022-01-09",
+    //     horario_reserva: "1",
+    //     total_reserva: 55.9,
+    //     estado_reserva: true
+    // }));
+
+    // lista_reservas.push(new Reserva({
+    //     id_reserva: 1,
+    //     id_detalleReserva: 2,
+    //     id_sucursal: 2,
+    //     id_cliente: 1,
+    //     id_servicio: 5,
+    //     dia_reserva: "2022-01-09",
+    //     horario_reserva: "3",
+    //     total_reserva: 55.9,
+    //     estado_reserva: true
+    // }));
+
 
     // Se setea la lista_usuarios en el localStorage
-    localStorage.setItem("lista_reservas", JSON.stringify(lista_sucursales));
+    localStorage.setItem("lista_reservas", JSON.stringify(lista_reservas));
 
     verificar_lista_reservas = JSON.parse(localStorage.getItem("lista_reservas"));
 
+    console.log(verificar_lista_reservas[2]);
+    console.log(verificar_lista_reservas[0]);
+
 }
 
-// console.log({verificar_lista_reservas});
+console.log({verificar_lista_reservas});
 
 
 
