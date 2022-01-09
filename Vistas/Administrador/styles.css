@@ -2,6 +2,12 @@
     box-sizing: border-box;
 }
 
+#logo{
+    margin-top: 0px;
+    margin-left: 5px;
+    float: left;
+    
+  }
 
 
 .container-items {
@@ -17,7 +23,7 @@ ul {
 }
 
 .topItem {
-    background-color: yellow;
+    background-color: #FFF28C;
     border: 1px solid black;
     padding: 45px;
     text-align: center;
@@ -52,13 +58,13 @@ ul {
 
 .serv-button {
     /* background-color: lightsalmon; */
-    background-color: rgb(102, 243, 66);
+    background-color: #d3ffd0;
     /* width: 170px; */
     width: 100%;
 }
 
 .serv-deactivated-button {
-    background-color: rgb(245, 105, 105);
+    background-color: #ffd0d3;
     /* width: 170px; */
     width: 100%;
 }
@@ -78,7 +84,7 @@ ul {
 
 
 .footerItem {
-    background-color: yellow;
+    background-color: #FFF28C;
     padding: 30px; /* Espacio de 10 pixeles entre el texto y el borde del div */
     border: 1px solid black;
 }
@@ -99,12 +105,12 @@ ul {
 #first {
     /* width: 300px; */
     float:left; /* add this */
-    border: 1px solid red;
+    /* border: 1px solid red; */
     height: 625px;
     
 }
 #second {
-    border: 1px solid green;
+    border: 1px solid rgb(0, 0, 0);
     float: left;
     /* if you don't want #second to wrap below #first */
     overflow: hidden;
