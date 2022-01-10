@@ -58,7 +58,7 @@ if (!verificar_lista_usuarios) {
 
     lista_usuarios.push(new Usuario(1, "0952468591", "Johnny", "Lawrence", "Fishbourne #098 & Main St."
                                         , "0945754165", "cobrakai_2019@gmail.com", "hotbabes1975", true));
-    lista_usuarios.push(new Usuario(2, "0984518597", "Suckmy", "Suckmy", "Dick Los Esteroshhh"
+    lista_usuarios.push(new Usuario(2, "0984518597", "Doc", "Oc", "Rosendo Aviles y la Otra"
                                         , "0985478520", "name@spaweb.com", "xdd", true));
     // Se setea la lista_usuarios en el localStorage
     localStorage.setItem("lista_usuarios", JSON.stringify(lista_usuarios));

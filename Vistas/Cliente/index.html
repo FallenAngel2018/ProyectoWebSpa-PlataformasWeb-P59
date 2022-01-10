@@ -401,7 +401,6 @@
 
         total_reserva += Number(servicio_precio);
 
-        // console.log({total_reserva});
 
         // Fuente: https://www.tutorialspoint.com/How-to-format-a-number-with-two-decimals-in-JavaScript#:~:text=Use%20the%20toFixed()%20method,the%20right%20of%20the%20decimal. 
         $("#divPrecioTotal").text(`$${Number(total_reserva).toFixed(2)}`);
@@ -521,12 +520,7 @@
                         // Obtiene el valor que tiene
                         var outerText = column.outerText;
 
-                        console.log({ outerText });
-
                         nueva_reserva[item] = outerText;
-
-                        console.log({item});
-                        console.log("nueva_reserva[item]: " + nueva_reserva[item]);
                         
                     }
                 
