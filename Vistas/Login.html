@@ -137,3 +137,99 @@
 
 
 </script>
+
+<!-- script type="module">
+
+  // Clase export default, export objeto
+  import Usuario from '../Componentes/Usuario/Modelo.js'
+  // import Usuario, {lista_usuarios} from '../Componentes/Usuario/Modelo.js'
+  import GenericUtils from '../Componentes/GenericUtils/GenericUtils.js'
+
+  var lista_usuarios = JSON.parse(localStorage.getItem("lista_usuarios"));
+  console.log({lista_usuarios});
+
+  localStorage.removeItem("id_usuario");
+
+  var Id_Usuario_LS = Number(localStorage.getItem("id_usuario"));
+  console.log({ Id_Usuario_LS });
+
+  // #region Formulario - Método Submit 
+
+  $('#formCrudLogin').submit(function (e) {
+    
+    e.preventDefault();
+
+    // // Convertir los datos del formulario #formCrudLogin a un objeto JSON
+    // // Fuente: https://www.learnwithjason.dev/blog/get-form-values-as-json
+    const data = new FormData(e.target);
+
+    const jsonValue = Object.fromEntries(data.entries());
+    var usuario = new Usuario();
+
+    // Genera el objeto a través del objeto JSON
+    usuario = GenericUtils.getObjectFromJson(jsonValue, usuario);
+
+    // Guarda en la "base" el objeto creado y devuelve si salió todo bien
+    var verificacion_login = Usuario.loginValidation(usuario);
+
+    // Termina el proceso de guardado de datos
+
+
+    if (verificacion_login) {
+
+      var correo_clientes = ["@gmail.com", "@hotmail.com"];
+      var correo_administrador = ["@spaweb.com"];
+
+      // Se usará para asignarle la dirección de destino que tendrá el usuario
+      // dependiendo si es admin o cliente.
+      var url_destino = "";
+
+      // Revisa si es el correo de un cliente,
+      correo_clientes.forEach(function (dominio) {
+
+        if(usuario.correoelec.includes(dominio)) {
+          
+          // console.log("Correo es gmail o hotmail.");
+
+          url_destino = "../Vistas/Cliente/Index.html";
+
+        }
+
+      });
+
+
+      // Revisa si es el correo de un administrador,
+      correo_administrador.forEach(function (dominio) {
+
+        if(usuario.correoelec.includes(dominio)) {
+
+          // console.log("Correo es de administrador.");
+
+          url_destino = "../Vistas/Administrador/Index.html";
+
+        }
+          
+      });
+
+      // Obtiene el Id del usuario que hizo el login, y lo agrega
+      // en el localStorage para usarse en otros procesos.
+      let id = Usuario.GetUserId(usuario);
+      localStorage.setItem("id_usuario", id);
+
+      window.location.href = url_destino;
+      
+    } else {
+
+      let error_login = "Correo o contraseña incorrectos.";
+      console.log(error_login);
+      alert(error_login);
+
+    }
+
+
+  });
+
+  //#endregion
+
+
+</script> -->
