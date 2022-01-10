@@ -18,46 +18,40 @@
     <div class="col-md-10 mx-auto col-lg-5">
         <form class="p-4 p-md-5 border rounded-3 bg-dark" id="formCrudRegistro">
           <div class="form-floating mb-3">
-              <!-- <input type="text" class="form-control" pattern="\d{1,5}" id="cedula" name="cedula" -->
               <input type="text" class="form-control" pattern="[0-9]{1,10}" id="cedula" name="cedula"
-                placeholder="0547845216" value="0984518597">
+                placeholder="Ingrese una cédula válida" value="">
               <label for="cedula">Cédula</label>
           </div> 
           <div class="form-floating mb-3">
               <input type="text" class="form-control" id="nombre" name="nombre"
-                placeholder="Guillermo" value="Suckmy">
+                placeholder="Guillermo" value="">
               <label for="nombre">Nombre</label>
           </div> 
           <div class="form-floating mb-3">
               <input type="text" class="form-control" id="apellido" name="apellido"
-                  placeholder="Mite" value="Suckmy">
+                  placeholder="Mite" value="">
               <label for="apellido">Apellido</label>
           </div>
           <div class="form-floating mb-3">
               <input type="text" class="form-control" id="domicilio" name="domicilio"
-                placeholder="Los Esteroshhh" value="Dick Los Esteroshhh">
+                placeholder="Los Esteroshhh" value="">
               <label for="domicilio">Dirección</label>
           </div>
           <div class="form-floating mb-3">
               <input type="text" class="form-control" id="telefono" name="telefono"
-                placeholder="0985478520" value="0985478520">
+                placeholder="0985478520" value="">
               <label for="telefono">Teléfono</label>
           </div>
           <div class="form-floating mb-3">
               <input type="email" class="form-control" id="correoelec" name="correoelec"
-                placeholder="name@example.com" value="name@spaweb.com">
+                placeholder="name@example.com" value="">
               <label for="correoelec">Dirección de Email</label>
           </div>
           <div class="form-floating mb-3">
               <input type="password" class="form-control" id="clave" name="clave"
-                placeholder="Password" value="xdd">
+                placeholder="Password" value="">
               <label for="clave">Contraseña</label>
           </div>
-          <!-- <div class="checkbox mb-3">
-            <label>
-              <input type="checkbox" value="remember-me"> Remember me
-            </label>
-          </div> -->
           <button class="w-100 btn btn-lg btn-primary" type="submit">Registrarse</button>
           <hr class="my-4">
           <!-- <small class="text-muted">By clicking Sign up, you agree to the terms of use.</small> -->
@@ -70,37 +64,30 @@
 
   // Clase export default, export objeto
   import Usuario from '../Componentes/Usuario/Modelo.js'
-  // import Usuario, {lista_usuarios} from '../Componentes/Usuario/Modelo.js'
   import GenericUtils from '../Componentes/GenericUtils/GenericUtils.js'
 
   var lista_usuarios = JSON.parse(localStorage.getItem("lista_usuarios"));
-  console.log({ lista_usuarios });
-  
 
+  
   // #region Formulario - Método Submit 
 
   $('#formCrudRegistro').submit(function (e) {
     
     e.preventDefault();
 
-    var form = $(this).serialize();
-
     // Obtiene el id del último elemento de la lista sumándole 1.
     // El parseInt es porque obtiene el elemento de la lista
     // como si fuera un String, por eso hay que convertirlo.
     var id_usuario = parseInt(lista_usuarios.at(-1).id_usuario) + 1;
-    console.log({form});
 
 
     // ARREGLAR: El Id se va como String y no como Int
     GenericUtils.addFieldToForm("id_usuario", parseInt(id_usuario), "formCrudRegistro");
 
-
     GenericUtils.addFieldToForm("estado_usuario", true, "formCrudRegistro");
 
 
-    // Convertir los datos del formulario #formCrudRegistro
-    // a un objeto JSON
+    // Convertir los datos del formulario #formCrudRegistro a un objeto JSON
     // Fuente: https://www.learnwithjason.dev/blog/get-form-values-as-json
     const data = new FormData(e.target);
 
@@ -109,9 +96,6 @@
 
     // Genera el objeto a través del objeto JSON
     nuevo_usuario = GenericUtils.getObjectFromJson(jsonValue, nuevo_usuario);
-
-    console.log({ nuevo_usuario });
-
 
     var usuario_existe = Usuario.checkIfUserExists(nuevo_usuario);
 
@@ -126,10 +110,6 @@
     // // Termina el proceso de guardado de datos
 
     lista_usuarios = JSON.parse(localStorage.getItem("lista_usuarios"));
-
-    console.log({ verificacion_guardado });
-    console.log({ lista_usuarios });
-
 
     // Si se guardó correctamente el usuario...
     if (verificacion_guardado) {

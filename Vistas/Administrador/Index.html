@@ -145,8 +145,6 @@
 
 // Clase export default, export objeto
     import Servicio from '../../Componentes/Servicio/Modelo.js'
-    // import Servicio, {lista_servicios} from '../../Componentes/Servicio/Modelo.js'
-    // import { lista_usuarios } from '../../Componentes/Usuario/Modelo.js'
     import GenericUtils from '../../Componentes/GenericUtils/GenericUtils.js'
 
 
@@ -157,19 +155,23 @@
     var lista_servicios = JSON.parse(localStorage.getItem("lista_servicios"));
     var lista_usuarios = JSON.parse(localStorage.getItem("lista_usuarios"));
 
-    console.log({lista_servicios});
-    console.log({lista_usuarios});
 
+    var Id_Usuario_LS = Number(localStorage.getItem("id_usuario"));
 
     // #region Jquery - On document ready
 
-    $(document).ready(function(){
+    $(document).ready(function() {
 
-        // Accede al objeto "sessionStorage" que viene nativamente con javascript
+        if(Id_Usuario_LS <= 0 || Id_Usuario_LS == null || Id_Usuario_LS == undefined) {
+
+            window.location.href = "../Login.html";
+
+        }
+
+        // Accede al objeto "localStorage" que viene nativamente con javascript
         // y obtiene la propiedad que se le indica.
         var prueba = localStorage.getItem("id_usuario");
 
-        console.log({ prueba });
 
         // Itera sobre la lista de usuarios...
         lista_usuarios.forEach(element => {
@@ -239,8 +241,6 @@
 
             img_name = this.files.item(0).name;
 
-            console.log({img_name});
-
         }
     });
 
@@ -281,7 +281,6 @@
         // el nombre de la imagen que se necesita mostrar
         GenericUtils.addFieldToForm("fotografia", img_name, "#formCrudServicio");
 
-        // console.log({img_name});
 
         // Convertir los datos del formulario #formCrudServicio
         // a un objeto JSON
@@ -300,8 +299,6 @@
 
         // Genera el objeto a través del objeto JSON
         nuevo_servicio = GenericUtils.getObjectFromJson(jsonValue, nuevo_servicio);
-
-        console.log({ nuevo_servicio });
 
         // // Guarda en la "base" el objeto creado y devuelve si salió todo bien
         var verificacion_guardado = Servicio.saveService(nuevo_servicio);

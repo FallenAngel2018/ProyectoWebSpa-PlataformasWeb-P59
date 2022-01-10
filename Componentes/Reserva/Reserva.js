@@ -9,7 +9,8 @@ export default class Reserva {
         dentro de los turnos de atención de los Spa (no se consideran si existen
         solapamientos de horarios con respecto a otros clientes con el mismo servicio o sucursal).
     */
-    constructor(id_reserva, id_detalleReserva, id_sucursal, id_cliente, id_servicio, dia_reserva, horario_reserva, total_reserva, estado_reserva) {
+    constructor(id_reserva, id_detalleReserva, id_sucursal, id_cliente, id_servicio, dia_reserva,
+                    horario_reserva, total_reserva, estado_reserva) {
         this.id_reserva = id_reserva // Valor oculto (hidden), se suma 1 al último Id añadido de la lista.
         this.id_detalleReserva = id_detalleReserva // Valor oculto (hidden), se suma 1 al último Id añadido de la lista.
         this.id_sucursal = id_sucursal // Valor oculto (hidden), se obtiene de un combobox.
@@ -34,6 +35,7 @@ export default class Reserva {
 
     // Definir función
     static saveBooking(booking) {
+        var lista_reservas = JSON.parse(localStorage.getItem("lista_reservas"));
 
         var flag_booking = false;
 
@@ -43,6 +45,9 @@ export default class Reserva {
 
         if(booking == lastElement) {
             flag_booking = true;
+
+            localStorage.setItem("lista_reservas", JSON.stringify(lista_reservas));
+
         }
 
         return Boolean(flag_booking);
@@ -57,12 +62,6 @@ export default class Reserva {
 // de la clase Servicio para hacerla privada
 // Fuente: https://www.c-sharpcorner.com/article/encapsulation-in-javascript/#:~:text=Using%20a%20little%20finesse%2C%20we,vanilla%20JavaScript%20(ES6)%20classes.&text=To%20do%20this%2C%20we%20can,operate%20on%20these%20encapsulated%20variables.
 
-// // Lista estática de reservas
-// export const lista_reservas = new Array();
-
-// lista_reservas.push(new Reserva(1, 2, 1, 4, "1", true));
-// lista_reservas.push(new Reserva(1, 2, 1, 2, "3", true));
-// lista_reservas.push(new Reserva(1, 2, 1, 1, "2", true));
 
 
 

@@ -63,8 +63,7 @@ export default class GenericUtils {
         // Obtiene el id del último elemento de la lista y lo setea en #id_servicio
         var pruebaID = parseInt(lista.at(-1)[idFieldName]);
 
-        console.log({lista})
-        console.log({pruebaID})
+        // console.log({lista})
 
         return pruebaID;
     }

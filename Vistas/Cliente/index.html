@@ -24,13 +24,6 @@
     </div>
 
     <div id="wrapper">
-        <!-- <div class="col-2" id="first">
-          <center><h4>Servicios Disponibles</h4></center>
-            <div id="listadoServicios" class="item">   
-
-            </div>
-
-        </div> -->
         <div style="margin-left: 0px ;" class="col-7" id="second">
             <div class="container">
                 <div class="text-center mt-5">
@@ -43,14 +36,12 @@
                         <div class="card-body bg-light">
                             <div class="container">
                                 <form id="formReserva" method="post">
-                                    <input type="hidden" id="id_cliente" name="id_cliente" value="">
 
                                     <div class="controls">
                                         <div class="row">
                                             <div class="col-md-7">
                                                 <div class="form-group">
                                                     <label for="form_name">Seleccione la sucursal en la que desea hacer la reserva *</label>
-                                                    <!-- <input id="form_name" type="text" name="nombre" value="ddd" class="form-control" placeholder="Ingrese el nombre del producto." required="required" data-error="Firstname is required."> -->
                                                     <select id="cmbSucursales" name="id_sucursal" class="form-control" required data-error="Please specify your need.">
                                                       <option value="" selected>-- Seleccione una sucursal --</option>
                                                     </select>
@@ -61,32 +52,11 @@
                                             <div class="col-md-5">
                                                 <div class="form-group">
                                                     <label for="form_name">Servicio *</label>
-                                                    <!-- <input id="form_name" type="text" name="nombre" value="ddd" class="form-control" placeholder="Ingrese el nombre del producto." required="required" data-error="Firstname is required."> -->
                                                     <select id="cmbServicios" name="id_servicio" disabled class="form-control" required data-error="Por favor, seleccione un servicio.">
                                                       <option value="" selected disabled>Seleccione el servicio</option>
-                                                      <!-- <option value="1" >Facial</option>
-                                                      <option value="2" >Masaje</option> -->
                                                     </select>
                                                 </div>
                                             </div>
-                                            <!-- <div class="col-md-2">
-                                                <div class="form-group">
-                                                    <label for="dateDiaReserva">Selecciona el dia *</label>
-                                                    <input type="date" id="dateDiaReserva" name="dia_reserva" disabled>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label for="cmbHorarioReserva">Selecciona el horario *</label>
-                                                    <select id="cmbHorarioReserva" name="horario_reserva" class="form-control"
-                                                        disabled required data-error="Por favor, seleccione un servicio.">
-                                                        <option value="" selected disabled>Seleccione la hora</option>
-                                                        <option value="1">Mañana (9h00 a 13h00)</option>
-                                                        <option value="2">Tarde (14h00 a 18h00)</option>
-                                                        <option value="3">Noche (18h00 a 21h00)</option>
-                                                    </select>
-                                                </div>
-                                            </div> -->
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label for="precio">Precio ($)</label>
@@ -106,8 +76,6 @@
                                                 <div class="form-group">
                                                     <label for="dateDiaReserva">Selecciona el dia *</label>
                                                     <input type="date" id="dateDiaReserva" name="dia_reserva" disabled>
-                                                        <!-- value="2018-07-22" min="2018-01-01" max="2018-12-31"> -->
-
                                                 </div>
                                             </div>
                                             <div class="col-md-5">
@@ -124,22 +92,6 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <!-- <div class="col-md-5">
-                                                <div class="form-group">
-                                                    <label for="tipo_servicio">Tipo de servicio *</label>
-                                                    <select id="tipo_servicio" name="tipo_servicio" class="form-control" required data-error="Please specify your need.">
-                                                        <option value="" selected disabled>-- Seleccione el tipo de servicio --</option>
-                                                        <option value="1" >Normal</option>
-                                                        <option value="2" >VIP</option>
-                                                    </select>
-                                                </div>
-                                            </div> -->
-                                            <!-- <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <label for="fotografia">Imagen del servicio:</label>
-                                                    <img id="imgServicio" width="150px" height="150px" alt="" />
-                                                </div>
-                                            </div> -->
 
                                         </div>
                                         <div class="row">
@@ -151,14 +103,6 @@
                                                                     data-error="Please, leave us a message."></textarea>
                                                 </div>
                                             </div>
-                                            <!-- <div class="col-md-12 form-check">
-                                                <div class="form-group">
-                                                    <input type="checkbox" class="" id="estado" name="estado" value="false" >
-                                                    <label class="form-check-label" for="estado">
-                                                        Estado del servicio *
-                                                    </label>
-                                                </div>  
-                                            </div> -->
                                             <div class="d-grid gap-2 col-6 mx-auto">
                                                 <!-- <input id="guardarServicio" type="button" -->
                                                 <input id="guardarServicio" type="submit"
@@ -181,6 +125,7 @@
                 
                 <br>
                 <br>
+            <input type="hidden" id="total_reserva">
 
             <center><h3>Servicios Reservados</h3></center>
 
@@ -191,24 +136,11 @@
                             <th style="display: none;" scope="col">#</th>
                             <th width="30%" scope="col">Servicio</th>
                             <th width="20%" scope="col">Precio ($)</th>
-                            <th width="40%" scope="col">Horario</th>
-                            <!-- <th scope="col">Handle</th> -->
+                            <th width="50%" scope="col">Horario</th>
                             <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>$25</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>$25</td>
-                            <td></td>
-                        </tr> -->
                     </tbody>
                 </table>
             </div>
@@ -252,33 +184,43 @@
 
 <script type="module">
 
-    import Servicio from '../../Componentes/Servicio/Modelo.js'
     import Reserva from '../../Componentes/Reserva/Reserva.js'
     import GenericUtils from '../../Componentes/GenericUtils/GenericUtils.js'
 
     var lista_servicios = JSON.parse(localStorage.getItem("lista_servicios"));
     var lista_usuarios = JSON.parse(localStorage.getItem("lista_usuarios"));
     var lista_sucursales = JSON.parse(localStorage.getItem("lista_sucursales"));
+    var lista_reservas = JSON.parse(localStorage.getItem("lista_reservas"));
 
     // Accede al objeto "localStorage" que viene nativamente con javascript
     // y obtiene la propiedad que se le indica.
     var Id_Usuario_LS = Number(localStorage.getItem("id_usuario"));
-
+    var id_detalleReserva = 0;
+    
     console.log({ Id_Usuario_LS });
+    console.log({ lista_reservas });
 
     let total_reserva = 0;                                                                                                        
     
     // var id_reserva = 0;
     var Id_Reserva_LS = GenericUtils.getLastId("lista_reservas", "id_reserva");
-    // var id_reserva = GenericUtils.getLastId("lista_sucursales", "id_sucursal");
+
 
     // #region Jquery - On document ready
 
     $(document).ready(function() {
 
-        $("#id_cliente").val(Id_Usuario_LS);
+        if(Id_Usuario_LS <= 0 || Id_Usuario_LS == null || Id_Usuario_LS == undefined) {
+
+            window.location.href = "../Login.html";
+
+        }
+
+        // $("#id_cliente").val(Id_Usuario_LS);
+        GenericUtils.addFieldToForm("id_cliente", Id_Usuario_LS, "formReserva");
 
         console.log({Id_Reserva_LS});
+
 
         // Itera sobre la lista de sucursales...
         lista_sucursales.forEach(sucursal => {
@@ -296,7 +238,7 @@
 
         });
 
-        console.log({lista_servicios});
+        // console.log({lista_servicios});
 
         // Itera sobre la lista de sucursales...
         lista_servicios.forEach(servicio => {
@@ -331,12 +273,6 @@
             }
 
         });
-
-        // $("#imgServicio").attr("src", `../../Tests/images/canasta de compra online.png`);
-
-        // let row = `<tr><td style="display:none;">1</td><td>${servicio_nombre}</td><td>${servicio_precio}</td><td></td></tr>`
-        
-        // $('#tblServicios > tbody:last-child').append(row);
 
     });
 
@@ -407,19 +343,18 @@
 
 
 
-    // #region #guardarServicio - On click
-
-    
+    // #region #guardarServicio o #formReserva - On click o submit
 
     // $('#guardarServicio').on('click', function () {
     $('#formReserva').submit(function (e) {
         e.preventDefault();
 
-        // Fuente: https://learn.jquery.com/using-jquery-core/faq/how-do-i-get-the-text-value-of-a-selected-option/
-        Id_Reserva_LS += 1;
+        id_detalleReserva += 1;
 
         console.log({Id_Reserva_LS});
+        console.log({id_detalleReserva});
 
+        var idSucursal = $("#cmbSucursales").val();
         var servicio_nombre = $("#cmbServicios option:selected").text();
         var servicio_precio = $("#precio").val();
         var servicio_idServicio = $("#cmbServicios").val();
@@ -428,60 +363,39 @@
         var servicio_horario = $("#cmbHorarioReserva option:selected").text();
 
 
-
         // Fuente: https://stackoverflow.com/questions/18606305/accessing-formdata-values
         // const data = document.forms['formReserva'].elements;
         // const data = document.forms['formReserva'].elements['inputTypeName'].value;
 
-        // console.log({data})
-
-
-        // for (const element of data) {
-
-        //     var test = element.value;
-        //     console.log({element});
-        //     console.log({test});
-            
-        // }
-
-        const data = new FormData(e.target);
-        const jsonValue = Object.fromEntries(data.entries());
-        var pe = new Reserva();
-
-        console.log({data})
-        console.log({jsonValue})
-
-        // console.log({servicio_diaReserva});
-        // console.log({servicio_idHorario});
-        // console.log({servicio_horario});
 
         // Fuente: https://stackoverflow.com/questions/41995372/how-to-add-rows-in-html-table-using-jquery
         // Fuente: https://stackoverflow.com/questions/5440657/how-to-hide-columns-in-html-table
-        let fila = `<tr><td style="display:none;">1</td><td>${servicio_nombre}</td><td>${servicio_precio}</td><td><button class="btnIcon"></button></td></tr>`
-        
-        
-        /* PRIMERA VERSIÓN*/
-        // let td_1_idReserva = `<td style="display:none;" class="td_item">${id_reserva}</td>`
-        // let td_2_servicio = `<td width="30%"class="td_item">${servicio_nombre}</td>`
-        // let td_3_precio = `<td width="20%"class="td_item">${servicio_precio}</td>`
-        // let td_4_idHorario = `<td hidden class="td_item">${servicio_idHorario}</td>`
-        // // let td_4_idHorario = `<td style="display:none;" class="td_item">${servicio_idHorario}</td>`
-        // let td_4_horario = `<td width="40%"class="td_item">${servicio_horario}</td>`
-        // let td_5_botonEditar = `<td><button class="btnIcon" onclick="showId('row${id_reserva}')"></button></td>`
-
-        /* SEGUNDA VERSIÓN*/
-        let td_1_idReserva = `<td style="display:none;" class="id_reserva">${Id_Reserva_LS}</td>`
-        let td_2_idServicio = `<td hidden class="id_servicio">${servicio_idServicio}</td>`
-        let td_2_servicio = `<td width="30%"class="td_item">${servicio_nombre}</td>`
-        let td_3_precio = `<td width="20%"class="precio">${servicio_precio}</td>`
-        let td_4_diaReserva = `<td hidden class="dia_reserva">${servicio_idHorario}</td>`
-        let td_4_idHorario = `<td hidden class="horario_reserva">${servicio_idHorario}</td>`
-        // let td_4_idHorario = `<td style="display:none;" class="td_item">${servicio_idHorario}</td>`
-        let td_4_horario = `<td width="40%"class="td_item">${servicio_horario}</td>`
-        let td_5_botonEditar = `<td><button class="btnIcon" onclick="showId('row${Id_Reserva_LS}')"></button></td>`
+        let td_1_idReserva = `<td style="display:none;" class="id_reserva">${Id_Reserva_LS + 1}</td>`
+        let td_2_idDetalleReserva = `<td hidden class="id_detalleReserva">${id_detalleReserva}</td>`
+        let td_3_idSucursal = `<td hidden class="id_sucursal">${idSucursal}</td>`
+        let td_4_idCliente = `<td hidden class="id_cliente">${Id_Usuario_LS}</td>`
+        let td_5_idServicio = `<td hidden class="id_servicio">${parseInt(servicio_idServicio)}</td>`
+        let td_5_servicio = `<td width="30%"class="td_item">${servicio_nombre}</td>`
+        let td_6_precio = `<td width="20%"class="precio">${servicio_precio}</td>`
+        let td_7_diaReserva = `<td hidden class="dia_reserva">${servicio_diaReserva}</td>`
+        let td_8_idHorario = `<td hidden class="horario_reserva">${servicio_idHorario}</td>`
+        let td_8_horario = `<td width="50%"class="td_item">${servicio_horario}</td>`
+        // let td_5_botonEditar = `<td><button class="btnIcon" onclick="showId('row${Id_Reserva_LS}')"></button></td>`
 
 
-        let row = `<tr id="row${Id_Reserva_LS}" class="tr_item">` + td_1_idReserva + td_2_idServicio + td_2_servicio + td_3_precio + td_4_idHorario + td_4_horario + td_5_botonEditar + "</tr>";
+        let row = `<tr id="row${Id_Reserva_LS}" class="tr_item">`
+                    + td_1_idReserva
+                    + td_2_idDetalleReserva
+                    + td_3_idSucursal
+                    + td_4_idCliente
+                    + td_5_idServicio
+                    + td_5_servicio
+                    + td_6_precio
+                    + td_7_diaReserva
+                    + td_8_idHorario
+                    + td_8_horario
+                    // + td_5_botonEditar
+                + "</tr>";
 
         $('#tblServicios > tbody:last-child').append(row);
 
@@ -491,6 +405,7 @@
 
         // Fuente: https://www.tutorialspoint.com/How-to-format-a-number-with-two-decimals-in-JavaScript#:~:text=Use%20the%20toFixed()%20method,the%20right%20of%20the%20decimal. 
         $("#divPrecioTotal").text(`$${Number(total_reserva).toFixed(2)}`);
+        $("#total_reserva").val(Number(total_reserva).toFixed(2));
 
         $('#guardarReserva').prop('disabled', false);
 
@@ -498,12 +413,14 @@
 
         console.log({test_rows});
 
+        resetFields();
+
     });
 
     // #endregion
 
 
-    // #region Métodos - setBookingDate, activateFields, deactivateFields
+    // #region Métodos - setBookingDate, activateFields, deactivateFields, resetFields, checkIfActivateAddButton
 
     function setBookingDate() {
 
@@ -535,7 +452,20 @@
         
     }
 
-    // #endregion
+    function resetFields() {
+        $("#cmbServicios").val("");
+        $("#cmbHorarioReserva").val("");
+        $("#precio").val("1");
+
+        // Fuente: https://stackoverflow.com/questions/13726593/how-to-set-image-src-to-empty
+        $('#imgServicio').attr('src', '');
+
+        checkIfActivateAddButton();
+
+        $("#descripcion").val("");
+
+        
+    }
 
     function checkIfActivateAddButton() {
         let cmb_sucursales_value = $("#cmbSucursales").val();
@@ -554,20 +484,22 @@
         }
     }
 
+    // #endregion
+
 
 
     // #region #guardarReserva - On click
 
     $('#guardarReserva').on('click', function () {
 
-        var nueva_reserva = new Reserva(1, 2, Id_Usuario_LS, 4, "2022-01-10", "0", 0.00, false);
+        // Nueva reserva creada por defecto
+        var nueva_reserva = new Reserva(1, 1, 2, Id_Usuario_LS, 4, "2022-01-10", "0", 0.00, true);
 
-        console.log({nueva_reserva});
+        var verificacion_guardado = false;
 
         // Recorre todas las filas de la tabla.
         $('table > tbody  > tr').each(function(index, tr) { 
             // console.log({index});
-            // console.log({tr});
 
             var rows = tr.childNodes;
 
@@ -579,41 +511,49 @@
 
                 // Recorre las propiedades que tiene el objeto de la clase Reserva.
                 for(const T in nueva_reserva) {
-
+                    
                     // console.log({T});
 
                     // Si las propiedades se llaman igual...
                     if(item == T) {
                         // console.log({T});
-                        // console.log({item});
 
-                        // Obtiene el valor que tiene 
+                        // Obtiene el valor que tiene
                         var outerText = column.outerText;
 
+                        console.log({ outerText });
+
                         nueva_reserva[item] = outerText;
+
+                        console.log({item});
+                        console.log("nueva_reserva[item]: " + nueva_reserva[item]);
                         
                     }
                 
                 }
 
-
             });
 
-            console.log({nueva_reserva});
+            nueva_reserva.total_reserva = $("#total_reserva").val();
 
-            console.log("");
+            // Guarda en la "base" el objeto creado y devuelve si salió todo bien
+            verificacion_guardado = Reserva.saveBooking(nueva_reserva);
 
         });
 
+        console.log({verificacion_guardado});
 
+        if (verificacion_guardado) {
+            alert("Reserva guardada con éxito!!!");
+        } else {
+            alert("Ocurrió un error al guardar la reserva :/");
 
-        // // Guarda en la "base" el objeto creado y devuelve si salió todo bien
-        // var verificacion_guardado = Reserva.saveBooking(nueva_reserva);
-
+        }
 
     });
 
     // #endregion
+
 
     function getTableRows() {
 
@@ -635,7 +575,8 @@
 </script>
 
 
-<script> 
+<script>
+
     function showId(rowId) {
         console.log({rowId});
 
@@ -655,4 +596,5 @@
             console.log(quantity2);
         });
     }
+
 </script>
