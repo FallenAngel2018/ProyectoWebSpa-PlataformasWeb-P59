@@ -21,14 +21,14 @@ if (!verificar_lista_servicios) {
     const lista_servicios = new Array();
     // export const lista_servicios = new Array();
     // 5 horas en minutos                2 = VIP
-    lista_servicios.push(new Servicio(1, "Masaje asiático", "descripcion", 300, "Servicio Masaje asiático.jpg", 20.4, "2", true));
+    lista_servicios.push(new Servicio(1, "Masaje asiático", "Masaje dado por las mejores tecnicas Asiaticas de vangardia que aliviara su estres rapidamente", 300, "Servicio Masaje asiático.jpg", 20.4, "2", true));
         // 8 horas en minutos u horas     1 = Normal
-    lista_servicios.push(new Servicio(2, "Acupuntura abdominal", "descripcion2", 480, "url/2.jpg", 50, "1", false));
-    lista_servicios.push(new Servicio(3, "Depilación", "descripcion3", 30, "url/3.jpg", 12.35, "1", false));
-    lista_servicios.push(new Servicio(4, "Facial", "descripcion4", 30, "Sama Spa Facial.jpg", 15.50, "1", true));
-    lista_servicios.push(new Servicio(5, "Masaje", "descripcion5", 60, "url/5.jpg", 20, "1", true));
+    lista_servicios.push(new Servicio(2, "Acupuntura abdominal", "Acupuntura con tecnicas Americanas", 480, "url/2.jpg", 50, "1", false));
+    lista_servicios.push(new Servicio(3, "Depilación", "Depilacion Laser con tecnologia de vanguardia.", 30, "url/3.jpg", 12.35, "1", false));
+    lista_servicios.push(new Servicio(4, "Facial", "Tratamiento completo, masaje, limpieza y tratamiento con pepino", 30, "Sama Spa Facial.jpg", 15.50, "1", true));
+    lista_servicios.push(new Servicio(5, "Masaje", "Masaje profesional en la espalda para liberar el estres", 60, "Masaje.jpg", 20, "1", true));
     lista_servicios.push(new Servicio(6, "Masaje VIP cuerpo completo", "Masaje de cuerpo completo con aloe vera, rocas calientes y sí se desea en el momento también con acupuntura especializada."
-    , 90, "url/6.jpg", 40.35, "2", true));
+    , 90, "MasajeVIP.jpg", 40.35, "2", true));
 
     // Se setea la lista_servicios en el localStorage
     localStorage.setItem("lista_servicios", JSON.stringify(lista_servicios));
@@ -41,7 +41,6 @@ if (!verificar_lista_servicios) {
 }
 
 // console.log({verificar_lista_servicios});
-
 
 
 import Usuario from './Componentes/Usuario/Modelo.js'
@@ -57,9 +56,9 @@ if (!verificar_lista_usuarios) {
     const lista_usuarios = new Array();
 
     lista_usuarios.push(new Usuario(1, "0952468591", "Johnny", "Lawrence", "Fishbourne #098 & Main St."
-                                        , "0945754165", "cobrakai_2019@gmail.com", "hotbabes1975", true));
+                                        , "0945754165", "user1@gmail.com", "clave123", true));
     lista_usuarios.push(new Usuario(2, "0984518597", "Doc", "Oc", "Rosendo Aviles y la Otra"
-                                        , "0985478520", "name@spaweb.com", "xdd", true));
+                                        , "0985478520", "admin1@spaweb.com", "clave123", true));
     // Se setea la lista_usuarios en el localStorage
     localStorage.setItem("lista_usuarios", JSON.stringify(lista_usuarios));
 
