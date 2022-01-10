@@ -1,11 +1,11 @@
 
 
-// // // Descomente estas líneas para reiniciar las listas en el localStorage.
-// // // Fuente: https://stackoverflow.com/questions/9943220/how-to-delete-a-localstorage-item-when-the-browser-window-tab-is-closed
-// localStorage.removeItem("lista_servicios");
-// localStorage.removeItem("lista_usuarios");
-// localStorage.removeItem("lista_sucursales");
-// localStorage.removeItem("lista_reservas");
+// // Descomente estas líneas para reiniciar las listas en el localStorage.
+// // Fuente: https://stackoverflow.com/questions/9943220/how-to-delete-a-localstorage-item-when-the-browser-window-tab-is-closed
+localStorage.removeItem("lista_servicios");
+localStorage.removeItem("lista_usuarios");
+localStorage.removeItem("lista_sucursales");
+localStorage.removeItem("lista_reservas");
 
 
 import Servicio from './Componentes/Servicio/Modelo.js'

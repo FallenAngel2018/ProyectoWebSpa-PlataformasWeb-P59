@@ -2,6 +2,11 @@
     box-sizing: border-box;
 }
 
+textarea {
+    resize: none;
+}
+  
+
 #logo{
   margin-top: 30px;
   margin-left: 40px;
@@ -12,9 +17,9 @@
     margin-right: 99px;
 }
 
-#blah {
+/* #blah {
 
-}
+} */
 
 .nombre_usuario {
     font-size: 30px !important;
@@ -135,59 +140,12 @@ ul {
 }
 
 
-
-/* For small screen */
-/* .row :nth-child(even){
-    background-color: #dcdcdc;
-  }
-  .row :nth-child(odd){
-    background-color: #aaaaaa;
-  } */
-  
-  /* For medium screen */    
-  /* @media (min-width: 768px) {
-      .row :nth-child(4n), .row :nth-child(4n-1) {
-          background: #dcdcdc;
-      }
-      .row :nth-child(4n-2), .row :nth-child(4n-3) {
-          background: #aaaaaa;
-      }
-  } */
-  
-  /* For large screen */
-  /* @media (min-width: 992px) {
-      .row :nth-child(6n), .row :nth-child(6n-1), .row :nth-child(6n-2) {
-          background: #dcdcdc;
-      }
-      .row :nth-child(6n-3), .row :nth-child(6n-4), .row :nth-child(6n-5) {
-          background: #aaaaaa;
-      }
-  } */
-
-
-
-/* It is simple way to use scroll bar to table body*/
-
-/* table tbody {
-    display: block;
-    max-height: 300px;
-    overflow-y: scroll;
-}
-
-table thead, table tbody tr {
-    display: table;
-    width: 100%;
-    table-layout: fixed;
+/* table, tr td {
+    border: 1px solid rgb(0, 0, 0)
 } */
-
-
-table, tr td {
-    /* border: 1px solid rgb(0, 0, 0) */
-}
 tbody {
     display: block;
     height: 250px;
-    /* overflow: auto; */
     overflow-y: scroll;
 }
 thead, tbody tr {

@@ -26,6 +26,7 @@
     <div id="wrapper">
         <div style="margin-left: 0px ;" class="col-7" id="second">
             <div class="container">
+
                 <div class="text-center mt-5">
                     <h2>Formulario de Registro</h2>
                 </div>
@@ -108,7 +109,15 @@
                                                 <input id="guardarServicio" type="submit"
                                                     class="btn btn-success btn-send pt-2 btn-block "
                                                         value="Agregar Servicio" disabled>
+                                                
                                             </div>
+
+                                            <br>
+                                            <br>
+                                            <br>
+                                            <p><b>*Nota: Los días sábados solo tendremos atención hasta la tarde,
+                                                y los domingos no habrá atención.</b></p>
+
                                         </div>
                                     </div>
                                 </form>
@@ -118,8 +127,7 @@
                 </div> <!-- /.row-->
             </div>
             </div>
-
-           
+   
         </div>
         <div class="col-5" id="first">
                 
@@ -196,9 +204,6 @@
     // y obtiene la propiedad que se le indica.
     var Id_Usuario_LS = Number(localStorage.getItem("id_usuario"));
     var id_detalleReserva = 0;
-    
-    console.log({ Id_Usuario_LS });
-    console.log({ lista_reservas });
 
     let total_reserva = 0;                                                                                                        
     
@@ -213,6 +218,8 @@
         if(Id_Usuario_LS <= 0 || Id_Usuario_LS == null || Id_Usuario_LS == undefined) {
 
             window.location.href = "../Login.html";
+
+            return;
 
         }
 
@@ -289,6 +296,39 @@
 
             activateFields();
 
+            var input = document.getElementById( 'dateDiaReserva' ).value;
+            var day = new Date( input ).getUTCDay();
+
+
+            if (day != 6 && day != 0) {
+
+                $('#cmbHorarioReserva').attr('disabled', false);
+                $("#cmbHorarioReserva option[value=" + 3 + "]").attr('disabled', false);
+
+            }
+
+            // Si es sábado
+            if (day == 6) {
+
+                $('#cmbHorarioReserva').val("");
+
+                checkIfActivateAddButton();
+
+                $("#cmbHorarioReserva option[value=" + 3 + "]").attr('disabled', 'disabled');
+
+            }
+
+            // Si es domingo
+            if (day == 0) {
+
+                $('#cmbHorarioReserva').val("");
+
+                $('#cmbHorarioReserva').attr('disabled', 'disabled');
+
+                checkIfActivateAddButton();
+
+            }
+
         } else {
 
             deactivateFields();
@@ -336,6 +376,50 @@
     $('#cmbHorarioReserva').on('change', function () {
 
         checkIfActivateAddButton();
+
+    });
+
+    // #endregion
+
+    // #region #dateDiaReserva - On change
+
+    $('#dateDiaReserva').on('change', function (e) {
+
+        var s = e.target.value;
+
+        // Fuente: https://stackoverflow.com/questions/47032326/how-can-i-disable-particular-date-of-input-type-date-from-javascript
+        var day = new Date( e.target.value ).getUTCDay();
+
+
+        // Si es sábado
+        if (day == 6) {
+
+            $('#cmbHorarioReserva').attr('disabled', false);
+            $('#cmbHorarioReserva').val("");
+
+            checkIfActivateAddButton();
+
+            $("#cmbHorarioReserva option[value=" + 3 + "]").attr('disabled', 'disabled');
+
+        }
+
+        // Si es domingo
+        if (day == 0) {
+
+            $('#cmbHorarioReserva').val("");
+
+            $('#cmbHorarioReserva').attr('disabled', 'disabled');
+
+            checkIfActivateAddButton();
+            
+        }
+
+        if (day != 6 && day != 0) {
+
+            $('#cmbHorarioReserva').attr('disabled', false);
+            $("#cmbHorarioReserva option[value=" + 3 + "]").attr('disabled', false);
+
+        }
 
     });
 
